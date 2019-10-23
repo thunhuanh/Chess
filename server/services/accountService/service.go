@@ -10,10 +10,6 @@ import (
 	"time"
 )
 
-const (
-	roleDefault = "customer"
-)
-
 // Service service for account
 type Service interface {
 	CreateNewUser(user *model.User) (*model.User, error)
