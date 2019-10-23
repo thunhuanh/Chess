@@ -49,6 +49,8 @@ func (ur *UserRepository) GetFilterListUser(name, role *string, page int, pageSi
 	}
 	defer infrastructure.CloseConnection(db)
 
+	db.Exec("CREATE EXTENSION IF NOT EXISTS unaccent")
+
 	whereQuery := ""
 	if name == nil {
 		whereQuery += "name ILIKE '%'"
