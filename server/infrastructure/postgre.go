@@ -40,7 +40,7 @@ func loadEnvParameters() {
 	User = getStringEnvParameter(USER, "vywmqsxbsdejqf")
 	DbName = getStringEnvParameter(DBNAME, "ddvk6a4d4i1iip")
 	Password = getStringEnvParameter(PASSWORD, "63caf6761cd96f92f55248c5ebe9e80372510ec02f5939d2f2245182db9b323a")
-	HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "https://chess-apis.herokuapp.com:4000/api/v1/be/swagger/doc.json")
+	HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "https://chess-apis.herokuapp.com/api/v1/be/swagger/doc.json")
 }
 
 func init() {
