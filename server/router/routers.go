@@ -2,6 +2,7 @@ package router
 
 import (
 	"Chess/server/controllers"
+	"fmt"
 	"log"
 
 	"net/http"
@@ -44,6 +45,10 @@ func Router() http.Handler {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	r.Get("/", func(w http.ResponseWriter, r* http.Request){
+		fmt.Fprintf(w, "Hello World!")
+	})
 
 	r.Get("/api/v1/be/swagger/*", httpSwagger.Handler(
 		httpSwagger.URL(infrastructure.HttpSwagger),
