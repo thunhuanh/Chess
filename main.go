@@ -21,7 +21,7 @@ import (
 // @name Authorization
 func main() {
 	port := ":4000"
-	fmt.Println("server: ", port)
+	fmt.Println("server ", port)
 
 	//to create table in db
 	//go run main.go -db=init
