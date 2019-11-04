@@ -23,9 +23,9 @@ import (
 func main() {
 	port := os.Getenv("PORT")
 	if port == ""{
-		port = ":4000"
+		port = "4000"
 	}
-	fmt.Println("server ", port)
+	fmt.Println("server :", port)
 
 	//to create table in db
 	//go run main.go -db=init
@@ -40,5 +40,5 @@ func main() {
 		infrastructure.CloseConnection(db)
 	}
 
-	http.ListenAndServe(port, router.Router())
+	log.Fatal(http.ListenAndServe(":" + port, router.Router()))
 }
