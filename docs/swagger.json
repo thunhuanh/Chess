@@ -7,7 +7,7 @@
         "license": {},
         "version": "2.0"
     },
-    "host": "{{.Host}}",
+    "host": "safe-ravine-02107.herokuapp.com:4000",
     "basePath": "/api/v1/be",
     "paths": {
         "/access/login": {

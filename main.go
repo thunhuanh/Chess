@@ -13,7 +13,7 @@ import (
 // @version 2.0
 // @description This is list api for chess project
 
-// host localhost:4000
+// @host safe-ravine-02107.herokuapp.com:4000
 // @BasePath /api/v1/be
 
 // @securityDefinitions.apikey ApiKeyAuth

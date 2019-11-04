@@ -79,7 +79,7 @@ definitions:
       success:
         type: boolean
     type: object
-host: '{{.Host}}'
+host: safe-ravine-02107.herokuapp.com:4000
 info:
   contact: {}
   description: This is list api for chess project

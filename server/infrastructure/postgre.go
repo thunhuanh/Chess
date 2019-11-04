@@ -40,7 +40,7 @@ func loadEnvParameters() {
 	User = getStringEnvParameter(USER, "postgres")
 	DbName = getStringEnvParameter(DBNAME, "chess")
 	Password = getStringEnvParameter(PASSWORD, "123456789")
-	HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "http://localhost:4000/api/v1/be/swagger/doc.json")
+	HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "https://safe-ravine-02107.herokuapp.com:4000/api/v1/be/swagger/doc.json")
 }
 
 func init() {
