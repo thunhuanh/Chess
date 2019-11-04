@@ -1,2 +1,2 @@
-web: Chess
+web: bin/Chess
 
