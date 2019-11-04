@@ -7,7 +7,7 @@
         "license": {},
         "version": "2.0"
     },
-    "host": "safe-ravine-02107.herokuapp.com:4000",
+    "host": "chess-apis.herokuapp.com:4000",
     "basePath": "/api/v1/be",
     "paths": {
         "/access/login": {
