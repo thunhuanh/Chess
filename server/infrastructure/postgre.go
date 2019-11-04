@@ -35,12 +35,12 @@ func getStringEnvParameter(envParam string, defaultValue string) string {
 }
 
 func loadEnvParameters() {
-	Host = getStringEnvParameter(HOST, "localhost") // host database
+	Host = getStringEnvParameter(HOST, "ec2-23-21-87-183.compute-1.amazonaws.com") // host database
 	Port = getStringEnvParameter(PORT, "5432") // post databse
-	User = getStringEnvParameter(USER, "postgres")
-	DbName = getStringEnvParameter(DBNAME, "chess")
-	Password = getStringEnvParameter(PASSWORD, "123456789")
-	HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "https://safe-ravine-02107.herokuapp.com:4000/api/v1/be/swagger/doc.json")
+	User = getStringEnvParameter(USER, "vywmqsxbsdejqf")
+	DbName = getStringEnvParameter(DBNAME, "ddvk6a4d4i1iip")
+	Password = getStringEnvParameter(PASSWORD, "63caf6761cd96f92f55248c5ebe9e80372510ec02f5939d2f2245182db9b323a")
+	HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "https://chess-apis.herokuapp.com:4000/api/v1/be/swagger/doc.json")
 }
 
 func init() {
