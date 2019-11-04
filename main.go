@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 // @title Swagger Chess project API
@@ -20,7 +21,10 @@ import (
 // @in header
 // @name Authorization
 func main() {
-	port := ":4000"
+	port := os.Getenv("PORT")
+	if port == ""{
+		port = ":4000"
+	}
 	fmt.Println("server ", port)
 
 	//to create table in db
