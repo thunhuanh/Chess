@@ -14,8 +14,8 @@ import (
 // @version 2.0
 // @description This is list api for chess project
 
-// host chess-apis.herokuapp.com
-// @host localhost:4000
+// @host chess-apis.herokuapp.com
+// host localhost:4000
 // @BasePath /api/v1/be
 
 // @securityDefinitions.apikey ApiKeyAuth
