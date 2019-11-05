@@ -1,0 +1,9 @@
+a > li{
+    right: 50px;
+}
+a {
+    font-size: 20px;
+}
+#loginBtn:hover{
+    cursor: pointer;
+}
