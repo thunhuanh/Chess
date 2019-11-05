@@ -1,9 +1,9 @@
 package friendRepo
 
 import (
-	"Chess/infrastructure"
-	model "Chess/models"
-	"Chess/repositories/accountRepo"
+	"Chess/server/infrastructure"
+	model "Chess/server/models"
+	"Chess/server/repositories/accountRepo"
 	"github.com/jinzhu/gorm"
 )
 

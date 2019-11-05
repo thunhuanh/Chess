@@ -1,8 +1,8 @@
 package friendService
 
 import (
-	model "Chess/models"
-	"Chess/repositories/friendRepo"
+	model "Chess/server/models"
+	"Chess/server/repositories/friendRepo"
 )
 
 type Service interface {

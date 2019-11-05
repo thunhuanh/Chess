@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	middleAccess "Chess/middleware"
-	model "Chess/models"
+	middleAccess "Chess/server/middleware"
+	model "Chess/server/models"
 
-	"Chess/repositories/accountRepo"
-	"Chess/services/accountService"
+	"Chess/server/repositories/accountRepo"
+	"Chess/server/services/accountService"
 	"encoding/json"
 	"github.com/harlow/authtoken"
 	"log"

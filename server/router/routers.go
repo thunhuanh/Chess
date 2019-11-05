@@ -1,7 +1,7 @@
 package router
 
 import (
-	"Chess/controllers"
+	"Chess/server/controllers"
 	"fmt"
 	"log"
 
@@ -9,10 +9,10 @@ import (
 
 	httpSwagger "github.com/swaggo/http-swagger"
 
-	middleAccess "Chess/middleware"
+	middleAccess "Chess/server/middleware"
 
-	_ "Chess/docs"
-	"Chess/infrastructure"
+	_ "Chess/server/docs"
+	"Chess/server/infrastructure"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"

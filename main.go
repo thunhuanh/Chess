@@ -1,8 +1,8 @@
-package main
+package Chess
 
 import (
-	"Chess/infrastructure"
-	"Chess/router"
+	"Chess/server/infrastructure"
+	"Chess/server/router"
 	"flag"
 	"fmt"
 	"log"

@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	model "Chess/models"
+	model "Chess/server/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"log"

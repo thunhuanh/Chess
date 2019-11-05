@@ -1,9 +1,9 @@
 package accountService
 
 import (
-	middleAccess "Chess/middleware"
-	model "Chess/models"
-	"Chess/repositories/accountRepo"
+	middleAccess "Chess/server/middleware"
+	model "Chess/server/models"
+	"Chess/server/repositories/accountRepo"
 	"errors"
 	"log"
 	"strconv"

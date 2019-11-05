@@ -1,7 +1,7 @@
 package middleAccess
 
 import (
-	model "Chess/models"
+	model "Chess/server/models"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"

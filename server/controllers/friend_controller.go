@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	model "Chess/models"
-	"Chess/services/friendService"
+	model "Chess/server/models"
+	"Chess/server/services/friendService"
 	"encoding/json"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"

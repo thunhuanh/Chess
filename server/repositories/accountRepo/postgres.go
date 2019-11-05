@@ -1,8 +1,8 @@
 package accountRepo
 
 import (
-	"Chess/infrastructure"
-	model "Chess/models"
+	"Chess/server/infrastructure"
+	model "Chess/server/models"
 
 	"errors"
 	"time"
