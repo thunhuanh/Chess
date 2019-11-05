@@ -14,6 +14,11 @@ type User struct {
 	Password           string             `gorm:"column:password;type:varchar(255);not null" json:"password"`
 	CreatedAt          time.Time          `gorm:"column:created_at;type:timestamp;not null" json:"created_at"`
 	UpdatedAt          time.Time          `gorm:"column:updated_at;type:timestamp;not null" json:"updated_at"`
+	Rank			   string
+	Type 			   string
+	Status 			   string
+	NickName		   string
+	RoomId 			   int
 	jwt.StandardClaims `gorm:"-"`
 }
 

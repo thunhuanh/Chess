@@ -1,6 +1,6 @@
 package model
 
-type Response struct {
+type MetaDataResponse struct {
 	Data        interface{} `json:"data"`
 	MetaData	MetaData		`json:"metaData"`
 	Message     string      `json:"message"`

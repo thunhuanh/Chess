@@ -1,8 +1,8 @@
 package main
 
 import (
-	"Chess/server/infrastructure"
-	"Chess/server/router"
+	"Chess/infrastructure"
+	"Chess/router"
 	"flag"
 	"fmt"
 	"log"
@@ -14,7 +14,8 @@ import (
 // @version 2.0
 // @description This is list api for chess project
 
-// @host chess-apis.herokuapp.com
+// host chess-apis.herokuapp.com
+// @host localhost:4000
 // @BasePath /api/v1/be
 
 // @securityDefinitions.apikey ApiKeyAuth
@@ -39,6 +40,10 @@ func main() {
 		}
 		infrastructure.CloseConnection(db)
 	}
+
+	db := infrastructure.GetDB()
+
+	defer infrastructure.CloseConnection(db)
 
 	log.Fatal(http.ListenAndServe(":" + port, router.Router()))
 }

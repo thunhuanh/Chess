@@ -1,13 +1,11 @@
 basePath: /api/v1/be
 definitions:
-  controllers.AccountResponse:
+  controllers.FriendPayload:
     properties:
-      data:
-        type: object
-      message:
-        type: string
-      success:
-        type: boolean
+      friendId:
+        type: integer
+      userId:
+        type: integer
     type: object
   controllers.LoginRequest:
     properties:
@@ -27,7 +25,16 @@ definitions:
       token:
         type: string
     type: object
-  controllers.UpdateAccountResponse:
+  controllers.Response:
+    properties:
+      data:
+        type: object
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  controllers.UpdateAccountPayload:
     properties:
       avatar:
         type: string
@@ -40,7 +47,7 @@ definitions:
       status:
         type: string
     type: object
-  controllers.UpdatePassResponse:
+  controllers.UpdatePassPayload:
     properties:
       newPass:
         type: string
@@ -67,7 +74,7 @@ definitions:
       total:
         type: integer
     type: object
-  model.Response:
+  model.MetaDataResponse:
     properties:
       data:
         type: object
@@ -79,7 +86,7 @@ definitions:
       success:
         type: boolean
     type: object
-host: '{{.Host}}'
+host: localhost:4000
 info:
   contact: {}
   description: This is list api for chess project
@@ -141,12 +148,12 @@ paths:
         name: accountId
         required: true
         type: integer
-      - description: inlucde old user and new update user
+      - description: include old user and new update user
         in: body
         name: update_model
         required: true
         schema:
-          $ref: '#/definitions/controllers.UpdateAccountResponse'
+          $ref: '#/definitions/controllers.UpdateAccountPayload'
           type: object
       produces:
       - application/json
@@ -154,7 +161,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controllers.AccountResponse'
+            $ref: '#/definitions/controllers.Response'
             type: object
       security:
       - ApiKeyAuth: []
@@ -179,7 +186,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controllers.AccountResponse'
+            $ref: '#/definitions/controllers.Response'
             type: object
       security:
       - ApiKeyAuth: []
@@ -204,7 +211,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controllers.AccountResponse'
+            $ref: '#/definitions/controllers.Response'
             type: object
       security:
       - ApiKeyAuth: []
@@ -236,7 +243,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.Response'
+            $ref: '#/definitions/model.MetaDataResponse'
             type: object
       security:
       - ApiKeyAuth: []
@@ -263,7 +270,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controllers.AccountResponse'
+            $ref: '#/definitions/controllers.Response'
             type: object
       summary: Create new Account
       tags:
@@ -280,7 +287,7 @@ paths:
         name: Update_Password
         required: true
         schema:
-          $ref: '#/definitions/controllers.UpdatePassResponse'
+          $ref: '#/definitions/controllers.UpdatePassPayload'
           type: object
       produces:
       - application/json
@@ -288,13 +295,92 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controllers.AccountResponse'
+            $ref: '#/definitions/controllers.Response'
             type: object
       security:
       - ApiKeyAuth: []
       summary: Update password
       tags:
       - account-manager-apis
+  /friend/friends/{userId}/{friendId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete friend by id
+      parameters:
+      - description: id of user account
+        in: path
+        name: userId
+        required: true
+        type: integer
+      - description: id of friend account
+        in: path
+        name: friendId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Delete friend by id
+      tags:
+      - friend-manager-apis
+  /friend/friends/all/{userId}:
+    get:
+      consumes:
+      - application/json
+      description: get all friends
+      parameters:
+      - description: id of user account
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: get all friends
+      tags:
+      - friend-manager-apis
+  /friend/friends/new:
+    post:
+      consumes:
+      - application/json
+      description: Create new Friend
+      parameters:
+      - description: Friend information
+        in: body
+        name: FriendInformation
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.FriendPayload'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Create new Friend
+      tags:
+      - friend-manager-apis
 securityDefinitions:
   ApiKeyAuth:
     in: header

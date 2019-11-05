@@ -1,8 +1,9 @@
 package accountRepo
 
 import (
-	"Chess/server/infrastructure"
-	"Chess/server/models"
+	"Chess/infrastructure"
+	model "Chess/models"
+
 	"errors"
 	"time"
 
@@ -20,12 +21,7 @@ const (
 
 // CreateUser blah blah
 func (ur *UserRepository) CreateUser(user *model.User) (*model.User, error) {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return nil, err
-	}
-	defer infrastructure.CloseConnection(db)
-
+	db := infrastructure.GetDB()
 
 	password, err := ur.HashPassword(user.Password)
 	if err != nil {
@@ -43,11 +39,7 @@ func (ur *UserRepository) CreateUser(user *model.User) (*model.User, error) {
 
 // GetListUser blah blah
 func (ur *UserRepository) GetFilterListUser(name, role *string, page int, pageSize int) (users []model.User, total int, err error) {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return nil, 0, err
-	}
-	defer infrastructure.CloseConnection(db)
+	db := infrastructure.GetDB()
 
 	db.Exec("CREATE EXTENSION IF NOT EXISTS unaccent")
 
@@ -88,11 +80,7 @@ func (ur *UserRepository) GetFilterListUser(name, role *string, page int, pageSi
 
 // FindById return user match id parameter
 func (ur *UserRepository) FindById(id int) (*model.User, error) {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return nil, err
-	}
-	defer infrastructure.CloseConnection(db)
+	db := infrastructure.GetDB()
 	var user model.User
 	if err := db.First(&user, id).Error; err != nil {
 		return nil, err
@@ -103,11 +91,7 @@ func (ur *UserRepository) FindById(id int) (*model.User, error) {
 
 // UpdateUser update user without password
 func (ur *UserRepository) UpdateUser(accountID int, updatedUser *model.User) error {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return err
-	}
-	defer infrastructure.CloseConnection(db)
+	db := infrastructure.GetDB()
 
 	if err := db.First(&model.User{ID: uint(accountID)}).Update(updatedUser).Error; err != nil {
 		return err
@@ -118,11 +102,7 @@ func (ur *UserRepository) UpdateUser(accountID int, updatedUser *model.User) err
 
 // UpdatePassword only update password == reset password
 func (ur *UserRepository) UpdatePassword(id int, oldPass string, newPass string) error {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return err
-	}
-	defer infrastructure.CloseConnection(db)
+	db := infrastructure.GetDB()
 
 	var user model.User
 	if err := db.Where("id = ? ", id).First(&user).Error; err != nil {
@@ -147,11 +127,7 @@ func (ur *UserRepository) UpdatePassword(id int, oldPass string, newPass string)
 
 // DeleteUser delete user by id
 func (ur *UserRepository) DeleteUser(id int) error {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return err
-	}
-	defer infrastructure.CloseConnection(db)
+	db := infrastructure.GetDB()
 
 	if err := db.Unscoped().Delete(&model.User{
 		ID: uint(id),
@@ -163,11 +139,7 @@ func (ur *UserRepository) DeleteUser(id int) error {
 
 // LoginRequest get more data for user to send to token jwt
 func (ur *UserRepository) LoginRequest(user *model.User) (*model.User, error) {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return nil, err
-	}
-	defer infrastructure.CloseConnection(db)
+	db := infrastructure.GetDB()
 
 	var foundUser model.User
 	if err := db.Where("name = ?", user.Name).First(&foundUser).Error; err != nil {
@@ -189,11 +161,7 @@ func (ur *UserRepository) LoginRequest(user *model.User) (*model.User, error) {
 }
 
 func (ur *UserRepository) LoginTokenRequest(user *model.User) (bool, error) {
-	db, err := infrastructure.OpenConnection()
-	if err != nil {
-		return false, err
-	}
-	defer infrastructure.CloseConnection(db)
+	db := infrastructure.GetDB()
 
 	var users []*model.User
 	if err := db.Where("name = ? AND password = ?", user.Name, user.Password).Find(&users).Error; err != nil {

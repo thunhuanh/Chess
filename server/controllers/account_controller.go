@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"Chess/server/middleware"
-	"Chess/server/models"
-	"Chess/server/repositories/accountRepo"
-	"Chess/server/services/accountService"
+	middleAccess "Chess/middleware"
+	model "Chess/models"
+
+	"Chess/repositories/accountRepo"
+	"Chess/services/accountService"
 	"encoding/json"
 	"github.com/harlow/authtoken"
 	"log"
@@ -41,7 +42,7 @@ type accountController struct {
 // @Accept json
 // @Produce json
 // @Param UserInformation body controllers.UserM true "User information"
-// @Success 200 {object} controllers.AccountResponse
+// @Success 200 {object} controllers.Response
 // @Router  /account/create [post]
 func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
@@ -55,15 +56,15 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 		Password: data.Password,
 	}
 	newUser, err := ac.accountService.CreateNewUser(&user)
-	var res *AccountResponse
+	var res *Response
 	if err != nil {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    nil,
 			Message: "not ok",
 			Success: false,
 		}
 	} else {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    newUser,
 			Message: "Ok",
 			Success: true,
@@ -85,7 +86,7 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 // @Param name query string false "name for user"
 // @Param page query integer false "page number for user"
 // @Param pageSize query integer false "page size each page"
-// @Success 200 {object} model.Response
+// @Success 200 {object} model.MetaDataResponse
 // @Router /account/accounts [get]
 func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request) {
 	queryValues := r.URL.Query()
@@ -130,22 +131,22 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 		})
 	}
 
-	var res *model.Response
+	var res *model.MetaDataResponse
 	if err != nil {
-		res = &model.Response{
+		res = &model.MetaDataResponse{
 			Data:    nil,
 			Message: err.Error(),
 			Success: false,
 		}
 	} else {
-		res = &model.Response{
+		res = &model.MetaDataResponse{
 			MetaData: model.MetaData{
 				Page:page,
 				PageSize:pageSize,
 				Total:total,
 			},
 			Data:    listUserResponse,
-			Message: "ok",
+			Message: "Successful",
 			Success: true,
 		}
 	}
@@ -162,12 +163,12 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 // @Produce json
 // @Security ApiKeyAuth
 // @Param accountId path integer true "id of user account"
-// @Param update_model body controllers.UpdateAccountResponse true "inlucde old user and new update user"
-// @Success 200 {object} controllers.AccountResponse
+// @Param update_model body controllers.UpdateAccountPayload true "include old user and new update user"
+// @Success 200 {object} controllers.Response
 // @Router  /account/{accountId} [put]
 func (ac *accountController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
-	var data UpdateAccountResponse
+	var data UpdateAccountPayload
 	err := decoder.Decode(&data)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -189,15 +190,15 @@ func (ac *accountController) UpdateUser(w http.ResponseWriter, r *http.Request) 
 
 	err = ac.accountService.UpdateUser(accountID, &infoUpdate)
 
-	var res *AccountResponse
+	var res *Response
 	if err != nil {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    nil,
 			Message: "update user failed. " + err.Error(),
 			Success: false,
 		}
 	} else {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    true,
 			Message: "Update user success",
 			Success: true,
@@ -214,29 +215,29 @@ func (ac *accountController) UpdateUser(w http.ResponseWriter, r *http.Request) 
 // @Accept json
 // @Produce json
 // @Security ApiKeyAuth
-// @Param Update_Password body controllers.UpdatePassResponse true "cuple value id and reset password"
-// @Success 200 {object} controllers.AccountResponse
+// @Param Update_Password body controllers.UpdatePassPayload true "cuple value id and reset password"
+// @Success 200 {object} controllers.Response
 // @Router  /account/password [put]
 func (ac *accountController) ChangePassword(w http.ResponseWriter, r *http.Request) {
-	var res *AccountResponse
+	var res *Response
 
 	decoder := json.NewDecoder(r.Body)
-	var data UpdatePassResponse
+	var data UpdatePassPayload
 	if err := decoder.Decode(&data); err != nil {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    nil,
 			Message: "don't meet require",
 			Success: false,
 		}
 	}
 	if err := ac.accountService.UpdatePassword(data.UserId, data.OldPass, data.NewPass); err != nil {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    nil,
 			Message: "ERROR: " + err.Error(),
 			Success: false,
 		}
 	} else {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    nil,
 			Message: "chane password success",
 			Success: true,
@@ -254,23 +255,23 @@ func (ac *accountController) ChangePassword(w http.ResponseWriter, r *http.Reque
 // @Produce json
 // @Security ApiKeyAuth
 // @Param userId path string true "user id is wanted remove"
-// @Success 200 {object} controllers.AccountResponse
+// @Success 200 {object} controllers.Response
 // @Router  /account/{userId} [delete]
 func (ac *accountController) RemoveUser(w http.ResponseWriter, r *http.Request) {
 	userID := chi.URLParam(r, "userId")
 	err := ac.accountService.DeleteUser(userID)
 
-	var res *AccountResponse
+	var res *Response
 	if err != nil {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    nil,
-			Message: "not ok",
+			Message: "Delete user failed.",
 			Success: false,
 		}
 	} else {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    true,
-			Message: "ok",
+			Message: "Delete user successful.",
 			Success: true,
 		}
 	}
@@ -286,24 +287,24 @@ func (ac *accountController) RemoveUser(w http.ResponseWriter, r *http.Request) 
 // @Produce json
 // @Param userId path string true "user id is wanted find" default(1)
 // @Security ApiKeyAuth
-// @Success 200 {object} controllers.AccountResponse
+// @Success 200 {object} controllers.Response
 // @Router  /account/{userId} [get]
 func (ac *accountController) GetUserById(w http.ResponseWriter, r *http.Request) {
 	userID := chi.URLParam(r, "userId")
 
 	user, err := ac.accountService.GetUserByID(userID)
 
-	var res *AccountResponse
+	var res *Response
 	if err != nil {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    nil,
-			Message: "not ok",
+			Message: "Get record failed.",
 			Success: false,
 		}
 	} else {
-		res = &AccountResponse{
+		res = &Response{
 			Data:    user,
-			Message: "ok",
+			Message: "get record successful.",
 			Success: true,
 		}
 	}
@@ -318,7 +319,7 @@ func (ac *accountController) GetUserById(w http.ResponseWriter, r *http.Request)
 // @Produce json
 // @Param accountInfo body controllers.LoginRequest true "username and password"
 // @Success 200 {object} controllers.LoginResponse
-// @Router  /access/login [post]
+// @Router /access/login [post]
 func (ac *accountController) Login(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var data LoginRequest
@@ -409,8 +410,8 @@ func (ac *accountController) Logout(w http.ResponseWriter, r *http.Request) {
 	}
 	http.SetCookie(w, &cookie)
 
-	var res *AccountResponse
-	res = &AccountResponse{
+	var res *Response
+	res = &Response{
 		Data:    nil,
 		Message: "Logout success",
 		Success: true,
@@ -441,7 +442,7 @@ type UserM struct {
 }
 
 // UpdateAccountResponse update account response
-type UpdateAccountResponse struct {
+type UpdateAccountPayload struct {
 	Name string `json:"name"`
 	Avatar string `json:"avatar"`
 	Password string `json:"password"`
@@ -449,8 +450,8 @@ type UpdateAccountResponse struct {
 	Status string `json:"status"`
 }
 
-// AccountResponse general response
-type AccountResponse struct {
+// General response
+type Response struct {
 	Data    interface{} `json:"data"`
 	Message string      `jon:"message"`
 	Success bool        `json:"success"`
@@ -464,8 +465,8 @@ type LoginResponse struct {
 	Success bool `json:"success"`
 }
 
-// UpdatePassResponse response for reset password api
-type UpdatePassResponse struct {
+// UpdatePassPayload response for reset password api
+type UpdatePassPayload struct {
 	UserId  int    `json:"userId"`
 	OldPass string `json:"oldPass"`
 	NewPass string `json:"newPass"`
@@ -475,9 +476,4 @@ type UpdatePassResponse struct {
 type LoginRequest struct {
 	Name     string `json:"name"`
 	Password string `json:"password"`
-}
-
-// LoginTokenPayload payload for login token api
-type LoginTokenPayload struct {
-	TokenString string `json:"tokenString"`
 }

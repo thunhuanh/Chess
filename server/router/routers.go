@@ -1,7 +1,7 @@
 package router
 
 import (
-	"Chess/server/controllers"
+	"Chess/controllers"
 	"fmt"
 	"log"
 
@@ -9,10 +9,10 @@ import (
 
 	httpSwagger "github.com/swaggo/http-swagger"
 
-	middleAccess "Chess/server/middleware"
+	middleAccess "Chess/middleware"
 
-	_ "Chess/server/docs"
-	"Chess/server/infrastructure"
+	_ "Chess/docs"
+	"Chess/infrastructure"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -41,11 +41,15 @@ func Router() http.Handler {
 	r.Use(render.SetContentType(render.ContentTypeJSON))
 
 
+	//declare controller
 	accountController, err := controllers.NewAccountController()
 	if err != nil {
 		log.Fatal(err)
 	}
+	friendController, _ := controllers.NewFriendController()
 
+
+	//route
 	r.Get("/", func(w http.ResponseWriter, r* http.Request){
 		fmt.Fprintf(w, "Hello World!")
 	})
@@ -60,10 +64,10 @@ func Router() http.Handler {
 		subR.Post("/login/token", accountController.LoginWithToken)
 	})
 
+	//authentication
 	r.Group(func(r chi.Router) {
 		r.Use(jwtauth.Verifier(authentication.GetTokenAuth()))
 		r.Use(jwtauth.Authenticator)
-
 
 		r.Route("/api/v1/be/account", func(subR chi.Router) {
 			subR.Get("/accounts", accountController.FilterPaging)
@@ -74,6 +78,12 @@ func Router() http.Handler {
 		})
 
 		r.Post("/api/v1/be/logout", accountController.Logout)
+
+		r.Route("/api/v1/be/friend", func(friendSubR chi.Router) {
+			friendSubR.Post("/friends/new", friendController.CreateNewFriend)
+			friendSubR.Get("/friends/all/{userId}", friendController.GetAllFriendByUserId)
+			friendSubR.Delete("/friends/{userId}/{friendId}", friendController.DeleteFriendByFriendId)
+		})
 
 	})
 

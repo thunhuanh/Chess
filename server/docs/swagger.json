@@ -7,7 +7,7 @@
         "license": {},
         "version": "2.0"
     },
-    "host": "{{.Host}}",
+    "host": "localhost:4000",
     "basePath": "/api/v1/be",
     "paths": {
         "/access/login": {
@@ -119,7 +119,7 @@
                         "description": "OK",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/model.Response"
+                            "$ref": "#/definitions/model.MetaDataResponse"
                         }
                     }
                 }
@@ -156,7 +156,7 @@
                         "description": "OK",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/controllers.AccountResponse"
+                            "$ref": "#/definitions/controllers.Response"
                         }
                     }
                 }
@@ -189,7 +189,7 @@
                         "required": true,
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/controllers.UpdatePassResponse"
+                            "$ref": "#/definitions/controllers.UpdatePassPayload"
                         }
                     }
                 ],
@@ -198,7 +198,7 @@
                         "description": "OK",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/controllers.AccountResponse"
+                            "$ref": "#/definitions/controllers.Response"
                         }
                     }
                 }
@@ -232,13 +232,13 @@
                         "required": true
                     },
                     {
-                        "description": "inlucde old user and new update user",
+                        "description": "include old user and new update user",
                         "name": "update_model",
                         "in": "body",
                         "required": true,
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/controllers.UpdateAccountResponse"
+                            "$ref": "#/definitions/controllers.UpdateAccountPayload"
                         }
                     }
                 ],
@@ -247,7 +247,7 @@
                         "description": "OK",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/controllers.AccountResponse"
+                            "$ref": "#/definitions/controllers.Response"
                         }
                     }
                 }
@@ -287,7 +287,7 @@
                         "description": "OK",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/controllers.AccountResponse"
+                            "$ref": "#/definitions/controllers.Response"
                         }
                     }
                 }
@@ -324,7 +324,131 @@
                         "description": "OK",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/controllers.AccountResponse"
+                            "$ref": "#/definitions/controllers.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/friend/friends/all/{userId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "get all friends",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "friend-manager-apis"
+                ],
+                "summary": "get all friends",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id of user account",
+                        "name": "userId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/friend/friends/new": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Create new Friend",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "friend-manager-apis"
+                ],
+                "summary": "Create new Friend",
+                "parameters": [
+                    {
+                        "description": "Friend information",
+                        "name": "FriendInformation",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.FriendPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/friend/friends/{userId}/{friendId}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Delete friend by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "friend-manager-apis"
+                ],
+                "summary": "Delete friend by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id of user account",
+                        "name": "userId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id of friend account",
+                        "name": "friendId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.Response"
                         }
                     }
                 }
@@ -332,17 +456,14 @@
         }
     },
     "definitions": {
-        "controllers.AccountResponse": {
+        "controllers.FriendPayload": {
             "type": "object",
             "properties": {
-                "data": {
-                    "type": "object"
+                "friendId": {
+                    "type": "integer"
                 },
-                "message": {
-                    "type": "string"
-                },
-                "success": {
-                    "type": "boolean"
+                "userId": {
+                    "type": "integer"
                 }
             }
         },
@@ -374,7 +495,21 @@
                 }
             }
         },
-        "controllers.UpdateAccountResponse": {
+        "controllers.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "controllers.UpdateAccountPayload": {
             "type": "object",
             "properties": {
                 "avatar": {
@@ -394,7 +529,7 @@
                 }
             }
         },
-        "controllers.UpdatePassResponse": {
+        "controllers.UpdatePassPayload": {
             "type": "object",
             "properties": {
                 "newPass": {
@@ -436,7 +571,7 @@
                 }
             }
         },
-        "model.Response": {
+        "model.MetaDataResponse": {
             "type": "object",
             "properties": {
                 "data": {

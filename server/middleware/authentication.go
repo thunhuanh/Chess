@@ -1,7 +1,7 @@
 package middleAccess
 
 import (
-	model "Chess/server/models"
+	model "Chess/models"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
@@ -38,8 +38,8 @@ func getStringEnvParameter(envParam string, defaultValue string) string {
 }
 
 func loadEnvParameters() {
-	Path_Private_Key = getStringEnvParameter(PATH_PRIVATE_KEY, "./server/infrastructure/private.pem")
-	Path_Public_Key = getStringEnvParameter(PATH_PUBLIC_KEY, "./server/infrastructure/public.pem")
+	Path_Private_Key = getStringEnvParameter(PATH_PRIVATE_KEY, "./infrastructure/private.pem")
+	Path_Public_Key = getStringEnvParameter(PATH_PUBLIC_KEY, "./infrastructure/public.pem")
 }
 
 func init() {
