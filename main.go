@@ -1,4 +1,4 @@
-package Chess
+package main
 
 import (
 	"Chess/server/infrastructure"
