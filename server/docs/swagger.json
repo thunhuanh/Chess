@@ -7,7 +7,7 @@
         "license": {},
         "version": "2.0"
     },
-    "host": "localhost:4000",
+    "host": "chess-apis.herokuapp.com",
     "basePath": "/api/v1/be",
     "paths": {
         "/access/login": {
