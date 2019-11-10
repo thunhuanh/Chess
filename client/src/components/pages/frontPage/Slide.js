@@ -22,7 +22,8 @@ export default class Slide extends Component {
                                        
 
                     <div className="Slide-img" id="one">
-                        <img src="http://thuthuatphanmem.vn/uploads/2018/09/11/hinh-anh-dep-1_044126531.jpg"></img>
+                        {/* <img src="http://thuthuatphanmem.vn/uploads/2018/09/11/hinh-anh-dep-1_044126531.jpg"></img> */}
+                        <img src="https://www.chess.com/bundles/web/images/homepage/splash.6c4ef662.png"></img>
                     </div>
                     <div className="Slide-img" id="two">
                         <img src="http://thuthuatphanmem.vn/uploads/2018/09/11/hinh-anh-dep-2_044126655.jpg"></img>
@@ -33,12 +34,14 @@ export default class Slide extends Component {
                     <div className="Slide-img" id="four">
                         <img src="http://thuthuatphanmem.vn/uploads/2018/09/11/hinh-anh-dep-4_044127014.jpg"></img>
                     </div>
+                    {/* <button id="play-now">Play Now</button> */}
                     <div id="navigator">
-                        <label className="dot" id="dot1" for="i1" ></label>
-                        <label className="dot" id="dot2" for="i2" ></label>
-                        <label className="dot" id="dot3" for="i3" ></label>
-                        <label className="dot" id="dot4" for="i4" ></label>
+                        <label className="dot" id="dot1" htmlFor="i1" ></label>
+                        <label className="dot" id="dot2" htmlFor="i2" ></label>
+                        <label className="dot" id="dot3" htmlFor="i3" ></label>
+                        <label className="dot" id="dot4" htmlFor="i4" ></label>
                     </div>
+                    
                 </div>
             </div>
         )
