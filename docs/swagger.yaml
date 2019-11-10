@@ -1,0 +1,550 @@
+basePath: /api/v1/be
+definitions:
+  controllers.FriendPayload:
+    properties:
+      friendId:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  controllers.LoginRequest:
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+    type: object
+  controllers.LoginResponse:
+    properties:
+      data:
+        type: object
+      message:
+        type: string
+      success:
+        type: boolean
+      token:
+        type: string
+    type: object
+  controllers.ReportPayload:
+    properties:
+      message:
+        type: string
+      reportedAccountId:
+        type: integer
+      reporterId:
+        type: integer
+    type: object
+  controllers.Response:
+    properties:
+      data:
+        type: object
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  controllers.RoomPayload:
+    properties:
+      name:
+        type: string
+    type: object
+  controllers.UpdateAccountPayload:
+    properties:
+      avatar:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      role:
+        type: string
+      status:
+        type: string
+    type: object
+  controllers.UpdatePassPayload:
+    properties:
+      newPass:
+        type: string
+      oldPass:
+        type: string
+      userId:
+        type: integer
+    type: object
+  controllers.UserM:
+    properties:
+      avatar:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    type: object
+  model.MetaData:
+    properties:
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      total:
+        type: integer
+    type: object
+  model.MetaDataResponse:
+    properties:
+      data:
+        type: object
+      message:
+        type: string
+      metaData:
+        $ref: '#/definitions/model.MetaData'
+        type: object
+      success:
+        type: boolean
+    type: object
+host: chess-apis.herokuapp.com
+info:
+  contact: {}
+  description: This is list api for chess project
+  license: {}
+  title: Swagger Chess project API
+  version: "2.0"
+paths:
+  /access/login:
+    post:
+      consumes:
+      - application/json
+      description: login with username, password. return token string jwt
+      parameters:
+      - description: username and password
+        in: body
+        name: accountInfo
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.LoginRequest'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.LoginResponse'
+            type: object
+      summary: Login system
+      tags:
+      - access-apis
+  /access/login/token:
+    post:
+      consumes:
+      - application/json
+      description: login with token string. return new token string jwt
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.LoginResponse'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Login system by token string
+      tags:
+      - access-apis
+  /account/{accountId}:
+    put:
+      consumes:
+      - application/json
+      description: update user by field:name, avatar, status, role
+      operationId: "00003"
+      parameters:
+      - description: id of user account
+        in: path
+        name: accountId
+        required: true
+        type: integer
+      - description: include old user and new update user
+        in: body
+        name: update_model
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateAccountPayload'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Update user
+      tags:
+      - account-manager-apis
+  /account/{userId}:
+    delete:
+      consumes:
+      - application/json
+      description: Soft Delete user by user id
+      operationId: "00006"
+      parameters:
+      - description: user id is wanted remove
+        in: path
+        name: userId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Remove User
+      tags:
+      - account-manager-apis
+    get:
+      consumes:
+      - application/json
+      description: find user by user id
+      operationId: "00007"
+      parameters:
+      - default: "1"
+        description: user id is wanted find
+        in: path
+        name: userId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get user by user id
+      tags:
+      - account-manager-apis
+  /account/accounts:
+    get:
+      consumes:
+      - application/json
+      description: filter list user and paging filtered
+      operationId: "00002"
+      parameters:
+      - description: name for user
+        in: query
+        name: name
+        type: string
+      - description: page number for user
+        in: query
+        name: page
+        type: integer
+      - description: page size each page
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.MetaDataResponse'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Filter users and paging
+      tags:
+      - account-manager-apis
+  /account/create:
+    post:
+      consumes:
+      - application/json
+      description: Create new account with role default is customer
+      operationId: "00001"
+      parameters:
+      - description: User information
+        in: body
+        name: UserInformation
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UserM'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      summary: Create new Account
+      tags:
+      - account-manager-apis
+  /account/password:
+    put:
+      consumes:
+      - application/json
+      description: update password for exists user
+      operationId: "00005"
+      parameters:
+      - description: cuple value id and reset password
+        in: body
+        name: Update_Password
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdatePassPayload'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Update password
+      tags:
+      - account-manager-apis
+  /friend/friends/{userId}/{friendId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete friend by id
+      parameters:
+      - description: id of user account
+        in: path
+        name: userId
+        required: true
+        type: integer
+      - description: id of friend account
+        in: path
+        name: friendId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Delete friend by id
+      tags:
+      - friend-manager-apis
+  /friend/friends/all/{userId}:
+    get:
+      consumes:
+      - application/json
+      description: get all friends
+      parameters:
+      - description: id of user account
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: get all friends
+      tags:
+      - friend-manager-apis
+  /friend/friends/new:
+    post:
+      consumes:
+      - application/json
+      description: Create new Friend
+      parameters:
+      - description: Friend information
+        in: body
+        name: FriendInformation
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.FriendPayload'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Create new Friend
+      tags:
+      - friend-manager-apis
+  /report/reports:
+    post:
+      consumes:
+      - application/json
+      description: Send report
+      parameters:
+      - description: Report information
+        in: body
+        name: ReportInformation
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.ReportPayload'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Send report
+      tags:
+      - report-manager-apis
+  /report/reports/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete report by id
+      parameters:
+      - description: id of report
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Delete report by id
+      tags:
+      - report-manager-apis
+  /report/reports/filter/{reporterId}/{reportedAccountId}:
+    get:
+      consumes:
+      - application/json
+      description: Filter report by id
+      parameters:
+      - description: id of report
+        in: path
+        name: reporterId
+        required: true
+        type: integer
+      - description: id of report
+        in: path
+        name: reportedAccountId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Filter report by id
+      tags:
+      - report-manager-apis
+  /room/rooms:
+    post:
+      consumes:
+      - application/json
+      description: Create room
+      parameters:
+      - description: Room information
+        in: body
+        name: RoomInformation
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.RoomPayload'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Create room
+      tags:
+      - room-manager-apis
+  /room/rooms/{roomId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete room by id
+      parameters:
+      - description: id of room
+        in: path
+        name: roomId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Delete room by id
+      tags:
+      - room-manager-apis
+  /room/rooms/all:
+    get:
+      consumes:
+      - application/json
+      description: Get all room
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get all room
+      tags:
+      - room-manager-apis
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
