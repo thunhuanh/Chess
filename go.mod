@@ -6,6 +6,7 @@ require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-chi/chi v4.0.2+incompatible
+	github.com/go-chi/cors v1.0.0
 	github.com/go-chi/jwtauth v3.3.0+incompatible
 	github.com/go-chi/render v1.0.1
 	github.com/harlow/authtoken v0.0.0-20151218063325-ef4b3666db99
