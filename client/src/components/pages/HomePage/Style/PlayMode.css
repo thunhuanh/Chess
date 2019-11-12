@@ -1,0 +1,95 @@
+
+#play-mode{
+  padding-bottom: 3%;
+  position: relative;
+  font-size: 15px;
+  text-align: center;
+}
+
+.play_mode{
+  background-color: pink;
+  width: 55%;
+  border: 1px solid green;
+  padding-bottom: 2%;
+  top: 0;
+  left: 20%;
+  right:20%;
+  position: fixed;
+  margin-top: 55px;
+}
+
+.st-btn {
+  position: absolute;
+  left: 30%;
+}
+
+.ty-btn {
+  position: absolute;
+  right: 30%;
+}
+.play_btn {
+  display: flex; 
+  justify-content: center;
+  padding: 0;
+  top: 10%;
+  margin-top: 2%;
+} 
+
+.toggle-btn {
+  position: relative;
+  background-color: orange;
+  cursor: pointer;
+  padding: 10px 60px;
+  font-size: 14px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border: 2px solid black;
+  box-shadow: #000 1px 1px 0,
+              #000 1px 1px 0,
+              #000 2px 2px 0,
+              #000 3px 3px 0;
+  padding-bottom: 0;
+}
+
+
+
+/*.gm_container{
+  width: 100%;
+  height: 20%;
+  padding-bottom: 2%;
+  margin-top: 2%;
+} 
+*/
+
+#exTab1 .tab-content {
+  color : white;
+  background-color: white;
+  padding : 25px 15px;
+  width: 70%;
+}
+
+.nav-pills {
+  color: white;
+  margin-top: 0%;
+}
+
+
+
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 25px 3px 0 0 ;
+  background-color: white;
+}
+
+#exTab3 .tab-content {
+  color : white;
+  background-color: white;
+  padding : 25px 1px;
+  width: 40%;
+}
+
