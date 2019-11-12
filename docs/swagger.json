@@ -93,12 +93,23 @@
                     "account-manager-apis"
                 ],
                 "summary": "Filter users and paging",
-                "operationId": "00002",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "name for user",
+                        "description": "username for user",
                         "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "rank of user",
+                        "name": "rank",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "nickname ò user",
+                        "name": "nickname",
                         "in": "query"
                     },
                     {
@@ -138,7 +149,6 @@
                     "account-manager-apis"
                 ],
                 "summary": "Create new Account",
-                "operationId": "00001",
                 "parameters": [
                     {
                         "description": "User information",
@@ -180,7 +190,6 @@
                     "account-manager-apis"
                 ],
                 "summary": "Update password",
-                "operationId": "00005",
                 "parameters": [
                     {
                         "description": "cuple value id and reset password",
@@ -222,7 +231,6 @@
                     "account-manager-apis"
                 ],
                 "summary": "Update user",
-                "operationId": "00003",
                 "parameters": [
                     {
                         "type": "integer",
@@ -271,7 +279,6 @@
                     "account-manager-apis"
                 ],
                 "summary": "Get user by user id",
-                "operationId": "00007",
                 "parameters": [
                     {
                         "type": "string",
@@ -309,7 +316,6 @@
                     "account-manager-apis"
                 ],
                 "summary": "Remove User",
-                "operationId": "00006",
                 "parameters": [
                     {
                         "type": "string",

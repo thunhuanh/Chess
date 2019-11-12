@@ -13,7 +13,7 @@ import (
 // Service service for account
 type Service interface {
 	CreateNewUser(user *model.User) (*model.User, error)
-	GetFilterListUser(name, role *string, page int, pageSize int) ([]model.User, int, error)
+	GetFilterListUser(name, rank, nickname *string, page int, pageSize int) ([]model.User, int, error)
 	GetUserByID(id string) (*model.User, error)
 	UpdateUser(accountID int, updateUser *model.User) error
 	UpdatePassword(id int, oldPass string, newPass string) error
@@ -36,8 +36,8 @@ func (s *service) CreateNewUser(user *model.User) (*model.User, error) {
 	return newUser, nil
 }
 
-func (s *service) GetFilterListUser(name, role *string, page int, pageSize int) ([]model.User, int, error) {
-	listUser, total, err := s.userRepository.GetFilterListUser(name, role, page, pageSize)
+func (s *service) GetFilterListUser(name, rank, nickname *string, page int, pageSize int) ([]model.User, int, error) {
+	listUser, total, err := s.userRepository.GetFilterListUser(name, rank, nickname, page, pageSize)
 	if err != nil {
 		return nil, 0, err
 	}

@@ -3,7 +3,6 @@ package controllers
 import (
 	middleAccess "Chess/api_server/middleware"
 	model "Chess/api_server/models"
-
 	"Chess/api_server/repositories/accountRepo"
 	"Chess/api_server/services/accountService"
 	"encoding/json"
@@ -38,12 +37,11 @@ type accountController struct {
 // @tags account-manager-apis
 // @Summary Create new Account
 // @Description Create new account with role default is customer
-// @Id 00001
 // @Accept json
 // @Produce json
 // @Param UserInformation body controllers.UserM true "User information"
 // @Success 200 {object} controllers.Response
-// @Router  /account/create [post]
+// @Router /account/create [post]
 func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var data UserM
@@ -60,13 +58,13 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 	if err != nil {
 		res = &Response{
 			Data:    nil,
-			Message: "not ok",
+			Message: "create account failed." + err.Error(),
 			Success: false,
 		}
 	} else {
 		res = &Response{
 			Data:    newUser,
-			Message: "Ok",
+			Message: "create account successful.",
 			Success: true,
 		}
 	}
@@ -79,11 +77,12 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 // @tags account-manager-apis
 // @Summary Filter users and paging
 // @Description filter list user and paging filtered
-// @Id 00002
 // @Accept json
 // @Produce json
 // @Security ApiKeyAuth
-// @Param name query string false "name for user"
+// @Param name query string false "username for user"
+// @Param rank query string false "rank of user"
+// @Param nickname query string false "nickname ò user"
 // @Param page query integer false "page number for user"
 // @Param pageSize query integer false "page size each page"
 // @Success 200 {object} model.MetaDataResponse
@@ -94,7 +93,8 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 	var page int
 	var pageSize int
 	var name *string
-	var role *string
+	var rank *string
+	var nickname *string
 	if queryValues.Get("page") == "" {
 		page = 1
 	} else {
@@ -108,20 +108,27 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 	}
 
 	nameStr := queryValues.Get("name")
+	rankStr := queryValues.Get("rank")
+	nicknameStr := queryValues.Get("nickname")
 	if nameStr == "" {
 		name = nil
 	} else {
 		name = &nameStr
 	}
 
-	roleStr := queryValues.Get("role")
-	if roleStr == "" {
-		role = nil
+	if rankStr == "" {
+		rank = nil
 	} else {
-		role = &roleStr
+		rank = &rankStr
 	}
 
-	listUser, total, err := ac.accountService.GetFilterListUser(name, role, page, pageSize)
+	if nicknameStr == "" {
+		nickname = nil
+	} else {
+		nickname = &nicknameStr
+	}
+
+	listUser, total, err := ac.accountService.GetFilterListUser(name, rank, nickname, page, pageSize)
 	var listUserResponse []model.User
 	for _, index := range listUser{
 		listUserResponse = append(listUserResponse, model.User{
@@ -158,7 +165,6 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 // @tags account-manager-apis
 // @Summary Update user
 // @Description update user by field:name, avatar, status, role
-// @Id 00003
 // @Accept json
 // @Produce json
 // @Security ApiKeyAuth
@@ -211,7 +217,6 @@ func (ac *accountController) UpdateUser(w http.ResponseWriter, r *http.Request) 
 // @tags account-manager-apis
 // @Summary Update password
 // @Description update password for exists user
-// @Id 00005
 // @Accept json
 // @Produce json
 // @Security ApiKeyAuth
@@ -250,7 +255,6 @@ func (ac *accountController) ChangePassword(w http.ResponseWriter, r *http.Reque
 // @tags account-manager-apis
 // @Summary Remove User
 // @Description Soft Delete user by user id
-// @Id 00006
 // @Accept json
 // @Produce json
 // @Security ApiKeyAuth
@@ -282,7 +286,6 @@ func (ac *accountController) RemoveUser(w http.ResponseWriter, r *http.Request) 
 // @tags account-manager-apis
 // @Summary Get user by user id
 // @Description find user by user id
-// @Id 00007
 // @Accept json
 // @Produce json
 // @Param userId path string true "user id is wanted find" default(1)

@@ -155,7 +155,6 @@ paths:
       consumes:
       - application/json
       description: update user by field:name, avatar, status, role
-      operationId: "00003"
       parameters:
       - description: id of user account
         in: path
@@ -187,7 +186,6 @@ paths:
       consumes:
       - application/json
       description: Soft Delete user by user id
-      operationId: "00006"
       parameters:
       - description: user id is wanted remove
         in: path
@@ -211,7 +209,6 @@ paths:
       consumes:
       - application/json
       description: find user by user id
-      operationId: "00007"
       parameters:
       - default: "1"
         description: user id is wanted find
@@ -237,11 +234,18 @@ paths:
       consumes:
       - application/json
       description: filter list user and paging filtered
-      operationId: "00002"
       parameters:
-      - description: name for user
+      - description: username for user
         in: query
         name: name
+        type: string
+      - description: rank of user
+        in: query
+        name: rank
+        type: string
+      - description: nickname ò user
+        in: query
+        name: nickname
         type: string
       - description: page number for user
         in: query
@@ -269,7 +273,6 @@ paths:
       consumes:
       - application/json
       description: Create new account with role default is customer
-      operationId: "00001"
       parameters:
       - description: User information
         in: body
@@ -294,7 +297,6 @@ paths:
       consumes:
       - application/json
       description: update password for exists user
-      operationId: "00005"
       parameters:
       - description: cuple value id and reset password
         in: body

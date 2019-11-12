@@ -38,7 +38,7 @@ func (ur *UserRepository) CreateUser(user *model.User) (*model.User, error) {
 }
 
 // GetListUser blah blah
-func (ur *UserRepository) GetFilterListUser(name, role *string, page int, pageSize int) (users []model.User, total int, err error) {
+func (ur *UserRepository) GetFilterListUser(name, rank, nickname *string, page int, pageSize int) (users []model.User, total int, err error) {
 	db := infrastructure.GetDB()
 
 	db.Exec("CREATE EXTENSION IF NOT EXISTS unaccent")
@@ -50,8 +50,12 @@ func (ur *UserRepository) GetFilterListUser(name, role *string, page int, pageSi
 		whereQuery += "unaccent(name) ILIKE unaccent('%" + *name + "%')"
 	}
 
-	if role != nil{
-		whereQuery += " AND role = '" + *role + "'"
+	if rank != nil{
+		whereQuery += " AND rank = '" + *rank + "'"
+	}
+
+	if nickname != nil{
+		whereQuery += " AND rank = '" + *nickname + "'"
 	}
 
 	var temp []model.User
