@@ -13,8 +13,8 @@ export default class About extends Component {
     render() {
         return (
             <div>
-                <div className="about">
-                    <div className="about-us">About Us</div>
+                <div className="fp-ab-about">
+                    <div className="fp-ab-about-us">About Us</div>
                 </div>
             </div>
         )

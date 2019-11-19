@@ -18,6 +18,6 @@ export default function HomePage (){
         <LeftSide></LeftSide>    
         <ChatBox></ChatBox>
         <RightSide></RightSide>
-        </div>
+    </div>
     )
 }
