@@ -104,8 +104,8 @@ func (rc *reportController) DeleteReport(w http.ResponseWriter, r *http.Request)
 // @Accept json
 // @Produce json
 // @Security ApiKeyAuth
-// @Param reporterId path integer true "id of report"
-// @Param reportedAccountId path integer true "id of report"
+// @Param reporterId path integer false "id of report"
+// @Param reportedAccountId path integer false "id of report"
 // @Success 200 {object} controllers.Response
 // @Router /report/reports/filter/{reporterId}/{reportedAccountId} [get]
 func (rc *reportController) FilterReport(w http.ResponseWriter, r *http.Request) {

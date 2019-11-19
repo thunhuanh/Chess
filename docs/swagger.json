@@ -7,7 +7,7 @@
         "license": {},
         "version": "2.0"
     },
-    "host": "chess-apis.herokuapp.com",
+    "host": "localhost:4000",
     "basePath": "/api/v1/be",
     "paths": {
         "/access/login": {
@@ -524,15 +524,13 @@
                         "type": "integer",
                         "description": "id of report",
                         "name": "reporterId",
-                        "in": "path",
-                        "required": true
+                        "in": "path"
                     },
                     {
                         "type": "integer",
                         "description": "id of report",
                         "name": "reportedAccountId",
-                        "in": "path",
-                        "required": true
+                        "in": "path"
                     }
                 ],
                 "responses": {
@@ -775,13 +773,7 @@
                 "avatar": {
                     "type": "string"
                 },
-                "name": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "role": {
+                "nickName": {
                     "type": "string"
                 },
                 "status": {

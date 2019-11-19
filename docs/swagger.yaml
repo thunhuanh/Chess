@@ -52,11 +52,7 @@ definitions:
     properties:
       avatar:
         type: string
-      name:
-        type: string
-      password:
-        type: string
-      role:
+      nickName:
         type: string
       status:
         type: string
@@ -100,7 +96,7 @@ definitions:
       success:
         type: boolean
     type: object
-host: chess-apis.herokuapp.com
+host: localhost:4000
 info:
   contact: {}
   description: This is list api for chess project
@@ -456,12 +452,10 @@ paths:
       - description: id of report
         in: path
         name: reporterId
-        required: true
         type: integer
       - description: id of report
         in: path
         name: reportedAccountId
-        required: true
         type: integer
       produces:
       - application/json

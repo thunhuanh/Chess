@@ -20,6 +20,7 @@ type User struct {
 	Status 			   string
 	NickName		   string
 	RoomId 			   int
+	Avatar			   string
 	jwt.StandardClaims `gorm:"-"`
 }
 
