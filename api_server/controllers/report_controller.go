@@ -15,10 +15,40 @@ type ReportController interface {
 	SendReport(w http.ResponseWriter, r *http.Request)
 	DeleteReport(w http.ResponseWriter, r *http.Request)
 	FilterReport(w http.ResponseWriter, r *http.Request)
+	GetAllReport(w http.ResponseWriter, r *http.Request)
 }
 
 type reportController struct {
 	reportService reportService.Service
+}
+
+// Get all report godoc
+// @tags report-manager-apis
+// @Summary Get all report
+// @Description Get all report
+// @Accept json
+// @Produce json
+// @Security ApiKeyAuth
+// @Success 200 {object} controllers.Response
+// @Router /report/reports/all [get]
+func (rc *reportController) GetAllReport(w http.ResponseWriter, r *http.Request) {
+	reports, err := rc.reportService.GetAllReport()
+
+	var res *Response
+	if err != nil {
+		res = &Response{
+			Data:    nil,
+			Message: "get records failed. " + err.Error(),
+			Success: false,
+		}
+	} else {
+		res = &Response{
+			Data:    reports,
+			Message: "get records successful",
+			Success: true,
+		}
+	}
+	render.JSON(w, r, res)
 }
 
 // Send report godoc

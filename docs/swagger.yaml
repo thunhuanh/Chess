@@ -443,6 +443,24 @@ paths:
       summary: Delete report by id
       tags:
       - report-manager-apis
+  /report/reports/all:
+    get:
+      consumes:
+      - application/json
+      description: Get all report
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get all report
+      tags:
+      - report-manager-apis
   /report/reports/filter/{reporterId}/{reportedAccountId}:
     get:
       consumes:

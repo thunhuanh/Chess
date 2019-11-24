@@ -8,6 +8,18 @@ import (
 type ReportRepository struct {
 }
 
+func (ReportRepository) GetAllReport() ([]*model.Report, error) {
+	db := infrastructure.GetDB()
+
+	var reports []*model.Report
+
+	if err := db.Find(&reports).Error; err != nil{
+		return nil, err
+	}
+
+	return reports, nil
+}
+
 func (ReportRepository) SendReport(report *model.Report) (*model.Report, error) {
 	db := infrastructure.GetDB()
 

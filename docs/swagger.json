@@ -501,6 +501,35 @@
                 }
             }
         },
+        "/report/reports/all": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get all report",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "report-manager-apis"
+                ],
+                "summary": "Get all report",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/report/reports/filter/{reporterId}/{reportedAccountId}": {
             "get": {
                 "security": [

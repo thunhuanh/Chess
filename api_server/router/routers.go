@@ -24,8 +24,6 @@ import (
 func Router() http.Handler {
 	r := chi.NewRouter()
 
-	// * Declare Repository
-
 	// * Declare Middleware
 	authentication, err := middleAccess.NewAuthentication()
 	if err != nil {
@@ -57,7 +55,6 @@ func Router() http.Handler {
 	friendController, _ := controllers.NewFriendController()
 	reportController, _ := controllers.NewReportController()
 	roomController, _ := controllers.NewRoomController()
-
 
 	//route
 	r.Get("/api/v1/be/swagger/*", httpSwagger.Handler(
@@ -95,6 +92,7 @@ func Router() http.Handler {
 			reportSubr.Get("/reports/filter/{reporterId}/{reportedAccountId}", reportController.FilterReport)
 			reportSubr.Delete("/reports/{id}", reportController.DeleteReport)
 			reportSubr.Post("/reports", reportController.SendReport)
+			reportSubr.Get("/reports/all", reportController.GetAllReport)
 		})
 
 		r.Route("/api/v1/be/room", func(roomSubr chi.Router) {

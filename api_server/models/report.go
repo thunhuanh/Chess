@@ -10,4 +10,5 @@ type Report struct {
 	SendReport(report *Report) (*Report, error)
 	DeleteReport(id int) error
 	FilterReport(ReporterId, ReportedAccountId int) ([]*Report, error)
+	GetAllReport()([]*Report, error)
  }
