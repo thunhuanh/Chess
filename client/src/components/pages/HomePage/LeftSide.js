@@ -22,9 +22,7 @@ export default class LeftSide extends Component {
                 </div>
                 
                 <strong>Friend List</strong>
-                <div className="flist_box">
-                    <strong>No one is online now</strong>
-                </div>
+
             </div>
         )
     }
