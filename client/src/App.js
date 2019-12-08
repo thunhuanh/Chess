@@ -21,7 +21,7 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 
-import FrontPage from './components/pages/FrontPage/FrontPage'
+import FrontPage from './components/pages/frontPage/FrontPage'
 import ChessPage from './components/pages/chessPage/ChessPage'
 import HomePage from './components/pages/HomePage/HomePage'
 
