@@ -15,7 +15,8 @@ export default class Play_Mode extends Component {
         return (
         
             <div className = "play_mode">
-                    <p id="play-mode"> Play Mode </p>
+                <p>PLAYMODE</p>
+                {/*       <p id="play-mode"> Play Mode </p>
                     
                     
                     <div className="mode-box">
@@ -48,7 +49,7 @@ export default class Play_Mode extends Component {
                     <button type = "button" className = "toggle-btn"><i class="fa fa-gamepad"></i> Play </button>
             </div> 
                   
-        </div>
+        </div>*/}
     </div>
         
            
