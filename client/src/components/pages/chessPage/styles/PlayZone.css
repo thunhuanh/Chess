@@ -1,4 +1,4 @@
-/* @media screen and (max-aspect-ratio: 4/3), screen and (max-width: 800px) {
+@media screen and (max-aspect-ratio: 4/3), screen and (max-width: 800px) {
     .playZone {
         position: relative;
         float: right;
@@ -112,4 +112,9 @@
     * {
         box-sizing: border-box;
     }
-} */
+}
+
+.playerTmrDiv {
+    display: flex;
+    flex-direction: row;
+}

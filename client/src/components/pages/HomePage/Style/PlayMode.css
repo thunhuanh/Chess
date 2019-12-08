@@ -1,9 +1,10 @@
-/* 
-#play-mode{
+/*#play-mode{
   padding-bottom: 3%;
   position: relative;
   font-size: 15px;
   text-align: center;
+    border-color: blue;
+    background-color: blue;
 }
 
 .play_mode{
@@ -84,5 +85,11 @@
   background-color: white;
   padding : 25px 1px;
   width: 40%;
+}*/
+
+.play_mode {
+  background-color: blue;
+  border-color: blue;
+  height: 100%;
+  width: 100%;
 }
- */
