@@ -13,7 +13,7 @@ export default function HomePage (){
        <div class='nav_bar'>
            <img src="./Style/IMG/Chess.png" alt="Can not display"></img>
        </div>
-       {/* <PlayMode></PlayMode> */}
+       <PlayMode></PlayMode>
             
         <LeftSide></LeftSide>    
         <ChatBox></ChatBox>
