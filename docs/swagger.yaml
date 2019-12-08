@@ -52,11 +52,7 @@ definitions:
     properties:
       avatar:
         type: string
-      name:
-        type: string
-      password:
-        type: string
-      role:
+      nickName:
         type: string
       status:
         type: string
@@ -447,6 +443,24 @@ paths:
       summary: Delete report by id
       tags:
       - report-manager-apis
+  /report/reports/all:
+    get:
+      consumes:
+      - application/json
+      description: Get all report
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get all report
+      tags:
+      - report-manager-apis
   /report/reports/filter/{reporterId}/{reportedAccountId}:
     get:
       consumes:
@@ -456,12 +470,10 @@ paths:
       - description: id of report
         in: path
         name: reporterId
-        required: true
         type: integer
       - description: id of report
         in: path
         name: reportedAccountId
-        required: true
         type: integer
       produces:
       - application/json

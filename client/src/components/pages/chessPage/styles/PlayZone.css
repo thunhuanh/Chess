@@ -113,3 +113,8 @@
         box-sizing: border-box;
     }
 }
+
+.playerTmrDiv {
+    display: flex;
+    flex-direction: row;
+}

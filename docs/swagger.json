@@ -501,6 +501,35 @@
                 }
             }
         },
+        "/report/reports/all": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get all report",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "report-manager-apis"
+                ],
+                "summary": "Get all report",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/report/reports/filter/{reporterId}/{reportedAccountId}": {
             "get": {
                 "security": [
@@ -524,15 +553,13 @@
                         "type": "integer",
                         "description": "id of report",
                         "name": "reporterId",
-                        "in": "path",
-                        "required": true
+                        "in": "path"
                     },
                     {
                         "type": "integer",
                         "description": "id of report",
                         "name": "reportedAccountId",
-                        "in": "path",
-                        "required": true
+                        "in": "path"
                     }
                 ],
                 "responses": {
@@ -775,13 +802,7 @@
                 "avatar": {
                     "type": "string"
                 },
-                "name": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "role": {
+                "nickName": {
                     "type": "string"
                 },
                 "status": {

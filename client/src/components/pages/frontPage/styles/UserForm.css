@@ -1,4 +1,4 @@
-.user-form{
+.fp-uf-user-form{
     width: 360px;
     height: 580px;
     padding: 80px 40px;
@@ -27,7 +27,7 @@
     to{top: 50%}
 }
 
-.button-box{
+.fp-uf-button-box{
     width: 250px;
     margin: 30px auto;
     position: relative;
@@ -36,7 +36,7 @@
     margin-bottom: 50px;
 }
 
-.toggle-btn{
+.fp-uf-toggle-btn{
     left: 5%;
     padding: 10px 30px;
     cursor: pointer;
@@ -47,7 +47,7 @@
     font-size: 20px;
 }
 
-.lgr-btn{
+.fp-uf-lgr-btn{
     top: 0;
     left: 0%;
     position: absolute;
@@ -57,7 +57,7 @@
     border-radius: 30px;
     transition: .5s;
 }
-.lgr-btn1{
+.fp-uf-lgr-btn1{
     top: 0;
     left: 50%;
     position: absolute;
@@ -68,14 +68,14 @@
     transition: .5s;
 }
 
-.input-box{
+.fp-uf-input-box{
     top: 30%;
     position: absolute;
     width: 80%;
     transition: .5s;
 }
 
-.text-box{
+.fp-uf-text-box{
     border-bottom: 2px solid transparent;
     position: relative;
     margin: 30px 0;
@@ -83,7 +83,7 @@
     border-image-slice: 1;
 }
 
-.text-box input{
+.fp-uf-text-box input{
     font-size: 15px;
     color: #333;
     border: none;
@@ -94,12 +94,12 @@
     height: 40px;
 }
 
-.user-form span{
+.fp-uf-user-form span{
     padding-left: 2%;
     font-size: 15px;
 }
 
-.confirm-btn {
+.fp-uf-confirm-btn {
     margin-top: 20%;
     width: 100%;
     height: 10%;
@@ -119,16 +119,16 @@
 }
 
 
-#reg-box{
+#fp-uf-reg-box{
     left:120%;
 }
 
 
-#login-box-after{
+#fp-uf-login-box-after{
     left:-100%
 }
 
-#login-box-after .confirm-btn{
+#fp-uf-login-box-after .fp-uf-confirm-btn{
     position: absolute;
     width: 100%;
     height: 10%;

@@ -13,14 +13,6 @@ export default class UserForm extends Component {
         }
 
     }
-    // componentDidMount = () =>{
-    //     console.log(this.state.isUserOpen)
-    //     console.log(this.state.userName)
-    // }
-    // componentDidUpdate = () => {
-    //     console.log(this.state.isUserOpen)
-    //     console.log(this.state.userName)
-    // }
     toggleOnClick = () => {
         this.setState({
             isToggle: !this.state.isToggle
@@ -47,35 +39,35 @@ export default class UserForm extends Component {
     }
     render() {
         return (
-            <div className={this.state.isUserOpen?"user-form visible":"user-form visible user-form-after"}>
-                <div className="button-box">
-                    <div className={this.state.isToggle? "lgr-btn": "lgr-btn1"}></div>
-                    <button  type="button" className="toggle-btn" id="toggle-login" onClick = {this.toggleOnClick} >Login</button>
-                    <button type="button" className="toggle-btn" id="toggle-reg" onClick = {this.toggleOnClick} >Register</button>
+            <div className={this.state.isUserOpen?"fp-uf-user-form visible":"fp-uf-user-form visible fp-uf-user-form-after"}>
+                <div className="fp-uf-button-box">
+                    <div className={this.state.isToggle? "fp-uf-lgr-btn": "fp-uf-lgr-btn1"}></div>
+                    <button  type="button" className="fp-uf-toggle-btn" id="fp-uf-toggle-login" onClick = {this.toggleOnClick} >Login</button>
+                    <button type="button" className="fp-uf-toggle-btn" id="fp-uf-toggle-reg" onClick = {this.toggleOnClick} >Register</button>
                 </div>
-                <form id={this.state.isToggle?"":"login-box-after"} className="input-box" ref="lgb" onSubmit={this.onLoginSubmit}>
-                    <div className="text-box">
+                <form id={this.state.isToggle?"":"fp-uf-login-box-after"} className="fp-uf-input-box" ref="lgb" onSubmit={this.onLoginSubmit}>
+                    <div className="fp-uf-text-box">
                         <input name = "un-input" type = "text" placeholder="Username" onChange={this.onChange}></input>
                     </div>
-                    <div className="text-box">
+                    <div className="fp-uf-text-box">
                         <input name = "pw-input" type = "password" placeholder="Password" onChange={this.onChange}></input>
                     </div>
-                    <input type="checkbox" className="check-box"></input>
+                    <input type="checkbox" className="fp-uf-check-box"></input>
                     <span>Remember me</span>
                     <br></br>
-                    <button type="submit" className="confirm-btn" >Login</button>
+                    <button type="submit" className="fp-uf-confirm-btn" >Login</button>
                 </form>
-                <form id={this.state.isToggle?"reg-box":""} className="input-box" ref="rgb">
-                    <div className="text-box">
+                <form id={this.state.isToggle?"fp-uf-reg-box":""} className="fp-uf-input-box" ref="rgb">
+                    <div className="fp-uf-text-box">
                         <input type = "text" placeholder="Username"></input>
                     </div>
-                    <div className="text-box">
+                    <div className="fp-uf-text-box">
                         <input type = "password" placeholder="Password"></input>
                     </div>
-                    <div className="text-box">
+                    <div className="fp-uf-text-box">
                         <input type = "text" placeholder="Confirm password"></input>
                     </div>
-                    <button type="submit" className="confirm-btn">Register</button>
+                    <button type="submit" className="fp-uf-confirm-btn">Register</button>
                 </form>
             </div>
         )

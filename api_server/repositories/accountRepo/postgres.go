@@ -50,13 +50,16 @@ func (ur *UserRepository) GetFilterListUser(name, rank, nickname *string, page i
 		whereQuery += "unaccent(name) ILIKE unaccent('%" + *name + "%')"
 	}
 
+	if nickname == nil {
+		whereQuery += "nick_name ILIKE '%'"
+	} else {
+		whereQuery += "unaccent(nick_name) ILIKE unaccent('%" + *nickname + "%')"
+	}
+
 	if rank != nil{
 		whereQuery += " AND rank = '" + *rank + "'"
 	}
 
-	if nickname != nil{
-		whereQuery += " AND rank = '" + *nickname + "'"
-	}
 
 	var temp []model.User
 	err = db.Table("users").
