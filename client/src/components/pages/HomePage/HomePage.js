@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import PmodeCbox from './PmodeCbox'
-import ProfileFlist from './ProfileFlist'
-import RankOnline from './RankOnline'
 import './styles/HomePage.css'
 
 export default class HomePage extends Component {
@@ -18,9 +15,6 @@ export default class HomePage extends Component {
             <div className="hp-container">
                 {/* <div className="hp-intro">123122312</div> */}
                 <div className="hp-main">
-                    <PmodeCbox ></PmodeCbox>
-                    <ProfileFlist ></ProfileFlist>
-                    <RankOnline ></RankOnline>
                 </div>
             </div>
         )
