@@ -27,16 +27,46 @@ type AccountController interface {
 	GetUserById(w http.ResponseWriter, r *http.Request)
 	Login(w http.ResponseWriter, r *http.Request)
 	Logout(w http.ResponseWriter, r *http.Request)
+	GetTop10(w http.ResponseWriter, r *http.Request)
 }
 
 type accountController struct {
 	accountService accountService.Service
 }
 
+// Get top 10 godoc
+// @tags account-manager-apis
+// @Summary Get top 10
+// @Description Get top 10
+// @Accept json
+// @Produce json
+// @Security ApiKeyAuth
+// @Success 200 {object} controllers.Response
+// @Router /account/accounts/top10 [get]
+func (ac *accountController) GetTop10(w http.ResponseWriter, r *http.Request) {
+	user, err := ac.accountService.GetTop10()
+
+	var res *Response
+	if err != nil {
+		res = &Response{
+			Data:    nil,
+			Message: "Get record failed.",
+			Success: false,
+		}
+	} else {
+		res = &Response{
+			Data:    user,
+			Message: "get record successful.",
+			Success: true,
+		}
+	}
+	render.JSON(w, r, res)
+}
+
 // Create new Account godoc
 // @tags account-manager-apis
 // @Summary Create new Account
-// @Description Create new account with role default is customer
+// @Description Create new account
 // @Accept json
 // @Produce json
 // @Param UserInformation body controllers.UserM true "User information"

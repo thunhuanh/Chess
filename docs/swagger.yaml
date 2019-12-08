@@ -264,11 +264,29 @@ paths:
       summary: Filter users and paging
       tags:
       - account-manager-apis
+  /account/accounts/top10:
+    get:
+      consumes:
+      - application/json
+      description: Get top 10
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get top 10
+      tags:
+      - account-manager-apis
   /account/create:
     post:
       consumes:
       - application/json
-      description: Create new account with role default is customer
+      description: Create new account
       parameters:
       - description: User information
         in: body

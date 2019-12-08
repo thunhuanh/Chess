@@ -35,6 +35,7 @@ type UserRepository interface {
 	LoginTokenRequest(user *User) (bool, error)
 	HashPassword(password string) (string, error)
 	ComparePassword(hash string, password string) error
+	GetTop10() ([]*User, error)
 }
 
 type UserResponse struct {

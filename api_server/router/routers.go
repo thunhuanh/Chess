@@ -78,6 +78,7 @@ func Router() http.Handler {
 			subR.Put("/{accountId}", accountController.UpdateUser)
 			subR.Put("/password", accountController.ChangePassword)
 			subR.Delete("/{userId}", accountController.RemoveUser)
+			subR.Get("/accounts/top10", accountController.GetTop10)
 		})
 
 		//r.Post("/api/v1/be/logout", accountController.Logout)
