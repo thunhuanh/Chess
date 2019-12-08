@@ -1,88 +1,130 @@
-
-import "./styles/FrontPage.css"
-import axios from "axios"
-import UserForm from './UserForm';
-import Slide from './Slide';
-import About from './About';
-import HomePage from '../HomePage/HomePage'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
-
 import React, { Component } from 'react'
+import './styles/FrontPage.css'
+import UserForm from './UserForm'
+import Intro from './Intro'
+import RankDir from './RankDir'
+import About from './About'
+import axios from 'axios'
 
 export default class FrontPage extends Component {
-    constructor(props) {
+    constructor(props){
         super(props)
 
         this.state = {
-            isUserOpen: false,
-            // userName:"",
-            // password:"",
-            token:"",
-            loginStatus:"",
-            nickName: ""
+            isLoginForm: false,
+            token: localStorage.getItem("loginStatus"),
+            loginStatus: localStorage.getItem("loginStatus"),
         }
     }
-    login = async (userName, password) =>{
-        await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
-        name: userName, // Dữ liệu được gửi lên endpoint '/user'
-        password: password
-      })
-      .then( function (response) {
-        console.log(response.data.token)
-        this.setState({
-            token: response.data.token,
-            loginStatus: response.request.statusText,
-            nickName: response.data.data.user.NickName
-        }) // Xử lý dữ liệu được trả về từ API
-      })
-      .catch(function (error) {
-      });
+
+    componentWillMount() {
+        if (localStorage.getItem("token") !== null)
+            this.loginWithToken(localStorage.getItem("token"))
     }
-    loginOnClick = event =>{
-        event.preventDefault();
+
+    loginOnClick = () => {
+        if (this.state.isLoginForm === false)
         this.setState({
-            isUserOpen : !this.isUserOpen
+            isLoginForm: !this.state.isLoginForm
         })
     }
-    containerOnClick = () =>{
-        if (this.state.isUserOpen === true){
+    loginOnClick2 = () => {
+        this.props.getConfirm(this.state.loginStatus, "HomePage")
+    }
+    mainOnClick = () => {
+        if (this.state.isLoginForm === true){
             this.setState({
-                isUserOpen: false
+                isLoginForm: !this.state.isLoginForm
             })
         }
-        console.log(this.state)
     }
-    onLoginSubmit = (userName, password) => {
-        this.login(userName, password)
+
+    login = (userName, password) => {
+        axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
+            name: userName, // Dữ liệu được gửi lên endpoint '/user'
+            password: password
+        })
+            .then((response) => {
+                console.log(response)
+                this.setState({
+                    token: response.data.token,
+                    loginStatus: response.data.success,
+                })
+                if (response.data.success) {
+                    this.setState({           
+                        isLoginForm: false
+                    })
+                }
+                localStorage.setItem("token", response.data.token)
+                localStorage.setItem("loginStatus", response.data.success)
+                
+            })
+            .catch((error) => {
+            });
+    }
+
+    loginWithToken = (token) => {
+        var config = {
+            header: {
+                "Authoriztion": token
+            }
+        }
+        axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',
+            {}, config
+        )
+            .then((response) => {
+                localStorage.setItem("loginStatus", response.data.success)
+            })
+            .catch((error) => {
+            });
+    }
+
+
+    register = (userName, password) => {
+        axios.post('https://chess-apis.herokuapp.com/api/v1/be/account/create', {
+            name: userName, // Dữ liệu được gửi lên endpoint '/user'
+            password: password
+        })
+            .then((response) => {
+                console.log(response)
+                console.log(response.data.success)
+                this.setState({
+                    loginStatus: response.data.success,
+                })
+                console.log(response.data.success)
+                if (response.data.success === true) {
+                    this.login(userName, password)
+                }
+                localStorage.setItem("token", response.data.token)
+                localStorage.setItem("loginStatus", response.data.success)
+            })
+            .catch((error) => {
+            });
     }
     render() {
-        let {nickName} = this.state
-        let user = <div className="fp-login-container">
-        <UserForm id ="fp-user-form" isUserOpen = {this.state.isUserOpen} onLoginSubmit={this.onLoginSubmit}></UserForm>
-        </div>
-        if (this.state.loginStatus === "OK"){
-            return (
-                <Redirect from="/FrontPage" to ="/HomePage"></Redirect>
-            )
-        }
         return (
-            <div className="fp-frontpage">   
-            {this.state.isUserOpen? user: ""}
-            <div className="fp-container" onClick={this.containerOnClick}>     
-            <nav className="navbar navbar-inverse fp-nav-ab">
-                <div className= "container-fluid">
-                <a className="navbar-brand" href="/"><i className='fas fa-chess-queen'></i> ChessOnline</a>
-                <ul className="nav navbar-nav navbar-right">
-                    <li className="deactive">
-                        <a className="nav-link" id="loginBtn"onClick={this.loginOnClick}><i className="fa fa-user fa4" aria-hidden="true"></i>{this.state.statusText==="OK"?nickName:    "Login"}</a>
-                    </li>
-                </ul>
+            <div className="fp-container" >
+                <div className="fp-bg">
+
                 </div>
-            </nav>
-            <Slide></Slide>
-            <About></About>
-            </div>   
-        </div>
+                <div className="fp-bg-box">
+                    <div className="fp-bg-img">
+
+                    </div>
+                    <div className="fp-logo">
+                        <p>
+                            <i className='fas fa-chess-queen'></i>
+                            Chess Online
+                        </p>            
+                    </div>
+                </div>     
+                <UserForm isLoginForm={this.state.isLoginForm} onRegisterSubmit={this.register} login={this.login}></UserForm> 
+                <div className="fp-main" onClick={this.mainOnClick}>                       
+                    <Intro isLoginForm={this.state.isLoginForm}></Intro>
+                    <RankDir isLoginForm={this.state.isLoginForm} loginOnClick={this.state.loginStatus===null?this.loginOnClick:this.loginOnClick2}></RankDir>
+                </div>    
+                <About isLoginForm={this.state.isLoginForm}></About>
+            </div>
         )
     }
 }

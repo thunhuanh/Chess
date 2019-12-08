@@ -1,0 +1,138 @@
+.fp-rankdir{
+    width: 15%;
+    height: 60%;
+    /* background: white; */
+    position: absolute;
+    right: 20%;
+    /* top: -65%; */
+    transition: all 1s;
+}
+
+#fp-rankdir-after{
+    right: -100%;
+    transition: right 1.5s;
+}
+
+/* login - reg*/
+.fp-rd-login-box{
+    position: relative;
+    width: 100%;
+    height: 35%;
+}
+.fp-rd-login-box-bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: black;
+    opacity: 0.4;
+}
+
+.fp-rd-login-box-header{
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    text-align: center;
+    border-bottom: 1px solid white ;
+}
+.fp-rd-login-box-header h1{
+    /* position: absolute; */
+    color: white;
+    margin: auto;
+    font-family: 'Source Sans Pro', cursive;
+}
+
+.fp-rd-login-box-content{
+    padding-top: 40%;
+    text-align: center;
+}
+
+.fp-rd-login-box-content p {
+    position: relative;
+    color: white;
+    top: 20%;
+    font-size: 20px;
+    font-family: 'Source Sans Pro', cursive;
+    /* margin-top: 30%;
+    margin-left: 20%; */
+}
+
+.fp-rd-user-btn{
+    width: 120px;
+    height: 50px;
+    /* border-radius: 6px; */
+    border: none;
+    outline: none;
+    /* box-shadow: 4px 4px 6px rgba(141, 141, 141, 0.8); */
+    position: absolute;
+    background: transparent;
+}
+
+.fp-rd-user-btn-bg{
+    left: -1.5px;
+    top: -1.5px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: black;
+    opacity: 0.6;
+}
+
+.fp-rd-user-btn:hover > .fp-rd-user-btn-bg{
+    opacity: 0.4;
+}
+
+.fp-rd-user-btn-ctn{
+    color: white;
+    position: relative;
+    width: 100%;
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 24px;
+}
+
+.fp-rd-user-btn:active{
+    box-shadow: -3px -3px 4px rgb(43, 42, 42);
+}
+
+
+#fp-rd-log{
+    margin-top: 7%;
+    margin-left: 29%;
+}
+
+/*rank*/
+.fp-rd-ranking-box{
+    position: relative;
+    width: 100%;
+    height: 60%;
+    margin-top: 12%;
+}
+
+.fp-rd-ranking-bg{
+    background: black;
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.fp-rd-ranking-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.fp-rd-ranking-container ul{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    color: white;
+    list-style-type: decimal;
+}
+
+.fp-rd-ranking-container ul li{
+    margin-top: 7%;
+    margin-left: 15%;
+    font-size: large;
+}

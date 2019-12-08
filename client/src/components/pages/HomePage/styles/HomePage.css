@@ -1,0 +1,46 @@
+.hp-container{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    /* background: linear-gradient(120deg, #312E2B, #43413E,#312E2B); */
+    position: absolute;
+}
+
+.hp-intro{
+    background: black;
+    width: 100%;
+    height: 7%;
+    position: relative;
+}
+
+.hp-main{
+    position: relative;
+    /* background: linear-gradient(120deg, #312E2B, #43413E,#312E2B); */
+    background: black;
+    background-image: url("https://image.freepik.com/free-photo/white-king-chess-piece-defeating-by-black-knight-chess-piece_9083-3340.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* .hp-main .box-title {
+    padding: 0 3px;
+    height: 100px;
+    margin-top: -0.8em;
+} */
+
+.hp-parts .box-title {
+    float:left;
+	padding:0 5px;
+	margin:-17px 0 0 20px;
+    background: white;
+    font-size: large;
+    /* border-top: 1px solid black; */
+    border-radius: 4px;
+    color: black;
+}

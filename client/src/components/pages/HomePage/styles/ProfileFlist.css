@@ -1,0 +1,170 @@
+.hp-profile-flist{
+    position: absolute;
+    left:3%;
+    width: 15%;
+    height: 100%;
+}
+
+.hp-pf-profile{
+    position: relative;
+    margin-top: 10%;
+    /* border: 2px solid black; */
+    width: 100%;
+    height: 30%;
+    background: white;
+    border-radius: 7px;
+}
+
+
+.hp-pf-pName{
+    margin-top: 10%;
+    text-align: center;
+    border-bottom: 1px solid black;
+    width: 70%;
+    margin-left:15%;
+}
+
+.hp-pf-dataBox{
+    width: 80%;
+    margin-left: 10%;
+    border: 1.2px solid black;
+    border-radius: 5px;
+    height: 55%;
+}
+
+.hp-pf-dataBox ul {
+    list-style: none;
+}
+
+.hp-pf-dataBox ul li{
+    margin-top: 8%;
+}
+
+.hp-pf-logout-box{
+    margin-top: 6%;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+}
+
+.hp-pf-logout-btn{
+    color: white;
+    width: 30%;
+    height: 13%;
+    margin-left: 33%;
+    background: #585757;
+    box-shadow: 4px 4px 0px rgba(0,0,0,.8);
+    border: none;
+}
+
+.hp-pf-logout-btn:hover{
+    background:rgb(56, 56, 56);
+}
+.hp-pf-friendlist{
+    position: relative;
+    margin-top: 10%;
+    /* border: 2px solid black; */
+    width: 100%;
+    height: 62.5%;
+    background: white;
+    border-radius: 7px;
+}
+
+.hp-pf-friend-container{
+    
+    /* margin: 7% auto; */
+    padding-top: 10%;
+    margin-top: 9%;
+    margin-left: 5%;
+    /* border: 1px solid black; */
+    width: 90%;
+    height: 93%;
+    border-radius: 7px;
+}
+
+.hp-pf-friendBox{
+    height: 98%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.hp-pf-listItem{
+    margin-top: 0.8%;
+    position: relative;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
+    overflow: auto;
+    height: 99%;
+    scrollbar-color: black;
+    list-style-type: none;
+    /* list-style: inside url("../userIcon.png"); */
+}
+
+.hp-pf-listItem  li{
+    margin-top: 7%;
+    margin-left: -10%;
+    padding: .1em 0;
+}
+.hp-pf-listItem  li:first-child{
+    margin-top: 7%;
+}
+
+.hp-pf-listItem  li:hover{
+    cursor: pointer;
+}
+
+.hp-pf-searchBox{
+    margin-top: 2%;
+    width: 100%;
+    height: 5%;
+    display: flex;
+    /* border: 1px solid black;
+    border-radius: 5px; */
+}
+
+.hp-pf-icon{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 12%;
+}
+
+.hp-pf-icon i{
+    margin-left: 25%;
+    margin-top: 20%;
+}
+
+.hp-pf-search-search{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-left: .5%;
+    width: 100%;
+}
+
+.hp-pf-search{
+    width: 100%;
+    height: 98%;
+    outline: none;
+    background: none;
+    border: none;
+    padding: 2%;
+}
+
+.hp-pf-search::focus{
+    color: transparent;
+}
+
+.hp-pf-friend{
+    display: flex;
+    height: 50%;
+}
+
+.hp-pf-friend i{
+    width: 10%;
+    margin: .5%;
+}
+
+.hp-pf-friend p{
+    margin-top: -1%
+}
+
+

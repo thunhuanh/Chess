@@ -1,23 +1,28 @@
+import React, { Component } from 'react'
+import PmodeCbox from './PmodeCbox'
+import ProfileFlist from './ProfileFlist'
+import RankOnline from './RankOnline'
+import './styles/HomePage.css'
 
-import React from 'react'
-import "./Style/HomePage.css"
-import PlayMode from './PlayMode';
-import ChatBox from './ChatBox';
-import RightSide from './RightSide';
-import LeftSide from './LeftSide';
+export default class HomePage extends Component {
+    constructor(props) {
+        super(props)
 
+        this.state = {
+                 
+        }
+    }
 
-export default function HomePage (){
-    return (
-    <div>
-       <div class='nav_bar'>
-           <img src="./Style/IMG/Chess.png" alt="Can not display"></img>
-       </div>
-       {/* <PlayMode></PlayMode> */}
-            
-        <LeftSide></LeftSide>    
-        <ChatBox></ChatBox>
-        <RightSide></RightSide>
-    </div>
-    )
+    render() {
+        return (
+            <div className="hp-container">
+                {/* <div className="hp-intro">123122312</div> */}
+                <div className="hp-main">
+                    <PmodeCbox ></PmodeCbox>
+                    <ProfileFlist ></ProfileFlist>
+                    <RankOnline ></RankOnline>
+                </div>
+            </div>
+        )
+    }
 }

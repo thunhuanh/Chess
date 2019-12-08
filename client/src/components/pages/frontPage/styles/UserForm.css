@@ -1,139 +1,162 @@
-.fp-uf-user-form{
-    width: 360px;
-    height: 580px;
-    padding: 80px 40px;
-    border-radius: 10px;
+.fp-uf-login-form{
+    width: 30%;
+    height: 45%;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 40px 20px rgba(0,0,0,.8);
-    background: white;
-    z-index: 100;
+    margin: 10% 35% 0% 35%;
     overflow: hidden;
-    -webkit-animation: userForm 2s ; /* Safari 4.0 - 8.0 */
-    -webkit-animation-direction: initial; /* Safari 4.0 - 8.0 */
-    animation: userForm 2s;
-    animation-direction: initial;
+    top: -100%;
+    transition: all 1s;
 }
 
-@-webkit-keyframes userForm {
-    from{top: -50%}
-    to{top: 50%}
+/*login reg*/
+#fp-uf-loginform{
+    left: 0;
+    transition: left .5s;
 }
-    
-@keyframes userForm {
-    from{top: -50%}
-    to{top: 50%}
+#fp-uf-loginform-after{
+    left: -100%;
+    transition: left .5s;
 }
-
-.fp-uf-button-box{
-    width: 250px;
-    margin: 30px auto;
-    position: relative;
-    box-shadow: 0 0 10px 5px lightblue;
-    border-radius: 30px;
-    margin-bottom: 50px;
+#fp-uf-regform-after{
+    left: 0;
+    transition: left .5s;
 }
 
-.fp-uf-toggle-btn{
-    left: 5%;
-    padding: 10px 30px;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    outline: none;
-    position: relative;
-    font-size: 20px;
+#fp-uf-regform-after .fp-uf-login-form-confirm-btn{
+    margin-top: 5%;
 }
 
-.fp-uf-lgr-btn{
-    top: 0;
-    left: 0%;
-    position: absolute;
-    width: 130px;
+#fp-uf-regform .fp-uf-login-form-confirm-btn{
+    margin-top: 5%;
+}
+
+#fp-uf-regform{
+    left: 100%;
+    transition: left .5s;
+}
+/*login form*/
+.fp-uf-login-form-bg{
+    background: black;
+    opacity: 0.5;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(120deg, #2980b9, #8e44ad);
-    border-radius: 30px;
-    transition: .5s;
-}
-.fp-uf-lgr-btn1{
-    top: 0;
-    left: 50%;
     position: absolute;
-    width: 130px;
-    height: 100%;
-    background: linear-gradient(120deg, #2980b9, #8e44ad);
-    border-radius: 30px;
-    transition: .5s;
 }
 
-.fp-uf-input-box{
-    top: 30%;
+#fp-uf-login-form-after{
+    top: 0%;
+    transition: top 1.5s;
+    z-index: 99;
+}
+
+.fp-uf-login-form-header{
     position: absolute;
     width: 80%;
-    transition: .5s;
+    margin: 5% 10% 0% 10%;
+    padding-bottom: 5%;
+    border-bottom: 2px solid white;
 }
 
-.fp-uf-text-box{
-    border-bottom: 2px solid transparent;
-    position: relative;
-    margin: 30px 0;
-    border-image: linear-gradient(120deg, #2980b9, #8e44ad);
-    border-image-slice: 1;
+.fp-uf-login-form-header h1{
+    color: white;
+    text-align: center;
+    font-family: 'lobster', cursive;
 }
 
-.fp-uf-text-box input{
-    font-size: 15px;
-    color: #333;
-    border: none;
-    width: 100%;
-    outline: none;
-    background: none;
-    padding: 0 5px;
-    height: 40px;
-}
-
-.fp-uf-user-form span{
-    padding-left: 2%;
-    font-size: 15px;
-}
-
-.fp-uf-confirm-btn {
-    margin-top: 20%;
-    width: 100%;
-    height: 10%;
-    cursor: pointer;
-    background:linear-gradient(120deg, #2980b9, #8e44ad);
-    border-radius: 30px;
-    position: relative;
-    font-size: 20px;
-}
-
-.hidden{
-    visibility: hidden;
-}
-
-.visible{
-    visibility: visible;
-}
-
-
-#fp-uf-reg-box{
-    left:120%;
-}
-
-
-#fp-uf-login-box-after{
-    left:-100%
-}
-
-#fp-uf-login-box-after .fp-uf-confirm-btn{
+.fp-uf-login-form-input-box{
+    width: 80%;
+    height: 70%;
     position: absolute;
-    width: 100%;
-    height: 10%;
-    cursor: pointer;
-    background:linear-gradient(120deg, #2980b9, #8e44ad);
-    border-radius: 30px;
-    font-size: 20px;
+    margin-top: 25%;
+    margin-left: 10%;   
 }
+
+.fp-uf-login-form-input{
+    position: relative;
+    width: 80%;
+    height: 15%;
+    border: none;
+    outline: none;
+    margin: 10% 10% 0% 10%;
+}
+
+#fp-uf-input-password{
+    margin-top: 3%;
+}
+.fp-uf-login-form-input-field{
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    padding-left: 3%;
+    margin-bottom: 0%;
+}
+
+.fp-uf-login-form-input-field:focus::placeholder{
+    color: transparent;
+    transition: .4s;
+}
+
+.fp-uf-login-form-input p {
+    margin: 0; 
+    padding-left: 3%;
+    color: white;
+}
+
+.fp-uf-login-form-ask{
+    position: relative;
+    color: white;
+    margin-top: 7%;
+    text-align: center;
+}
+
+.fp-uf-login-form-ask a{
+    cursor: pointer;
+}
+
+.fp-uf-login-form-confirm-btn{
+    position: relative;
+    width: 35%;
+    height: 12%;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right, #3F5EFB, #FC466B);
+    color: white;
+    margin: 15% 33% 0% 33%;
+    border-radius: 30px;
+    z-index: 1;
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 24px;
+    display: inline-block;
+}
+
+.fp-uf-login-form-confirm-btn::before{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #FC466B, #3F5EFB);
+    transition: opacity .45s ease-out;
+    z-index: 2;
+    opacity: 0;
+    border-radius: inherit;
+    position: absolute;
+    content:"";
+    display: block;
+}
+
+.fp-uf-login-form-confirm-btn:hover::before{
+    opacity: 1;   
+}
+
+.fp-uf-login-form-confirm-btn:active{
+    box-shadow: -2px -4px 4px rgb(149, 84, 235);
+}
+
+.fp-uf-login-form-confirm-btn span{
+    z-index: 3;
+    position: relative;
+}
+

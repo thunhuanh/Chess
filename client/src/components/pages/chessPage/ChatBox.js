@@ -41,7 +41,7 @@ class ChatBox extends React.Component {
     enterToSend(){
         onkeypress = (e) => {
             if (e.key === 'Enter') {
-                if (document.getElementById('inputChat').value != '') {
+                if (document.getElementById('inputChat').value !== '') {
                     var tag = document.createElement("p");
                     var playerName = 'Player A';
                     //playerName var is currently a placeholder, to be filled in by real player names passed into.
@@ -58,7 +58,7 @@ class ChatBox extends React.Component {
     }
     clickToSend() {
         onmouseup = (e) => {}
-        if (document.getElementById('inputChat').value != '') {
+        if (document.getElementById('inputChat').value !== '') {
             var tag = document.createElement("p");
             var playerName = 'Player A';
             //playerName var is currently a placeholder, to be filled in by real player names passed into.
