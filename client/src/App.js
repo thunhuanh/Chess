@@ -2,7 +2,7 @@
 // 
 // import RightSide from './components/pages/HomePage/RightSide'
 // import LeftSide from './components/pages/HomePage/LeftSide'
-// import ChatBox from './components/pages/HomePage/ChatBox'
+// import HomeChatBox from './components/pages/HomePage/HomeChatBox'
 // import Play_Mode from './components/pages/HomePage/PlayMode'
 
 

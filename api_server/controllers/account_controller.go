@@ -191,7 +191,9 @@ func (ac *accountController) UpdateUser(w http.ResponseWriter, r *http.Request) 
 	}
 
 	infoUpdate := model.User{
-		Name: data.Name,
+		NickName: data.Name,
+		Avatar: data.Avatar,
+		Status: data.Status,
 	}
 
 	err = ac.accountService.UpdateUser(accountID, &infoUpdate)
@@ -446,10 +448,8 @@ type UserM struct {
 
 // UpdateAccountResponse update account response
 type UpdateAccountPayload struct {
-	Name string `json:"name"`
+	Name string `json:"nickName"`
 	Avatar string `json:"avatar"`
-	Password string `json:"password"`
-	Role string `json:"role"`
 	Status string `json:"status"`
 }
 

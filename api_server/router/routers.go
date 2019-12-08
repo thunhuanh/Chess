@@ -2,6 +2,7 @@ package router
 
 import (
 	"Chess/api_server/controllers"
+	"github.com/go-chi/cors"
 	"log"
 
 	"net/http"
@@ -23,8 +24,6 @@ import (
 func Router() http.Handler {
 	r := chi.NewRouter()
 
-	// * Declare Repository
-
 	// * Declare Middleware
 	authentication, err := middleAccess.NewAuthentication()
 	if err != nil {
@@ -32,18 +31,18 @@ func Router() http.Handler {
 		log.Fatal(err)
 	}
 
-	////allowed cors
-	//cors := cors.New(cors.Options{
-	//	AllowedOrigins:   []string{"*"},
-	//	AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-	//	AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
-	//	ExposedHeaders:   []string{"Link"},
-	//	AllowCredentials: true,
-	//	MaxAge:           300,
-	//})
-	//r.Use(cors.Handler)
+	//allowed cors
+	cors := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: true,
+		MaxAge:           300,
+	})
 
 	// * Use middleware
+	r.Use(cors.Handler)
 	r.Use(middleware.Logger)
 	r.Use(middleware.URLFormat)
 	r.Use(middleware.RequestID)
@@ -56,7 +55,6 @@ func Router() http.Handler {
 	friendController, _ := controllers.NewFriendController()
 	reportController, _ := controllers.NewReportController()
 	roomController, _ := controllers.NewRoomController()
-
 
 	//route
 	r.Get("/api/v1/be/swagger/*", httpSwagger.Handler(
@@ -94,6 +92,7 @@ func Router() http.Handler {
 			reportSubr.Get("/reports/filter/{reporterId}/{reportedAccountId}", reportController.FilterReport)
 			reportSubr.Delete("/reports/{id}", reportController.DeleteReport)
 			reportSubr.Post("/reports", reportController.SendReport)
+			reportSubr.Get("/reports/all", reportController.GetAllReport)
 		})
 
 		r.Route("/api/v1/be/room", func(roomSubr chi.Router) {

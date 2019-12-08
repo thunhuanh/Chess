@@ -1,7 +1,15 @@
 import React from 'react'
 import './styles/ChatBox.css'
+import './bulma/bulma.css'
 
 class ChatBox extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+
+        }
+    }
     render() {
         return(
             <div className='chatBox'>
@@ -32,12 +40,18 @@ class ChatBox extends React.Component {
                 </div>
                 <div className='editChat'>
                     <input id='inputChat' onKeyPress={this.enterToSend}/>
-                    <button id='sendButton' onClick={this.clickToSend}/>
+                        <button  onClick={this.clickToSend} id='sendBtn' className='button' >
+                            <span id='sendBtnSpan' className="icon is-fullheight is-fullwidth">
+                                <img id='sendBtnImg' src={require("./styles/img/sendbtn.png")} alt='missing' ></img>
+                            </span>
+                        </button>
                 </div>
             </div>
 
         );
+
     }
+
     enterToSend(){
         onkeypress = (e) => {
             if (e.key === 'Enter') {

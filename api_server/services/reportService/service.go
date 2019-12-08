@@ -9,10 +9,19 @@ type Service interface {
 	SendReport(report *model.Report) (*model.Report, error)
 	DeleteReport(id int) error
 	FilterReport(ReporterId, ReportedAccountId int) ([]*model.Report, error)
+	GetAllReport() ([]*model.Report, error)
 }
 
 type service struct {
 	reportRepo model.ReportRepository
+}
+
+func (s *service) GetAllReport() ([]*model.Report, error) {
+	reports, err := s.reportRepo.GetAllReport()
+	if err != nil {
+		return nil, err
+	}
+	return reports, nil
 }
 
 func (s *service) SendReport(report *model.Report) (*model.Report, error) {
