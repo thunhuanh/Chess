@@ -12,3 +12,10 @@ type MetaData struct{
 	PageSize	int `json:"pageSize"`
 	Total		int `json:"total"`
 }
+
+type ReportPayload struct {
+	ID int 			`json:"id"`
+	Reporter *User	`json:"reporter"`
+	ReportedUser *User `json:"reported"`
+	Message string 	`json:"message"`
+}
