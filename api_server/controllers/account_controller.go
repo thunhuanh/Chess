@@ -40,7 +40,6 @@ type accountController struct {
 // @Description Get top 10
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Success 200 {object} controllers.Response
 // @Router /account/accounts/top10 [get]
 func (ac *accountController) GetTop10(w http.ResponseWriter, r *http.Request) {
