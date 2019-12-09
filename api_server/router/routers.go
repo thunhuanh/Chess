@@ -67,9 +67,8 @@ func Router() http.Handler {
 		subR.Post("/login/token", accountController.LoginWithToken)
 	})
 
-	r.Route("/api/v1/be/account", func(subR chi.Router) {
-		subR.Get("/accounts/top10", accountController.GetTop10)
-	})
+	r.Get("/api/v1/be/account/accounts/top10", accountController.GetTop10)
+
 
 	//authentication
 	r.Group(func(r chi.Router) {

@@ -138,11 +138,6 @@
         },
         "/account/accounts/top10": {
             "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Get top 10",
                 "consumes": [
                     "application/json"

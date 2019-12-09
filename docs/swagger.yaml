@@ -277,8 +277,6 @@ paths:
           schema:
             $ref: '#/definitions/controllers.Response'
             type: object
-      security:
-      - ApiKeyAuth: []
       summary: Get top 10
       tags:
       - account-manager-apis
