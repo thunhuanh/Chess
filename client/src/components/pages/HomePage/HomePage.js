@@ -4,31 +4,69 @@ import "./Style/HomePage.css"
 import PlayMode from './PlayMode'
 import HomeChatBox from './HomeChatBox'
 import FriendList from './FriendList'
-import OnlinePlayer from "./OnlinePlayer";
+import OnlinePlayer from "./OnlinePlayer"
+import './bulma/bulma.css'
 
 
-export default function HomePage (){
-    return (
-    <div className='homePage'>
-       <div className='homePageNav'>
-           <img src="./Style/IMG/Chess.png" alt="Can not display"></img>
-           <p>NAVBAR</p>
-       </div>
-        <div className='homePageComponents'>
-            <div className='homePageMainComponents'>
-                <div className='playModeBorderBox'>
-                    <PlayMode/>
+
+class HomePage extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    state = { showMenu: false }
+
+    toggleMenu = () => {
+        this.setState({
+            showMenu: !this.state.showMenu
+        })
+    }
+    render() {
+        let menuVis = this.state.showMenu ? 'is-active' : '';
+        console.log(menuVis);
+        return (
+            <div className='homePage'>
+                <div className='homePageNav'>
+                    <img src="./Style/IMG/Chess.png" alt="Can not display"></img>
+                    <p>NAVBAR</p>
                 </div>
-                <HomeChatBox/>
-            </div>
-            <div className="homePageAuxComponents">
+                <div className='homePageComponents'>
+                    <div className="homePageAuxComponentsSmall">
+                        <div className={ ["dropdown", menuVis].join(' ') }>
+                            <div className="dropdown-trigger">
+                                <button onClick={this.toggleMenu} id="homePageAuxComponentsSmallButton" className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                    <span>Dropdown button</span>
+                                </button>
+                            </div>
+                            <div className="dropdown-menu" >
 
-                <div className='friendListBorderBox'>
-                    <FriendList/>
+                                    <div className='friendListBorderBox dropdown-content'>
+                                        <FriendList/>
+                                        <OnlinePlayer/>
+                                    </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div className='homePageMainComponents'>
+                        <div className='playModeBorderBox'>
+                            <PlayMode/>
+                        </div>
+                        <HomeChatBox/>
+                    </div>
+                    <div className="homePageAuxComponentsFull">
+
+                        <div className='friendListBorderBox'>
+                            <FriendList/>
+                        </div>
+                        <OnlinePlayer/>
+                    </div>
+
                 </div>
-                <OnlinePlayer/>
             </div>
-        </div>
-    </div>
-    )
+        )
+    }
 }
+
+export default HomePage;

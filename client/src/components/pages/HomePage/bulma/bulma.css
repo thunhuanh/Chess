@@ -3790,8 +3790,8 @@ fieldset[disabled] .select select:hover {
     left: auto;
     right: 0; }
 .dropdown.is-up .dropdown-menu {
-    bottom: 100%;
-    padding-bottom: 4px;
+    bottom: 90%;
+    padding-bottom: 0px;
     padding-top: initial;
     top: auto; }
 
@@ -3799,10 +3799,10 @@ fieldset[disabled] .select select:hover {
     display: none;
     left: 0;
     min-width: 12rem;
-    padding-top: 4px;
+    padding-top: 0px;
     position: absolute;
-    top: 100%;
-    z-index: 20; }
+    top: 90%;
+    z-index: 20;}
 
 .dropdown-content {
     background-color: white;

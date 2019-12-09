@@ -16,7 +16,8 @@ export default class HomePageAuxComponents extends Component {
 
                     <div className="friendList">
                         <p>FRIENDLIST</p>
-                        <strong>No one is online now</strong>
+                        <strong>No one is online nowjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofjkeafaiofj</strong>
+
                     </div>
 
                 <OnlinePlayer/>
