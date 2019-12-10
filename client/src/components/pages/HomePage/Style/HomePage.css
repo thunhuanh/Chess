@@ -57,78 +57,137 @@
 } */
 @media screen and (max-aspect-ratio: 4/3) and (max-width: 600px), screen and (max-width: 600px) {
     .homePageComponents {
-        padding-left: 1.5866%;
-        padding-right: 1.5866%;
+        position: absolute;
         display: flex;
         flex-direction: column;
+        z-index: 0;
     }
     .homePageMainComponents {
-        width: 100%;
-        height: 100%;
+        position: relative;
+        width: 96.8268%;
+        height: 79.39665%;
+        top: 16.601675%;
+        left: 1.5866%;
+        bottom: 1.5866%;
+        right: 1.5866%;
         /*padding-left: 1.5866%;
         padding-right: 1.5866%;*/
         display: flex;
         flex-direction: column;
+        z-index: 1;
     }
 
     .homePageAuxComponentsFull {
         display: none;
     }
     .homePageAuxComponentsSmall {
-
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 96.8268%;
+        height: 80.19665%;
+        top: 18.801675%;
+        left: 1.5866%;
+        bottom: 1.5866%;
+        right: 1.5866%;
+        background-color: white;
+        z-index: 10;
+    }
+    .homePageAuxComponentsSmall.off {
+        display: none;
     }
     #homePageAuxComponentsSmallButton {
-
+        width: 96.8268%;
+        top: 15.8%;
+        left: 1.5866%;
+        height: 3%;
     }
-    #homePageAuxComponentsSmallMenu {
+    /*#homePageAuxComponentsSmallMenu {
         width: 100%;
         height: 100%;
-        /*padding-right: 11.60335%;*/
+        padding-right: 11.60335%;
 
         display: flex;
         flex-direction: column;
-    }
+    }*/
 }
 @media screen and (max-aspect-ratio: 4/3) and (min-width: 600px), screen and (min-width: 600px) and (max-width: 800px){
     .homePageComponents {
-        padding-left: 5.801675%;
-        padding-right: 5.801675%;
+        position: absolute;
         display: flex;
         flex-direction: column;
+        z-index: 0;
     }
     .homePageMainComponents {
-        width: 100%;
-        height: 100%;
+        position: relative;
+        width: 88.39665%;
+        height: 76.39665%;
+        top: 17.801675%;
+        left: 5.801675%;
+        bottom: 2.801675%;
+        right: 5.801675%;
+        /*left: 5.801675%;
+        right: 5.801675%;
+        bottom: 5.801675%;*/
+        z-index: 2;
         /*padding-left: 5.801675%;
         padding-right: 5.801675%;*/
         display: flex;
         flex-direction: column;
+        z-index: 1;
     }
 
     .homePageAuxComponentsFull {
         display: none;
+        z-index: 0;
     }
 
     .homePageAuxComponentsSmall {
-
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 35%;
+        height: 55%;
+        top: 20.2%;
+        left: 32.5%;
+        right: 5.801675%;
+        background-color: white;
+        z-index: 10;
+    }
+    .homePageAuxComponentsSmall.off {
+        display: none;
     }
     #homePageAuxComponentsSmallButton {
-
+        width: 88.39665%;
+        top: 16.35%;
+        left: 5.801675%;
+        height: 4%;
     }
-    #homePageAuxComponentsSmallMenu {
+
+    /*.homePageAuxComponentsSmallMenu {
+        position: absolute;
+        z-index: 100;
+        top: 80%;
+        left: 12%;
+        right: 12%;
+        height: 12%;
+    }*/
+    /* #homePageAuxComponentsSmallMenu {
         width: 100%;
         height: 100%;
-        /*padding-right: 11.60335%;*/
+        padding-right: 11.60335%;
         background-color: #0a0a0a;
         display: flex;
         flex-direction: column;
-    }
+    }*/
 
 }
 @media screen and (min-aspect-ratio: 4/3) and (min-width: 800px) {
     .homePageComponents {
         padding-left: 11.60335%;
         padding-right: 11.60335%;
+        padding-bottom: 3%;
+        padding-top: 3%;
         display: flex;
         flex-direction: row;
     }
@@ -140,7 +199,7 @@
         display: flex;
         flex-direction: column;
     }
-    .homePageAuxComponents {
+    .homePageAuxComponentsFull {
         width: 35%;
         height: 100%;
         /*padding-right: 11.60335%;*/
@@ -149,6 +208,9 @@
         flex-direction: column;
     }
     .homePageAuxComponentsSmall {
+        display: none;
+    }
+    #homePageAuxComponentsSmallButton {
         display: none;
     }
 }
@@ -170,9 +232,7 @@
 }
 
 .homePageComponents {
-    padding-bottom: 3%;
-    padding-top: 3%;
-    height: 88%;
+    height: 100%;
     width: 100%;
 }
 

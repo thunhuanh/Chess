@@ -14,15 +14,19 @@ class HomePage extends React.Component{
         super(props);
     }
 
-    state = { showMenu: false }
+    state = { showMenu: false, showProfile: false}
 
     toggleMenu = () => {
         this.setState({
             showMenu: !this.state.showMenu
         })
+        this.setState( {
+            showProfile: !this.state.showProfile
+        })
+        console.log(this.state.showProfile);
     }
     render() {
-        let menuVis = this.state.showMenu ? 'is-active' : '';
+        let menuVis = this.state.showMenu ? '' : 'off';
         console.log(menuVis);
         return (
             <div className='homePage'>
@@ -30,9 +34,10 @@ class HomePage extends React.Component{
                     <img src="./Style/IMG/Chess.png" alt="Can not display"></img>
                     <p>NAVBAR</p>
                 </div>
-                <div className='homePageComponents'>
-                    <div className="homePageAuxComponentsSmall">
-                        <div className={ ["dropdown", menuVis].join(' ') }>
+                <div className="homePageComponents">
+
+                    {/*<div className="homePageAuxComponentsSmall">*/}
+                        {/*<div className={ ["dropdown", menuVis].join(' ') }>
                             <div className="dropdown-trigger">
                                 <button onClick={this.toggleMenu} id="homePageAuxComponentsSmallButton" className="button" aria-haspopup="true" aria-controls="dropdown-menu">
                                     <span>Dropdown button</span>
@@ -46,15 +51,24 @@ class HomePage extends React.Component{
                                     </div>
 
 
+                            </div>*/}
+                    <button onClick={this.toggleMenu} id="homePageAuxComponentsSmallButton" className="button">
+                        <span>Community</span>
+                    </button>
+                            <div className={ ["homePageAuxComponentsSmall", menuVis].join(' ') }>
+                            <div className="friendListBorderBox">
+                                <FriendList/>
                             </div>
+                            <OnlinePlayer/>
                         </div>
-                    </div>
-                    <div className='homePageMainComponents'>
+                {/*</div>*/}
+                <div className='homePageMainComponents'>
                         <div className='playModeBorderBox'>
                             <PlayMode/>
                         </div>
                         <HomeChatBox/>
                     </div>
+
                     <div className="homePageAuxComponentsFull">
 
                         <div className='friendListBorderBox'>
