@@ -1,7 +1,6 @@
 import React from 'react'
 import './styles/PlayZone.css'
 import ChessTable from './ChessTable'
-import ms from 'pretty-ms'
 
 class PlayZone extends React.Component {
     constructor(props) {

@@ -1,6 +1,6 @@
 .hp-container{
     /* max-width: 1404px; */
-    max-height: 2091px;
+    /* max-height: 2091px; */
     /* min-width: 1864px;
     min-height: 1260px; */
     /* 
@@ -14,7 +14,7 @@
     background: #FC466B; 
     background: -webkit-linear-gradient(240deg, #3F5EFB, #FC466B);  
     background: linear-gradient(240deg, #3F5EFB, #FC466B); 
-    overflow: hidden;
+    /* overflow: hidden; */
     /* background-image: url(hthps://backgroundcheckall.com/wp-content/uploads/2017/12/powerpoint-background-abstract-8-300x200.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -91,7 +91,7 @@
 }
 
 .hp-play-modes-picker-selected{
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
 .hp-play-modes-picker h3{
@@ -259,7 +259,7 @@
     position: relative;
     margin: 5% auto;
     width: 96%;
-    height: 65%;
+    height: 50%;
     border: 1px solid white;
     overflow: auto;
     padding: 0;
