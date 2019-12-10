@@ -1,0 +1,50 @@
+.hp-room{
+    position: absolute;
+    width: 100%;
+    height: 0%;
+    transition: all 0.5s;
+    visibility: hidden;
+}
+
+.hp-room-after{
+    height: 20%;
+    visibility: visible;
+}
+/*Height: 0*/
+
+.hp-room-container{
+    position: relative;
+    width: 96%;
+    height: 90%;
+    margin: auto;
+    top: 14%;
+}
+
+.hp-room-content{
+    position: relative;
+    width: 100%;
+    height: 80%;
+    border: 1px solid white;
+    overflow-y: hidden;
+    overflow-x: auto ;
+}
+
+.hp-room-content ul{
+    display: flex;
+    position: relative;
+    width:100%;
+    height: 100%;
+    margin: auto;
+}
+
+.hp-room-content ul li {
+    display: grid;
+    color: white;
+    text-align: center;
+    margin: 0% 2% 0% 2%;
+}
+
+.hp-room-content ul li:nth-child(1){
+    margin-left: -5%;
+}
+
