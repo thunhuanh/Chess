@@ -19,7 +19,7 @@
 // }
 
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import FrontPage from './components/pages/FrontPage/FrontPage'
 import ChessPage from './components/pages/chessPage/ChessPage'
@@ -41,9 +41,9 @@ export default class App extends Component {
   }
   UNSAFE_componentWillUnmount(){
     this.setState({
-      token:localStorage.getItem('token')
+      token:localStorage.getItem('token'),
+      isRedirect: false
     })
-    console.log(this.state.token)
   }
   getToken = (token) => {
     this.setState({
@@ -51,26 +51,28 @@ export default class App extends Component {
     })
   }
 
-  getConfirm = (confirm, name) =>{
-      this.setState({
-        isRedirect: confirm,
-        nextPage: name
-      })
-  }
+  // getConfirm = (confirm, name) =>{
+  //     this.setState({
+  //       isRedirect: confirm,
+  //       nextPage: name
+  //     })
+  // }
 
-  redirect = () =>{
-    console.log(this.state.nextPage)
-    if (this.state.isRedirect)
-    return <Redirect from="/" to={this.state.nextPage}></Redirect>
-  }
+  // redirect = () =>{
+  //   console.log(this.state.nextPage)
+  //   if (this.state.isRedirect)
+  //   return <Redirect from="/" to={this.state.nextPage}></Redirect>
+  //   else 
+  //   return <Redirect to="/" ></Redirect>
+  // }
 
   render() { 
     return (
       <div>
       <Router>
-      {this.redirect()}
+      {/* {this.redirect()} */}
       <Route path="/" exact>
-        <FrontPage name="FrontPage" getConfirm={this.getConfirm}></FrontPage>
+        <FrontPage name="FrontPage"></FrontPage>
       </Route>
       <Route path={"/ChessPage"}>
         <ChessPage></ChessPage>

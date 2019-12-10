@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './styles/RankDir.css'
+import axios from 'axios'
 
 export default class RankDir extends Component {
     constructor(props) {
@@ -8,12 +9,31 @@ export default class RankDir extends Component {
         this.state = {
             isLoginForm: false
         }
+        this.top = []
     }
     loginOnClick = (event) => {
-        event.preventDefault()
-        this.props.loginOnClick()
+        event.preventDefault();
+        this.props.loginOnClick();
+        console.log(this.top)
+    }
+    componentWillMount() {
+        this.getTopPlayer()
+    }
+
+    getTopPlayer = () => {
+        axios.get('https://chess-apis.herokuapp.com/api/v1/be/account/accounts/top10')
+            .then((response) => {
+                this.top = response.data.data
+            })
+            .catch((error) => {
+            });
     }
     render() {
+        let list = this.top.map((player, index)=>{
+            console.log(player.name)
+            return <li key={index}>{player.name}</li>
+            
+        })
         return (
             <div className="fp-rankdir" id={this.props.isLoginForm === true ? "fp-rankdir-after" : ""}>
                 <div className="fp-rd-login-box">
@@ -34,36 +54,7 @@ export default class RankDir extends Component {
                     <div className="fp-rd-ranking-bg"></div>
                     <div className="fp-rd-ranking-container">
                         <ul>
-                            <li>
-                                Player Top 1
-                                    </li>
-                            <li>
-                                Player Top 2
-                                    </li>
-                            <li>
-                                Player Top 3
-                                    </li>
-                            <li>
-                                Player Top 4
-                                    </li>
-                            <li>
-                                Player Top 5
-                                    </li>
-                            <li>
-                                Player Top 6
-                                    </li>
-                            <li>
-                                Player Top 7
-                                    </li>
-                            <li>
-                                Player Top 8
-                                    </li>
-                            <li>
-                                Player Top 9
-                                    </li>
-                            <li>
-                                Player Top 10
-                                    </li>
+                            {list}
                         </ul>
                     </div>
                 </div>
