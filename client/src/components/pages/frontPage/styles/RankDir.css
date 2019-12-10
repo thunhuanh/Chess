@@ -1,6 +1,6 @@
 .fp-rankdir{
     width: 15%;
-    height: 60%;
+    height: 100%;
     /* background: white; */
     position: absolute;
     right: 20%;
@@ -61,26 +61,31 @@
 .fp-rd-user-btn{
     width: 120px;
     height: 50px;
+    display: flex;
     /* border-radius: 6px; */
     border: none;
     outline: none;
     /* box-shadow: 4px 4px 6px rgba(141, 141, 141, 0.8); */
-    position: absolute;
+    position: relative;
     background: transparent;
+    margin: 10% auto;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px rgb(19, 19, 19);
 }
 
 .fp-rd-user-btn-bg{
-    left: -1.5px;
-    top: -1.5px;
+    left: -0px;
+    top: -0px;
     width: 100%;
     height: 100%;
     position: absolute;
-    background: black;
-    opacity: 0.6;
+    background: rgb(224, 102, 102);
+    opacity: 0.8;
+    border-radius: 4px;
 }
 
 .fp-rd-user-btn:hover > .fp-rd-user-btn-bg{
-    opacity: 0.4;
+    /* opacity: 0.4; */
 }
 
 .fp-rd-user-btn-ctn{
@@ -92,21 +97,23 @@
 }
 
 .fp-rd-user-btn:active{
-    box-shadow: -3px -3px 4px rgb(43, 42, 42);
+    /* box-shadow: -3px -3px 4px rgb(43, 42, 42); */
+    background: rgb(224, 102, 102);
 }
 
 
-#fp-rd-log{
+/* #fp-rd-log{
     margin-top: 7%;
     margin-left: 29%;
-}
+} */
 
 /*rank*/
 .fp-rd-ranking-box{
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 60%;
-    margin-top: 12%;
+    bottom: 0;
+    margin-top: 16%;
 }
 
 .fp-rd-ranking-bg{
@@ -129,10 +136,13 @@
     position: absolute;
     color: white;
     list-style-type: decimal;
+    margin: 0;
+    display: grid;
+    padding: 5% 0%;
 }
 
 .fp-rd-ranking-container ul li{
-    margin-top: 7%;
-    margin-left: 15%;
+    position: relative;
+    margin: 0 auto;
     font-size: large;
 }
