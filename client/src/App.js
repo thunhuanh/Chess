@@ -78,7 +78,7 @@ export default class App extends Component {
         <ChessPage></ChessPage>
       </Route>
       <Route path={"/HomePage"}>
-        {localStorage.getItem("loginStatus") !== null?<HomePage></HomePage>:""}
+        {localStorage.getItem("loginStatus") !== undefined?<HomePage></HomePage>:""}
       </Route>
       </Router>   
       </div>
