@@ -74,7 +74,7 @@ export default class FrontPage extends Component {
 
     loginWithToken = (token) => {
         var config = {
-            header: {
+            headers: {
                 "Authorization": token
             }
         }
