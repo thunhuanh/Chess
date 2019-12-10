@@ -79,6 +79,7 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 		log.Fatal(err)
 	}
 	user := model.User{
+		Rank: 	"Bronze",
 		Name:     data.Name,
 		Password: data.Password,
 	}
@@ -223,6 +224,8 @@ func (ac *accountController) UpdateUser(w http.ResponseWriter, r *http.Request) 
 		NickName: data.Name,
 		Avatar: data.Avatar,
 		Status: data.Status,
+		Point: data.Point,
+		Rank: data.Rank,
 	}
 
 	err = ac.accountService.UpdateUser(accountID, &infoUpdate)
@@ -477,9 +480,11 @@ type UserM struct {
 
 // UpdateAccountResponse update account response
 type UpdateAccountPayload struct {
-	Name string `json:"nickName"`
-	Avatar string `json:"avatar"`
-	Status string `json:"status"`
+	Name 	string `json:"nickName"`
+	Avatar 	string `json:"avatar"`
+	Status 	string `json:"status"`
+	Point  	int	   `json:"point"`
+	Rank 	string `json:"rank"`
 }
 
 // General response
