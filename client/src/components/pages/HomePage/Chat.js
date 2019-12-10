@@ -20,7 +20,8 @@ export default class Chat extends Component {
                 <div className="hp-chat-content">
                     <div className="hp-chat-box">
                         <ul>
-                            <li>Tung:123</li>
+                            <li>Tung:123
+                            </li>
                             <li>Tung:123</li>
                             <li>Tung:123</li>
                             <li>Tung:123</li>
