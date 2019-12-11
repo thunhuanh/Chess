@@ -14,63 +14,62 @@
     }
 }
 @media screen and (min-aspect-ratio: 4/3) and (min-width: 800px) {
-    .chatBox {
-        width: 100%;
-        height: 50%;
-        min-width: fit-content;
-        min-height: fit-content;
-        background: #3c3f41;
-        background-clip: content-box;
-        text-align: center;
-    }
+  .chatBox {
+    width: 100%;
+    height: 50%;
+    min-width: fit-content;
+    min-height: fit-content;
+    background: #3c3f41;
+    background-clip: content-box;
+    text-align: center;
+  }
 
-    * {
-        box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
 }
 
 .chatDialog {
-    text-align: left;
-    min-width: 100%;
-    height: 65%;
-    min-height: 87px;
-    overflow: scroll;
-    word-break: break-all;
-    padding-bottom: 3%;
-    background: #bbbbbb;
+  text-align: left;
+  min-width: 100%;
+  height: 65%;
+  min-height: 87px;
+  overflow: scroll;
+  word-break: break-all;
+  padding-bottom: 3%;
+  background: #bbbbbb;
 }
 
 .cboxTitleArea {
-    text-align: center;
-    height: 10%;
-    width: 100%;
-    padding-bottom: 3%;
-    color: #bbbbbb;
+  text-align: center;
+  height: 10%;
+  width: 100%;
+  padding-bottom: 3%;
+  color: #bbbbbb;
 }
 
 .editChat {
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    padding-top: 1%;
-    height: 17.7%;
-    width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 1%;
+  height: 17.7%;
+  width: 100%;
 }
 
 #inputChat {
-    height: 100%;
-    width: 100%;
-    min-height: 20px;
-    background-color: whitesmoke;
+  height: 100%;
+  width: 100%;
+  min-height: 30px;
+  background-color: whitesmoke;
+  border-radius: 4%;
 }
 
-#sendButton {
-    cursor: pointer;
-    border-radius: 50%;
-    width: 3.3%;
-    height: 100%;
-    background-image: url("./img/sendbtn.png");
-    background-size: cover;
-    background-color: cornflowerblue;
-}
 
+
+#chatAvt {
+  height: 10%;
+  width: 10%;
+  align-items: center;
+}

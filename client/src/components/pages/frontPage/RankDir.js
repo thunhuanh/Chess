@@ -15,6 +15,11 @@ export default class RankDir extends Component {
         this.props.loginOnClick();
     }
     render() {
+        // let list = this.top.map((player, index)=>{
+        //     console.log(player.name)
+        //     return <li key={index}>{player.name}</li>
+            
+        // })
         return (
             <div className="fp-rankdir" id={this.props.isLoginForm === true ? "fp-rankdir-after" : ""}>
                 <div className="fp-rd-login-box">

@@ -38,6 +38,7 @@
 }
 .fp-rd-login-box-header h1{
     /* position: absolute; */
+    font-size: 2.5vw;
     color: white;
     margin: auto;
     font-family: 'Source Sans Pro', cursive;
@@ -52,7 +53,7 @@
     position: relative;
     color: white;
     top: 20%;
-    font-size: 20px;
+    font-size: 1.3vw;
     font-family: 'Source Sans Pro', cursive;
     /* margin-top: 30%;
     margin-left: 20%; */
@@ -84,11 +85,8 @@
     border-radius: 4px;
 }
 
-.fp-rd-user-btn:hover > .fp-rd-user-btn-bg{
-    /* opacity: 0.4; */
-}
-
 .fp-rd-user-btn-ctn{
+    font-size: 1.6vw;
     color: white;
     position: relative;
     width: 100%;
@@ -135,8 +133,11 @@
     height: 100%;
     position: absolute;
     color: white;
-    list-style-type: decimal;
+    font-family: 'Source Sans Pro', cursive;
+    /* list-style-type: decimal; */
+    /* list-style-position: initial; */
     margin: 0;
+    font-size: 1.5vw;
     display: grid;
     padding: 5% 0%;
 }

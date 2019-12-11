@@ -11,7 +11,6 @@ export default class Room extends Component {
     }
 
     render() {
-        console.log(this.props.isVsBot)
         return (
             <div className={this.props.isVsBot?"hp-room":"hp-room hp-room-after"}>
                 <div className="hp-bg"></div>

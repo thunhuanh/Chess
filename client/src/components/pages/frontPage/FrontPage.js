@@ -144,7 +144,7 @@ export default class FrontPage extends Component {
                             Chess Online
                         </p>            
                     </div>
-                </div>
+                </div>     
                 <UserForm 
                     isLoginForm={this.state.isLoginForm} 
                     onRegisterSubmit={this.register} 

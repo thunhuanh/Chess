@@ -20,11 +20,21 @@ type Service interface {
 	DeleteUser(id string) error
 	LoginRequest(username string, password string) (*model.User, string, error)
 	LoginWithToken(tokenString string) (*model.User, string, bool, error)
+	GetTop10() ([]*model.User, error)
 }
 
 type service struct {
 	userRepository model.UserRepository
 	authentication middleAccess.Authentication
+}
+
+func (s *service) GetTop10() ([]*model.User, error) {
+	top10users, err := s.userRepository.GetTop10()
+	if err != nil {
+		return nil, err
+	}
+
+	return top10users, nil
 }
 
 func (s *service) CreateNewUser(user *model.User) (*model.User, error) {

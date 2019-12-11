@@ -34,12 +34,17 @@
     color: white;
     margin-top: 1%;
     text-align: center;
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 1.5vw;
 }
 
-.hp-play-modes-picker p {
+.hp-play-modes-picker .hp-play-modes-picker-description {
     margin: 0 0 2% 2%;
+    font-size: 1.17vmax;
     position: relative;
     color: white;
+    cursor: pointer;
+    font-family: 'Source Sans Pro', cursive;
 }
 
 .hp-play-modes-confirm-btn{
@@ -58,12 +63,13 @@
     position: relative;
     color: white;
     z-index: 2;
-    font-size: 20px;
+    font-size: 1.5vw;
     font-family: 'Source Sans Pro', cursive;
     margin: 0 auto;
 }
 
 .hp-play-modes-confirm-btn-bg{
+    margin-top: 2%;
     left: -0px;
     top: -0px;
     width: 100%;

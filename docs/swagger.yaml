@@ -52,11 +52,11 @@ definitions:
     properties:
       avatar:
         type: string
-      name:
+      nickName:
         type: string
-      password:
-        type: string
-      role:
+      point:
+        type: integer
+      rank:
         type: string
       status:
         type: string
@@ -268,11 +268,27 @@ paths:
       summary: Filter users and paging
       tags:
       - account-manager-apis
+  /account/accounts/top10:
+    get:
+      consumes:
+      - application/json
+      description: Get top 10
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      summary: Get top 10
+      tags:
+      - account-manager-apis
   /account/create:
     post:
       consumes:
       - application/json
-      description: Create new account with role default is customer
+      description: Create new account
       parameters:
       - description: User information
         in: body
@@ -447,6 +463,24 @@ paths:
       summary: Delete report by id
       tags:
       - report-manager-apis
+  /report/reports/all:
+    get:
+      consumes:
+      - application/json
+      description: Get all report
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Response'
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get all report
+      tags:
+      - report-manager-apis
   /report/reports/filter/{reporterId}/{reportedAccountId}:
     get:
       consumes:
@@ -456,12 +490,10 @@ paths:
       - description: id of report
         in: path
         name: reporterId
-        required: true
         type: integer
       - description: id of report
         in: path
         name: reportedAccountId
-        required: true
         type: integer
       produces:
       - application/json

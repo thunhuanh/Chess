@@ -136,9 +136,33 @@
                 }
             }
         },
+        "/account/accounts/top10": {
+            "get": {
+                "description": "Get top 10",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account-manager-apis"
+                ],
+                "summary": "Get top 10",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/account/create": {
             "post": {
-                "description": "Create new account with role default is customer",
+                "description": "Create new account",
                 "consumes": [
                     "application/json"
                 ],
@@ -501,6 +525,35 @@
                 }
             }
         },
+        "/report/reports/all": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Get all report",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "report-manager-apis"
+                ],
+                "summary": "Get all report",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/controllers.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/report/reports/filter/{reporterId}/{reportedAccountId}": {
             "get": {
                 "security": [
@@ -524,15 +577,13 @@
                         "type": "integer",
                         "description": "id of report",
                         "name": "reporterId",
-                        "in": "path",
-                        "required": true
+                        "in": "path"
                     },
                     {
                         "type": "integer",
                         "description": "id of report",
                         "name": "reportedAccountId",
-                        "in": "path",
-                        "required": true
+                        "in": "path"
                     }
                 ],
                 "responses": {
@@ -775,13 +826,13 @@
                 "avatar": {
                     "type": "string"
                 },
-                "name": {
+                "nickName": {
                     "type": "string"
                 },
-                "password": {
-                    "type": "string"
+                "point": {
+                    "type": "integer"
                 },
-                "role": {
+                "rank": {
                     "type": "string"
                 },
                 "status": {

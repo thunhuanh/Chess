@@ -3,7 +3,6 @@ package accountRepo
 import (
 	"Chess/api_server/infrastructure"
 	model "Chess/api_server/models"
-
 	"errors"
 	"time"
 
@@ -12,6 +11,22 @@ import (
 
 // UserRepository blah blah
 type UserRepository struct {
+}
+
+func (ur *UserRepository) GetTop10() ([]*model.User, error) {
+	db := infrastructure.GetDB()
+
+	var temp []*model.User
+	err := db.Table("users").
+		Order("point desc").
+		Limit(10).
+		Find(&temp).Error
+
+	if err != nil{
+		return nil, err
+	}
+
+	return temp, nil
 }
 
 const (
@@ -50,13 +65,16 @@ func (ur *UserRepository) GetFilterListUser(name, rank, nickname *string, page i
 		whereQuery += "unaccent(name) ILIKE unaccent('%" + *name + "%')"
 	}
 
-	if rank != nil{
-		whereQuery += " AND rank = '" + *rank + "'"
+	if nickname == nil {
+		whereQuery += " AND nick_name ILIKE '%'"
+	} else {
+		whereQuery += "unaccent(nick_name) ILIKE unaccent('%" + *nickname + "%')"
 	}
 
-	if nickname != nil{
-		whereQuery += " AND rank = '" + *nickname + "'"
+	if rank != nil{
+		whereQuery += " AND rank ILIKE '" + *rank + "'"
 	}
+
 
 	var temp []model.User
 	err = db.Table("users").
