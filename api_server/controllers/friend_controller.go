@@ -41,7 +41,7 @@ func (fc *friendController) GetAllFriendByUserId(w http.ResponseWriter, r *http.
 	if err != nil {
 		res = &Response{
 			Data:    nil,
-			Message: "failed to get record." + err.Error(),
+			Message: "failed to get record. " + err.Error(),
 			Success: false,
 		}
 	} else {
