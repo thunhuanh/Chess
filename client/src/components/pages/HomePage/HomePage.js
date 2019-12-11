@@ -5,6 +5,7 @@ import PlayMode from './PlayMode'
 import HomeChatBox from './HomeChatBox'
 import FriendList from './FriendList'
 import OnlinePlayer from "./OnlinePlayer"
+import UserProfilePane from "./UserProfilePane";
 import './bulma/bulma.css'
 
 
@@ -16,18 +17,28 @@ class HomePage extends React.Component{
 
     state = { showMenu: false, showProfile: false}
 
-    toggleMenu = () => {
+    toggleCommunity = () => {
         this.setState({
             showMenu: !this.state.showMenu
         })
         this.setState( {
+            showProfile: false
+        })
+    }
+
+    toggleProfilePane = () => {
+        this.setState({
             showProfile: !this.state.showProfile
         })
-        console.log(this.state.showProfile);
+        this.setState({
+            showMenu: false
+        })
     }
     render() {
-        let menuVis = this.state.showMenu ? '' : 'off';
-        console.log(menuVis);
+        let communityStatus = this.state.showMenu ? '' : 'off';
+        let profilePaneStatus = this.state.showProfile ? '' : 'off';
+        console.log(communityStatus);
+        console.log(profilePaneStatus);
         return (
             <div className='homePage'>
                 <div className='homePageNav'>
@@ -52,15 +63,23 @@ class HomePage extends React.Component{
 
 
                             </div>*/}
-                    <button onClick={this.toggleMenu} id="homePageAuxComponentsSmallButton" className="button">
+                            <div className="homePageSmallComponentsButtons">
+                    <button onClick={this.toggleCommunity} id="homePageAuxComponentsSmallButton" className="button">
                         <span>Community</span>
                     </button>
-                            <div className={ ["homePageAuxComponentsSmall", menuVis].join(' ') }>
+                    <button onClick={this.toggleProfilePane} id="userProfilePaneSmallButton" className="button">
+                        <span>Player profile</span>
+                    </button>
+                            </div>
+                            <div className={ ["homePageAuxComponentsSmall", communityStatus].join(' ') }>
                             <div className="friendListBorderBox">
                                 <FriendList/>
                             </div>
                             <OnlinePlayer/>
                         </div>
+                    <div className={ ["userProfilePaneSmall", profilePaneStatus].join(' ') }>
+                        <UserProfilePane/>
+                    </div>
                 {/*</div>*/}
                 <div className='homePageMainComponents'>
                         <div className='playModeBorderBox'>
@@ -70,7 +89,7 @@ class HomePage extends React.Component{
                     </div>
 
                     <div className="homePageAuxComponentsFull">
-
+                        <UserProfilePane/>
                         <div className='friendListBorderBox'>
                             <FriendList/>
                         </div>

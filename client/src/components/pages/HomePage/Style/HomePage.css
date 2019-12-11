@@ -59,14 +59,14 @@
     .homePageComponents {
         position: absolute;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         z-index: 0;
     }
     .homePageMainComponents {
         position: relative;
         width: 96.8268%;
         height: 79.39665%;
-        top: 16.601675%;
+        top: 19.601675%;
         left: 1.5866%;
         bottom: 1.5866%;
         right: 1.5866%;
@@ -97,11 +97,40 @@
         display: none;
     }
     #homePageAuxComponentsSmallButton {
+        width: 50%;
+        height: 100%;
+    }
+    .homePageSmallComponentsButtons {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
         width: 96.8268%;
         top: 15.8%;
         left: 1.5866%;
         height: 3%;
     }
+    .userProfilePaneSmall {
+        position: absolute;
+        width: 96.8268%;
+        height: 40.098325%;
+        top: 18.801675%;
+        right: 1.5866%;
+        z-index: 10;
+    }
+    .userProfilePaneSmall.off {
+        display: none;
+    }
+    #userProfilePaneSmallButton {
+        width: 50%;
+        height: 100%;
+    }
+    .friendListBorderBox {
+        width: 100%;
+        height: 50%;
+        padding-bottom: 1.5866%;
+    }
+
+
     /*#homePageAuxComponentsSmallMenu {
         width: 100%;
         height: 100%;
@@ -122,7 +151,7 @@
         position: relative;
         width: 88.39665%;
         height: 76.39665%;
-        top: 17.801675%;
+        top: 21.181675%;
         left: 5.801675%;
         bottom: 2.801675%;
         right: 5.801675%;
@@ -148,9 +177,8 @@
         flex-direction: column;
         width: 35%;
         height: 55%;
-        top: 20.2%;
-        left: 32.5%;
-        right: 5.801675%;
+        top: 20.0%;
+        left: 5.801675%;
         background-color: white;
         z-index: 10;
     }
@@ -158,11 +186,39 @@
         display: none;
     }
     #homePageAuxComponentsSmallButton {
+        width: 50%;
+        height: 100%;
+    }
+    .homePageSmallComponentsButtons {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
         width: 88.39665%;
-        top: 16.35%;
+        top: 16.15%;
         left: 5.801675%;
         height: 4%;
     }
+    .userProfilePaneSmall {
+        position: absolute;
+        width: 35%;
+        height: 27.5%;
+        top: 20.0%;
+        right: 5.801675%;
+        z-index: 10;
+    }
+    .userProfilePaneSmall.off {
+        display: none;
+    }
+    #userProfilePaneSmallButton {
+        width: 50%;
+        height: 100%;
+    }
+    .friendListBorderBox {
+        width: 100%;
+        height: 50%;
+        padding-bottom: 3.1732%;
+    }
+
 
     /*.homePageAuxComponentsSmallMenu {
         position: absolute;
@@ -210,9 +266,20 @@
     .homePageAuxComponentsSmall {
         display: none;
     }
-    #homePageAuxComponentsSmallButton {
+    .homePageSmallComponentsButtons {
         display: none;
     }
+    .userProfilePaneSmall {
+        display: none;
+    }
+    .friendListBorderBox {
+        width: 100%;
+        height: 33.33%;
+        padding-top: 3.1732%;
+        padding-bottom: 3.1732%;
+    }
+
+
 }
 .homePage {
     display: flex;
@@ -242,12 +309,6 @@
     padding-bottom: 1.5866%;
     height: 40%;
     width: 100%;
-}
-
-.friendListBorderBox {
-    width: 100%;
-    height: 50%;
-    padding-bottom: 3.1732%;
 }
 
 
