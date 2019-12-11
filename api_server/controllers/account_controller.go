@@ -185,7 +185,7 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 				Total:total,
 			},
 			Data:    listUserResponse,
-			Message: "Successful",
+			Message: "Successful.",
 			Success: true,
 		}
 	}
