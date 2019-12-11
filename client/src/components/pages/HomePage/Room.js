@@ -16,7 +16,7 @@ export default class Room extends Component {
                 <div className="hp-bg"></div>
                 <div className="hp-room-container">
                     <div className="hp-room-content">
-                        <ul style={{fontSize: '1.5vw'}}>
+                        <ul>
                             <li><span>asbasdfsadf</span>Room1</li>
                             <li>Room1</li>
                             <li>Room1</li>

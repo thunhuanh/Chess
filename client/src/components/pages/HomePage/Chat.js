@@ -54,7 +54,7 @@ export default class Chat extends Component {
     }
 
     loginWithToken = (token) => {
-        console.log(token)
+        // console.log(token)
         var config = {
             headers: {
                 'Authorization': token
@@ -108,11 +108,11 @@ export default class Chat extends Component {
             <div className={this.props.isVsBot?"hp-chat-container":"hp-chat-container hp-chat-container-after"}>
                 <div className="hp-bg"></div>
                 <div className="hp-tag">
-                    <p>Chat</p>
+                    <p style={{fontSize: '1.5vw'}}>Chat</p>
                 </div>
                 <div className="hp-chat-content">
                     <div className="hp-chat-box">
-                        <ul style={{fontSize: '1.5vw'}}>
+                        <ul>
                             {this.renderMsg()}
                         </ul>
                     </div>

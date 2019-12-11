@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './styles/HomePage.css';
-import {Redirect} from 'react-router-dom';
 import PlayModes from './PlayModes';
 import Chat from './Chat';
 import Profile from './Profile';
@@ -13,56 +12,63 @@ export default class HomePage extends Component {
         super(props)
 
         this.state = {
-            isLogout: false,
             isVsBot: true,
-            userData: {}
+            userData: {},
+            userId: 0,
+            friends: []
         }
     }
 
-    componentWillMount() {
-        let token = localStorage.getItem("token")
-        if (token !== null)
-            this.loginWithToken(token)
+    async componentWillMount() {
+        let token = localStorage.getItem("token");
+        if (token !== null){
+            try {
+                const response = await this.loginWithToken(token);
+                await this.getFriends(token, response.id)
+
+                this.setState({ 
+                    userData: response,
+                 });
+    
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
 
-    loginWithToken = (token) => {
-        console.log(token)
+    getFriends = async (token, userId) => {
         var config = {
             headers: {
                 'Authorization': token
             }
         }
-        axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config
-        )
-            .then((response) => {
-                let userData = response.data.data;
+        var url = 'https://chess-apis.herokuapp.com/api/v1/be/friend/friends/all/' + String(userId)
+        axios.get(url, config).then((response) => {
+            if (response.data.success === true){
                 this.setState({
-                    userData: userData
+                    friends: response.data.data
                 })
-
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-    logoutOnClick = (event) =>{
-        event.preventDefault()
-        localStorage.clear()
-        this.setState({
-            isLogout: true
+            }
         })
     }
+
+    loginWithToken = async (token) => {
+        // console.log(token)
+        var config = {
+            headers: {
+                'Authorization': token
+            }
+        }
+        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
+        return response.data.data;
+    }
+
     vsMan = (isVsBot) => {
         this.setState({isVsBot: isVsBot})
     }
     render() {
-        const {userData} = this.state
-        console.log(userData)
-
-        if (this.state.isLogout ===true){
-            return <Redirect to='/'></Redirect>
-        }
+        const {userData, friends} = this.state;
+        var friendData = friends;
         return (
             <div className="hp-container">
                 {/* <div className="hp-bg">
@@ -91,10 +97,10 @@ export default class HomePage extends Component {
                         </div>
                         <div className="hp-col-1 sr">
                             <div className="hp-row-3">
-                                <Profile name={userData.name} rank={userData.Rank} point={userData.Point}></Profile>
+                                <Profile name={userData.name} rank={userData.Rank} point={userData.Point}/>
                             </div>
                             <div className="hp-row-4">
-                                <Friend></Friend>
+                                {<Friend friends={friendData}/>}
                             </div>
                         </div>
                     </div>     

@@ -28,18 +28,18 @@ export default class RankDir extends Component {
                         <h1>Chess</h1>
                     </div>
                     <div className="fp-rd-login-box-content">
-                        <p style={{fontSize: '1.5vw'}}>Ready to rush to the top?</p>
+                        <p>Ready to rush to the top?</p>
                     </div>
                     <button className="fp-rd-user-btn" onClick={this.loginOnClick} id="fp-rd-log">
                         <div className="fp-rd-user-btn-bg">
                         </div>
-                        <div className="fp-rd-user-btn-ctn" style={{fontSize: '1.6vw'}}>Play now</div>
+                        <div className="fp-rd-user-btn-ctn">Play now</div>
                     </button>
                 </div>
                 <div className="fp-rd-ranking-box">
                     <div className="fp-rd-ranking-bg"></div>
                     <div className="fp-rd-ranking-container">
-                        <ul style={{fontSize: '1.5vw'}}>
+                        <ul>
                             {this.props.getTop.map((player, index) => {
                                 return <li key={index}>{player.name}</li>
                             })}

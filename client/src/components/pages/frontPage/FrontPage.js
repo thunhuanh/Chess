@@ -135,7 +135,7 @@ export default class FrontPage extends Component {
                 <span className="sr-only">Loading...</span>
             </div>
                 <div className="fp-bg">
-                    
+
                 </div>
                 <div className="fp-bg-box">
                     <div className="fp-bg-img">
@@ -147,7 +147,7 @@ export default class FrontPage extends Component {
                             Chess Online
                         </p>            
                     </div>
-                </div>
+                </div>     
                 <UserForm 
                     isLoginForm={this.state.isLoginForm} 
                     onRegisterSubmit={this.register} 
