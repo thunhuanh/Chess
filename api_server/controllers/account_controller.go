@@ -165,6 +165,8 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 			ID : 		index.ID,
 			Name : 		index.Name,
 			CreatedAt :	index.CreatedAt,
+			Rank :		index.Rank,
+			Point : 	index.Point,
 		})
 	}
 
