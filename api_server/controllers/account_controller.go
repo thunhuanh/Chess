@@ -88,7 +88,7 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 	if err != nil {
 		res = &Response{
 			Data:    nil,
-			Message: "create account failed." + err.Error(),
+			Message: "create account failed. " + err.Error(),
 			Success: false,
 		}
 	} else {
