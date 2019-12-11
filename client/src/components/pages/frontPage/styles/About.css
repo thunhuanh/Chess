@@ -32,14 +32,16 @@
 }
 
 .tp-about-content h3{
-    text-align: center;
+    font-size: 1.7vmax;
+    /* text-align: center; */
+    justify-content: center;
     color: white;
     
 }
 
 .tp-about-content ul li{
-    color: white;
-    font-size: large;
+    color: gray;
+    font-size: 1.2vmax;
     margin-top: 5%;
     font-family: 'Source Sans Pro', cursive;
 }
@@ -51,6 +53,7 @@
     text-align: center;
     font-size: xx-large;
     color: white;
+    font-size: 2.3vw;
 }
 
 #tp-about-after{

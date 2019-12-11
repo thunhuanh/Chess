@@ -1,0 +1,81 @@
+.hp-pm-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hp-pm-bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.2;
+}
+
+.hp-play-modes{
+    position: relative;
+    height: 76%;
+    width: 100%;
+    display: flex;
+}
+.hp-play-modes-picker{
+    position: relative;
+    width: 35%;
+    height: 74%;
+    margin: 7% auto;
+}
+
+.hp-play-modes-picker-selected{
+    border: 1px solid white;
+}
+
+.hp-play-modes-picker h3{
+    position: relative;
+    color: white;
+    margin-top: 1%;
+    text-align: center;
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 1.5vw;
+}
+
+.hp-play-modes-picker .hp-play-modes-picker-description {
+    margin: 0 0 2% 2%;
+    font-size: 1.17vmax;
+    position: relative;
+    color: white;
+    cursor: pointer;
+    font-family: 'Source Sans Pro', cursive;
+}
+
+.hp-play-modes-confirm-btn{
+    position: relative;
+    height: 16%;
+    width: 20%;
+    border: none;
+    outline: none;
+    background: none;
+    box-shadow: 4px 4px 0px rgb(22, 22, 22);
+    margin: auto;
+    display: flex;
+}
+
+.hp-play-modes-confirm-btn p {
+    position: relative;
+    color: white;
+    z-index: 2;
+    font-size: 1.5vw;
+    font-family: 'Source Sans Pro', cursive;
+    margin: 0 auto;
+}
+
+.hp-play-modes-confirm-btn-bg{
+    margin-top: 2%;
+    left: -0px;
+    top: -0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: black;
+    opacity: 0.6;
+    z-index: 1;
+}

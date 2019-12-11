@@ -15,14 +15,20 @@ export default class FrontPage extends Component {
             isLoginForm: false,
             token: localStorage.getItem("token"),
             loginStatus: localStorage.getItem("loginStatus"),
-            isRedirect: false
+            isRedirect: false,
+            top: []
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
+        
         let token = localStorage.getItem("token")
         if (token !== null)
             this.loginWithToken(token)
+    }
+
+    componentDidMount() {
+        this.getTopPlayer()
     }
 
     loginOnClick = () => {
@@ -32,7 +38,6 @@ export default class FrontPage extends Component {
         })
     }
     loginOnClick2 = () => {
-        console.log(123213)
         // this.props.getConfirm(this.state.loginStatus, "HomePage")
         this.setState({
             isRedirect: true
@@ -44,6 +49,18 @@ export default class FrontPage extends Component {
                 isLoginForm: !this.state.isLoginForm
             })
         }
+    }
+
+    getTopPlayer = () => {
+        axios.get('https://chess-apis.herokuapp.com/api/v1/be/account/accounts/top10')
+            .then((response) => {
+                if (response.data.success === true)
+                    this.setState({
+                        top: response.data.data
+                    })
+            })
+            .catch((error) => {
+            });
     }
 
     login = (userName, password) => {
@@ -74,7 +91,7 @@ export default class FrontPage extends Component {
 
     loginWithToken = (token) => {
         var config = {
-            headers: {
+            header: {
                 "Authorization": token
             }
         }
@@ -96,12 +113,9 @@ export default class FrontPage extends Component {
             password: password
         })
             .then((response) => {
-                console.log(response)
-                console.log(response.data.success)
                 this.setState({
                     loginStatus: response.data.success,
                 })
-                console.log(response.data.success)
                 if (response.data.success === true) {
                     this.login(userName, password)
                 }
@@ -134,14 +148,29 @@ export default class FrontPage extends Component {
                         </p>            
                     </div>
                 </div>     
-                <UserForm isLoginForm={this.state.isLoginForm} onRegisterSubmit={this.register} login={this.login}></UserForm> 
-                <div className="fp-main" onClick={this.mainOnClick}> 
+                <UserForm 
+                    isLoginForm={this.state.isLoginForm} 
+                    onRegisterSubmit={this.register} 
+                    login={this.login}
+                ></UserForm> 
+                <div className="fp-main" 
+                    onClick={this.mainOnClick}
+                > 
                     <div className="fp-main-content">
-                        <Intro isLoginForm={this.state.isLoginForm}></Intro>
-                        <RankDir isLoginForm={this.state.isLoginForm} loginOnClick={this.state.loginStatus===null?this.loginOnClick:this.loginOnClick2} token={this.state.token}></RankDir>
+                        <Intro 
+                            isLoginForm={this.state.isLoginForm}
+                        ></Intro>
+                        <RankDir 
+                            isLoginForm={this.state.isLoginForm} 
+                            loginOnClick={this.state.loginStatus===null?this.loginOnClick:this.loginOnClick2} 
+                            token={this.state.token}
+                            getTop={this.state.top}
+                        ></RankDir>
                     </div>                        
                 </div>    
-                <About isLoginForm={this.state.isLoginForm}></About>
+                <About 
+                    isLoginForm={this.state.isLoginForm}
+                ></About>
             </div>
         )
     }

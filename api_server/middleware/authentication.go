@@ -74,6 +74,8 @@ func (ac *authenication) GetTokenString(user *model.User) (string, error) {
 		"password":   user.Password,
 		"created_at": user.CreatedAt,
 		"updated_at": user.UpdatedAt,
+		"Rank" 		: user.Rank,
+		"Point"		: user.Point,
 	}
 	claim.SetExpiry(time.Now().Local().Add(time.Hour * time.Duration(EXTEND_HOUR)))
 	_, tokenString, _ := ac.tokenAuth.Encode(claim)
