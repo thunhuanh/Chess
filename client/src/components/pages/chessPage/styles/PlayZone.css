@@ -10,6 +10,7 @@
         background-clip: content-box;
         display: flex;
         flex-direction: column;
+        border-radius: 6px;      
     }
 
     #opponentName {
@@ -19,15 +20,6 @@
         color: #bbbbbb;
     }
 
-    #opponentTimer {
-        position: absolute;
-        right: 0;
-        padding-right: 1.25%;
-        padding-top: 0.25%;
-        border: 2px solid black;
-        background: #bbbbbb;
-        background-clip: border-box;
-    }
 
     #playerName {
         position: absolute;
@@ -35,17 +27,6 @@
         bottom: 0;
         padding-left: 2.5%;
         color: #bbbbbb;
-    }
-
-    #playerTimer {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        padding-right: 1.25%;
-        padding-bottom: 0.25%;
-        border: 2px solid black;
-        background: #bbbbbb;
-        background-clip: border-box;
     }
 
     .chessTable {
@@ -58,14 +39,16 @@
     }
 }
 @media screen and (min-aspect-ratio: 4/3) and (min-width: 800px) {
+  
     .playZone {
         position: relative;
-        background: #3c3f41;
+        background: #060c21;
         background-clip: content-box;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
+        border-radius: 6px;
     }
 
     #opponentName {
@@ -107,6 +90,7 @@
     .chessTable {
         position: absolute;
         top: 50%;
+        
     }
 
     * {

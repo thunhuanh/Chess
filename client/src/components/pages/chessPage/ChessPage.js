@@ -3,7 +3,9 @@ import './styles/ChessPage.css'
 import PlayZone from './PlayZone'
 import MoveHistory from './MoveHistory'
 import ChatBox from './ChatBox'
-import './bulma/bulma.css'
+import { faFlag } from "@fortawesome/free-solid-svg-icons"
+import { faChessQueen } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class ChessPage extends React.Component {
     constructor(props) {
@@ -20,16 +22,32 @@ class ChessPage extends React.Component {
                     <PlayZone/>
                 </div>
                 <div className='chessPageRight'>
-                    <MoveHistory/>
-                        <div className='chessPageRightMidComponents'>
-                            <div className='missingChess'>
-                                <p>Missing chess</p>
-                            </div>
-                            <div className='surrender'>
-                                <button type='button' id='surrenderButton' className='button'>Surrender!</button>
-                            </div>
+                    
+                    <div className='chessPageRightComponents-top'>
+                       <div className="shadow-bg"></div>
+                       <MoveHistory/>
+                    </div>
+                    
+                    <div className='chessPageRightComponents-mid'>
+                        <div className="shadow-bg"></div>
+                            <div className="middle">
+                                <div className='missingChess'>  
+                                    <FontAwesomeIcon icon={faChessQueen} style={{marginTop:"5px"}}/>
+                                    <p className="glow">ChessOnline</p>
+                                </div> 
+
+                                <button type='button' id='surrenderButton' className='sur-btn'>
+                                    <FontAwesomeIcon icon={faFlag}/>
+                                    <p>Surrender!</p>
+                                </button>
                         </div>
-                    <ChatBox/>
+                    </div>
+
+                    <div className='chessPageRightComponents-dn'>
+                        <div className="shadow-bg"></div>
+                        <ChatBox/>
+                    </div>
+                   
                 </div>
             </div>
         );

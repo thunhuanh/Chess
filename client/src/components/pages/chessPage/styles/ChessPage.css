@@ -1,32 +1,12 @@
 @media screen and (max-aspect-ratio: 4/3), screen and (max-width: 800px) {
-    .missingChess {
-        width: 100%;
-        height: 100%;
-        max-width: content-box;
-        min-height: fit-content;
+      .missingChess {
+        display:flex;
+        justify-content: center;
         background: #3c3f41;
         color: #bbbbbb;
-        background-clip: content-box;
-    }
-
-    #surrenderButton {
+        vertical-align: middle;
         width: 100%;
         height: 100%;
-        margin: 0px;
-        padding: 0px;
-        min-width: fit-content;
-        min-height: fit-content;
-        background: rgba(168,19,18,0.88);
-        background-clip: border-box;
-        color: whitesmoke;
-    }
-
-    #surrenderButton:hover {
-        background-color: rgba(152,19,18,0.83);
-    }
-
-    #surrenderButton:active {
-        background-color: rgba(136,19,18,0.83);
     }
 
     .chessPage {
@@ -37,6 +17,7 @@
         min-width: fit-content;
         flex-direction: column;
         background-color: #2b2b2b;
+        background: linear-gradient(240deg, #3F5EFB, #FC466B); 
     }
 
     .chessPageLeft {
@@ -46,10 +27,10 @@
         min-width: fit-content;
         min-height: fit-content;
         flex-direction: column;
-        padding-top: 0.7933%;
-        padding-right: 0.7933%;
-        padding-bottom: 0.39665%;
-        padding-left: 0.7933%;
+        padding-top: 0.8%;
+        padding-right: 0.8%;
+        padding-bottom: 0.4%;
+        padding-left: 0.8%;
     }
 
 
@@ -60,56 +41,42 @@
         height: 45%;
         min-width: fit-content;
         min-height: fit-content;
-        padding-right: 0.7933%;
-        padding-bottom: 0.7933%;
-        padding-left: 0.7933%;
+        padding-right: 0.8%;
+        padding-bottom: 0.8%;
+        padding-left: 0.8%;
     }
 
-    .chessPageRightMidComponents {
+    .chessPageRightComponents-dn {
         display: flex;
         width: 100%;
         height: 12.5%;
         min-height: fit-content;
         flex-direction: row;
-        padding-top: 0.39665%;
-        padding-bottom: 0.39665%;
+        padding-top: 0.4%;
+        padding-bottom: 0.4%;
     }
 
+    .chessPageRightComponents-dn .middle{
+        display:flex;
+    }
+    
     * {
         box-sizing: border-box;
+
     }
 }
 @media screen and (min-aspect-ratio: 4/3) and (min-width: 800px) {
-    .missingChess {
+    .missingChess{
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        color: white;
         width: 100%;
         height: 100%;
-        min-width: fit-content;
-        min-height: fit-content;
-        background: #3c3f41;
-        color: #bbbbbb;
-        background-clip: content-box;
+        font-size: 40px;
+        margin-top:5px !important;
     }
-
-    #surrenderButton {
-        width: 100%;
-        height: 100%;
-        min-width: fit-content;
-        min-height: fit-content;
-        margin: 0px;
-        padding: 0px;
-        background: rgba(168,19,18,0.88);
-        background-clip: border-box;
-        color: whitesmoke;
-    }
-
-    #surrenderButton:hover {
-        background-color: rgba(152,19,18,0.83);
-    }
-
-    #surrenderButton:active {
-        background-color: rgba(136,19,18,0.83);
-    }
-
+ 
     .chessPage {
         display: flex;
         width: 100vw;
@@ -117,7 +84,7 @@
         min-height: fit-content;
         min-width: fit-content;
         flex-direction: row;
-        background-color: #2b2b2b;
+        background: linear-gradient(240deg, #3F5EFB, #FC466B); 
     }
 
     .chessPageLeft {
@@ -127,10 +94,10 @@
         flex-direction: column;
         min-width: fit-content;
         min-height: 400px;
-        padding-top: 0.7933%;
-        padding-right: 0.39665%;
-        padding-bottom: 0.7933%;
-        padding-left: 0.7933%;
+        padding-top: 0.8%;
+        padding-right: 0.4%;
+        padding-bottom: 0.8%;
+        padding-left: 0.8%;
 
     }
 
@@ -142,22 +109,97 @@
         flex-wrap: wrap;
         min-width: fit-content;
         min-height: fit-content;
-        padding-top: 0.7933%;
-        padding-right: 0.7933%;
-        padding-bottom: 0.7933%;
+        padding-right: 0.8%;
+        padding-top: 0.8%;
     }
 
-    .chessPageRightMidComponents {
-        display: flex;
+    .chessPageRightComponents-top{
+        height: 35%;
         width: 100%;
-        height: 12.5%;
-        flex-direction: row;
-        min-height: fit-content;
-        padding-top: 0.39665%;
-        padding-bottom: 0.39665%;
+        position: relative;
+    }
+
+
+    .chessPageRightComponents-dn {
+        width: 100%;
+        height: 53%;
+        position: relative;
+        margin-top: 1%;
+    }
+
+    .chessPageRightComponents-mid {
+        width: 100%;
+        height: 9%;
+        margin-top: 1%;  
+        position: relative;
+    }
+
+    .chessPageRightComponents-mid .middle{
+        position: relative;
+        display: flex;
+        height: 100%;
+    }
+
+    
+    .shadow-bg{
+        content: "";
+        position: absolute;
+        background-color: black;
+        opacity: 0.2;
+        width: 100%;
+        height: 100%;
+        /* border-top-left-radius: 10px;
+        border-top-right-radius: 10px; */
+        border-radius: 8px;
     }
 
     * {
         box-sizing: border-box;
     }
 }
+.glow {
+    color: #fff;
+    padding-bottom: 2px;
+  }
+  
+ 
+.sur-btn{
+    display: block;
+    border:none;
+    width: 30%;
+    color: black;
+    background:transparent;
+    transition: background-color 0.5s ease-out;
+    border-radius: 10px;
+    font-size: 2vh;
+    height: inherit;
+     outline: none;
+    
+}
+
+.sur-btn:hover{
+    background-color: rgb(156, 6, 68);
+    color: white;
+}
+
+
+::-webkit-scrollbar {
+    width: 16px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 16px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #060c21; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(3, 95, 109); 
+  }

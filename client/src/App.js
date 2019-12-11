@@ -6,18 +6,18 @@ import ChessPage from './components/pages/chessPage/ChessPage'
 import HomePage from './components/pages/HomePage/HomePage'
 import axios from 'axios';
 
-
+import ChatBox from './components/pages/chessPage/ChatBox'
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
 
-    this.state = {
-         token:"",
-         isRedirect: false,
-         nextPage: "",
-         curPage: "/"
-    }
+  //   this.state = {
+  //        token:"",
+  //        isRedirect: false,
+  //        nextPage: "",
+  //        curPage: "/"
+  //   }
     
   }
   UNSAFE_componentWillUnmount(){
@@ -60,6 +60,31 @@ export default class App extends Component {
         });
 }
 
+<<<<<<< HEAD
+  // render() { 
+  //   return (
+  //     <div>
+  //     <Router>
+  //     {/* {this.redirect()} */}
+  //     <Route path="/" exact>
+  //       <FrontPage name="FrontPage"></FrontPage>
+  //     </Route>
+  //     <Route path={"/ChessPage"}>
+  //       <ChessPage></ChessPage>
+  //     </Route>
+  //     <Route path={"/HomePage"}>
+  //       {localStorage.getItem("loginStatus") !== false?<HomePage></HomePage>:""}
+  //     </Route>
+  //     </Router>   
+  //     </div>
+  //  )
+  // }
+
+  render() {
+    return(
+      <ChessPage/>
+    )
+=======
   render() { 
     return (
       <div>
@@ -77,5 +102,6 @@ export default class App extends Component {
       </Router>   
       </div>
    )
+>>>>>>> master
   }
 }
