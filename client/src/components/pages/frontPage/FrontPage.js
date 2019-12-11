@@ -131,9 +131,6 @@ export default class FrontPage extends Component {
         }
         return (
             <div className="fp-container" >
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
                 <div className="fp-bg">
 
                 </div>

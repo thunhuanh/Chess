@@ -1,7 +1,7 @@
 .fp-container{
     /* max-width: 1404px;
     max-height: 2091px; */
-    min-width: 1492px;
+    /* min-width: 1492px; */
     min-height: 1280px;
     /* 
     min-width: 1730px;
@@ -40,7 +40,7 @@
     opacity: 0.7;
     position: absolute;
 }
-.hp-logo{
+.fp-logo{
     /* margin-left: 5px; */
     width: 50%;
     height: 100%;
@@ -50,7 +50,7 @@
     min-height: 71px;
 }
 
-.hp-logo > p{
+.fp-logo > p{
     margin-left: 5%;
     font-family: 'Lobster', cursive;
     font-size: 50px;

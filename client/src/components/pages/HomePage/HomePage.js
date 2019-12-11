@@ -26,6 +26,13 @@ export default class HomePage extends Component {
     vsMan = (isVsBot) => {
         this.setState({isVsBot: isVsBot})
     }
+    onMouseDown = (event) =>{
+        event.preventDefault()
+        console.log(event.target.style)
+        event.target.attribute. = {
+            background: "red",
+        }
+    }
     render() {
         if (this.state.isLogout ===true){
             return <Redirect to='/'></Redirect>
@@ -35,6 +42,7 @@ export default class HomePage extends Component {
                 {/* <div className="hp-bg">
 
                 </div> */}
+                <button onMouseDown={this.onMouseDown} style={{}}>asdvasdfasd</button>
                 <div className="hp-bg-box">
                     <div className="hp-bg-img">
 

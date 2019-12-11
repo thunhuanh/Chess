@@ -143,6 +143,6 @@
 
 .fp-rd-ranking-container ul li{
     position: relative;
-    margin: 0 auto;
+    margin-left: 40%;
     font-size: large;
 }
