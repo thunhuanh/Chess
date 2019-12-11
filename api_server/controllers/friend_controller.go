@@ -47,7 +47,7 @@ func (fc *friendController) GetAllFriendByUserId(w http.ResponseWriter, r *http.
 	} else {
 		res = &Response{
 			Data:    friends,
-			Message: "get friends succesful.",
+			Message: "get friends successful.",
 			Success: true,
 		}
 	}
