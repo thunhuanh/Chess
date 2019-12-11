@@ -1,6 +1,8 @@
 import React from 'react'
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './styles/ChatBox.css'
-import './bulma/bulma.css'
+
 
 class ChatBox extends React.Component {
     constructor(props) {
@@ -13,38 +15,13 @@ class ChatBox extends React.Component {
     render() {
         return(
             <div className='chatBox'>
-                <div className='cboxTitleArea'>
-                    <p id='cboxTitle'>Chat box</p>
-                </div>
                 <div id='chatDialog' className='chatDialog'>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
-                    <p>Player A: I am going to smash you!</p>
-                    <p>Player B: You sucker!</p>
                 </div>
                 <div className='editChat'>
                     <input id='inputChat' onKeyPress={this.enterToSend}/>
-                        <button  onClick={this.clickToSend} id='sendBtn' className='button' >
-                            <span id='sendBtnSpan' className="icon is-fullheight is-fullwidth">
-                                <img id='sendBtnImg' src={require("./styles/img/sendbtn.png")} alt='missing' ></img>
-                            </span>
-                        </button>
+                    <button  onClick={this.clickToSend} id='sendBtn' className='sending-btn' >
+                    <FontAwesomeIcon icon={faPaperPlane} />
+                    </button>
                 </div>
             </div>
 

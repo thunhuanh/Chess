@@ -17,61 +17,65 @@ class MoveHistory extends React.Component {
                     <table id='moveTable'>
                         <thead>
                             <tr>
-                                <th>Turn Number</th>
-                                <th>Player A</th>
-                                <th>Player B</th>
+                                <th >Turn</th>
+                                <th >Move</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                <th></th>
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                <th></th>
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                <th></th>
+                              
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                <th></th>
+                                
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                 <th></th>
+                             
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                              <th></th>
+                              <th></th>
+                               
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                <th></th>
+                           
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                             <th></th>
+                             <th></th>
+                             
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                <th></th>
                             </tr>
+
                             <tr>
-                                <td>1. </td>
-                                <td>b2-b4</td>
-                                <td>d7-d5</td>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </tbody>
                     </table>

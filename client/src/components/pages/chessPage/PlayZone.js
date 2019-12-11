@@ -44,12 +44,11 @@ class PlayZone extends React.Component {
     }*/
 
     render() {
-        /*const { minutes, seconds } = this.state;*/
         return(
             <div className='playZone'>
                 <div className='opponent'>
                     <p id='opponentName'>Player B</p>
-                    <p id='opponentTimer'>Time remain: 01:00</p>
+                
                 </div>
                 <div className='chessTable'>
                     <ChessTable/>
@@ -57,8 +56,6 @@ class PlayZone extends React.Component {
                 <div className='player'>
                     <div className='playerSubDiv'>
                         <p id='playerName'>Player A</p>
-                        {/*<p id='playerTimer'>Time Remaining: { minutes }:{ seconds }</p>*/}
-                        <p id='playerTimer'>Time remain: 01:00</p>
                     </div>
                 </div>
             </div>

@@ -25,31 +25,31 @@ import FrontPage from './components/pages/frontPage/FrontPage'
 import ChessPage from './components/pages/chessPage/ChessPage'
 import HomePage from './components/pages/HomePage/HomePage'
 
-
+import ChatBox from './components/pages/chessPage/ChatBox'
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
 
-    this.state = {
-         token:"",
-         isRedirect: false,
-         nextPage: "",
-         curPage: "/"
-    }
+  //   this.state = {
+  //        token:"",
+  //        isRedirect: false,
+  //        nextPage: "",
+  //        curPage: "/"
+  //   }
     
-  }
-  UNSAFE_componentWillUnmount(){
-    this.setState({
-      token:localStorage.getItem('token'),
-      isRedirect: false
-    })
-  }
-  getToken = (token) => {
-    this.setState({
-      token: token,
-    })
-  }
+  // }
+  // UNSAFE_componentWillUnmount(){
+  //   this.setState({
+  //     token:localStorage.getItem('token'),
+  //     isRedirect: false
+  //   })
+  // }
+  // getToken = (token) => {
+  //   this.setState({
+  //     token: token,
+  //   })
+  // } uncheck this to run program
 
   // getConfirm = (confirm, name) =>{
   //     this.setState({
@@ -66,22 +66,28 @@ export default class App extends Component {
   //   return <Redirect to="/" ></Redirect>
   // }
 
-  render() { 
-    return (
-      <div>
-      <Router>
-      {/* {this.redirect()} */}
-      <Route path="/" exact>
-        <FrontPage name="FrontPage"></FrontPage>
-      </Route>
-      <Route path={"/ChessPage"}>
-        <ChessPage></ChessPage>
-      </Route>
-      <Route path={"/HomePage"}>
-        {localStorage.getItem("loginStatus") !== false?<HomePage></HomePage>:""}
-      </Route>
-      </Router>   
-      </div>
-   )
+  // render() { 
+  //   return (
+  //     <div>
+  //     <Router>
+  //     {/* {this.redirect()} */}
+  //     <Route path="/" exact>
+  //       <FrontPage name="FrontPage"></FrontPage>
+  //     </Route>
+  //     <Route path={"/ChessPage"}>
+  //       <ChessPage></ChessPage>
+  //     </Route>
+  //     <Route path={"/HomePage"}>
+  //       {localStorage.getItem("loginStatus") !== false?<HomePage></HomePage>:""}
+  //     </Route>
+  //     </Router>   
+  //     </div>
+  //  )
+  // }
+
+  render() {
+    return(
+      <ChessPage/>
+    )
   }
 }

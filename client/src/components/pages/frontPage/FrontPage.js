@@ -60,8 +60,7 @@ export default class FrontPage extends Component {
                     this.setState({           
                         isLoginForm: false,
                         token: response.data.token,
-                        loginStatus: response.data.success,
-                        
+                        loginStatus: response.data.success,  
                     })
                     localStorage.setItem("token", response.data.token)
                     localStorage.setItem("loginStatus", response.data.success)
