@@ -54,6 +54,10 @@ definitions:
         type: string
       nickName:
         type: string
+      point:
+        type: integer
+      rank:
+        type: string
       status:
         type: string
     type: object

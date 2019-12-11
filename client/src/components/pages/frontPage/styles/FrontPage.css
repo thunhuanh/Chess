@@ -1,7 +1,7 @@
 .fp-container{
     /* max-width: 1404px;
     max-height: 2091px; */
-    /* min-width: 1864px; */
+    min-width: 1492px;
     min-height: 1280px;
     /* 
     min-width: 1730px;
@@ -30,7 +30,7 @@
 /*bg and logo*/
 .fp-bg-box{
     width: 100%;
-    height: 75px;
+    height: 6.5%;
     position: relative;
 }
 .fp-bg-img{
@@ -42,18 +42,22 @@
 }
 .fp-logo{
     /* margin-left: 5px; */
-    width: 30%;
+    width: 50%;
     height: 100%;
     justify-content: center;
     position: absolute;
+    min-width: 315px;
+    min-height: 71px;
 }
 
 .fp-logo > p{
-    padding-top: 2%;
+    margin-left: 5%;
     font-family: 'Lobster', cursive;
     font-size: 50px;
     margin-left: 10%;
     color: white;
+    min-width: 315px;
+    min-height: 71px;
 }
 
 .fp-logo i {

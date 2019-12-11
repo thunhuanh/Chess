@@ -78,11 +78,14 @@
 
 .fp-intro-tut-element-desc p{
     font-size: large;
+    font-size: 1.3vw;
     color: white;
     font-family: 'Source Sans Pro', cursive;
 }
 
 .fp-intro-tut-element-desc h3{
+    font-size: 1.6vw;  
+    text-decoration: underline;
     color: white;
     margin-top: 2%;
 }

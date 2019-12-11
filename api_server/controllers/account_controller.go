@@ -79,6 +79,7 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 		log.Fatal(err)
 	}
 	user := model.User{
+		Rank: 	"Bronze",
 		Name:     data.Name,
 		Password: data.Password,
 	}
@@ -87,7 +88,7 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 	if err != nil {
 		res = &Response{
 			Data:    nil,
-			Message: "create account failed." + err.Error(),
+			Message: "create account failed. " + err.Error(),
 			Success: false,
 		}
 	} else {
@@ -164,6 +165,8 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 			ID : 		index.ID,
 			Name : 		index.Name,
 			CreatedAt :	index.CreatedAt,
+			Rank :		index.Rank,
+			Point : 	index.Point,
 		})
 	}
 
@@ -182,7 +185,7 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 				Total:total,
 			},
 			Data:    listUserResponse,
-			Message: "Successful",
+			Message: "Successful.",
 			Success: true,
 		}
 	}
@@ -223,6 +226,8 @@ func (ac *accountController) UpdateUser(w http.ResponseWriter, r *http.Request) 
 		NickName: data.Name,
 		Avatar: data.Avatar,
 		Status: data.Status,
+		Point: data.Point,
+		Rank: data.Rank,
 	}
 
 	err = ac.accountService.UpdateUser(accountID, &infoUpdate)
@@ -477,9 +482,11 @@ type UserM struct {
 
 // UpdateAccountResponse update account response
 type UpdateAccountPayload struct {
-	Name string `json:"nickName"`
-	Avatar string `json:"avatar"`
-	Status string `json:"status"`
+	Name 	string `json:"nickName"`
+	Avatar 	string `json:"avatar"`
+	Status 	string `json:"status"`
+	Point  	int	   `json:"point"`
+	Rank 	string `json:"rank"`
 }
 
 // General response
