@@ -111,6 +111,7 @@
 
 ::-webkit-scrollbar {
     width: 16px;
+    
   }
   
   /* Track */
@@ -123,6 +124,7 @@
   ::-webkit-scrollbar-thumb {
     background: #060c21; 
     border-radius: 10px;
+    
   }
   
   /* Handle on hover */

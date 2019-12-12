@@ -1,25 +1,14 @@
-import React, { Component } from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-
-import FrontPage from './components/pages/FrontPage/FrontPage'
-import ChessPage from './components/pages/chessPage/ChessPage'
-import HomePage from './components/pages/HomePage/HomePage'
+import React, { Component } from 'react';
+import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom';
+import FrontPage from './components/pages/frontPage/FrontPage';
+import HomePage from './components/pages/HomePage/HomePage';
 import axios from 'axios';
-
-import ChatBox from './components/pages/chessPage/ChatBox'
+import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot';
 
 export default class App extends Component {
   // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //        token:"",
-  //        isRedirect: false,
-  //        nextPage: "",
-  //        curPage: "/"
-  //   }
-    
-
+  //   super(props);
+  // }
   UNSAFE_componentWillUnmount(){
     this.setState({
       token:localStorage.getItem('token'),
@@ -58,32 +47,25 @@ export default class App extends Component {
         .catch((error) => {
             console.log(error);
         });
-}
+  }
 
-  // render() { 
-  //   return (
-  //     <div>
-  //     <Router>
-  //     {/* {this.redirect()} */}
-  //     <Route path="/" exact>
-  //       <FrontPage name="FrontPage"></FrontPage>
-  //     </Route>
-  //     <Route path={"/ChessPage"}>
-  //       <ChessPage></ChessPage>
-  //     </Route>
-  //     <Route path={"/HomePage"}>
-  //       {localStorage.getItem("loginStatus") !== undefined?<HomePage></HomePage>:""}
-  //     </Route>
-  //     </Router>   
-  //     </div>
-  //  )
-  // }
-
-  render() {
-    return(
-      <ChessPage></ChessPage>
-    )
-  } 
-    
-  
+  render() { 
+    return (
+      <Router>
+        <Switch>
+          <Route 
+            path="/" exact
+            render={(props) => <FrontPage {...props} name="FrontPage" />}
+          >
+          </Route>
+          <Route 
+            path={"/HomePage"} exact
+            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props}/>:<Redirect to="/"/>}
+          />
+          <Route path="/HomePage/Bot" component={ChessPageVsBot} />
+          <Route path="/HomePage/play" component={ChessPageVsBot} />
+        </Switch>   
+     </Router>
+   )
+  }
 }

@@ -134,7 +134,7 @@
     position: absolute;
     color: white;
     font-family: 'Source Sans Pro', cursive;
-    /* list-style-type: decimal; */
+    list-style-type: none;
     /* list-style-position: initial; */
     margin: 0;
     font-size: 1.5vw;
@@ -144,6 +144,7 @@
 
 .fp-rd-ranking-container ul li{
     position: relative;
-    margin-left: 40%;
+    font-family: 'Source Sans Pro', cursive;
+    margin: 0 auto;
     font-size: large;
 }

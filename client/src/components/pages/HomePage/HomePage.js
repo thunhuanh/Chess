@@ -6,6 +6,9 @@ import Profile from './Profile';
 import Friend from './Friend';
 import Room from './Room';
 import axios from 'axios';
+// import {Switch, Route} from 'react-router-dom';
+// import ChessPage from '../chessPage/ChessPage';
+
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -134,12 +137,24 @@ export default class HomePage extends Component {
         // console.log(token)
         var config = {
             headers: {
-                'Authorization': token
+                'Authorization': token,
             }
         }
         const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
         return response.data.data;
     }
+
+    redirectToVsBot = () => {
+        this.props.history.push("/HomePage/Bot")
+        // this.setState({
+        //     redirectToVsBot: true,
+        // })
+    }
+
+    // ToVsBot = () => {
+    //     if (this.state.redirectToVsBot)
+    //         return <Redirect to="/Home/bot" />
+    // }
 
     vsMan = (isVsBot) => {
         this.setState({isVsBot: isVsBot})
@@ -153,8 +168,6 @@ export default class HomePage extends Component {
         var friendData = friends;
         return (
             <div className="hp-container">
-                {/* <div className="hp-bg">
-                </div> */}
                 <div className="hp-bg-box">
                     <div className="hp-bg-img">
 
@@ -170,7 +183,7 @@ export default class HomePage extends Component {
                     <div className="hp-main-content">
                         <div className="hp-col-3 mr-15">
                             <div className="hp-row-1">
-                                <PlayModes vsMan={this.vsMan}></PlayModes>
+                                <PlayModes vsMan={this.vsMan} redirectToVsBot={this.redirectToVsBot}></PlayModes>
                             </div>
                             <div className="hp-row-2">
                                 <Room isVsBot={this.state.isVsBot}></Room>
@@ -186,7 +199,7 @@ export default class HomePage extends Component {
                             </div>
                         </div>
                     </div>     
-                </div>
+                </div>    
             </div>     
         )
     }
