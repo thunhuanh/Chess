@@ -6,7 +6,7 @@ import RankDir from './RankDir'
 import About from './About'
 import axios from 'axios'
 // import {Redirect} from 'react-router-dom'    
-import history from '../../../history'
+// import history from '../../../history'
 
 export default class FrontPage extends Component {
     constructor(props){
@@ -43,7 +43,7 @@ export default class FrontPage extends Component {
         // this.setState({
         //     isRedirect: true
         // })
-        history.push("/HomePage")
+        this.props.history.push("/HomePage")
         // console.log(history.location)
     }
     mainOnClick = () => {

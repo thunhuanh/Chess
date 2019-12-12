@@ -7,6 +7,13 @@
     text-align: center;
     position: relative;
   }
+  .chatBox p{
+    padding: 0%;
+    margin: 0%;
+    word-wrap: break-word;
+    font-size: 1.5vmax;
+    color: white;
+  }
 
   * {
     font-family: 'Lobster', cursive;

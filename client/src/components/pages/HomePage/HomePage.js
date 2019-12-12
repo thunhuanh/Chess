@@ -6,10 +6,9 @@ import Profile from './Profile';
 import Friend from './Friend';
 import Room from './Room';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
 // import {Switch, Route} from 'react-router-dom';
 // import ChessPage from '../chessPage/ChessPage';
-import history from '../../../history'
+
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -61,7 +60,7 @@ export default class HomePage extends Component {
         // console.log(token)
         var config = {
             headers: {
-                'Authorization': token
+                'Authorization': token,
             }
         }
         const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
@@ -69,7 +68,7 @@ export default class HomePage extends Component {
     }
 
     redirectToVsBot = () => {
-        history.push("/HomePage/bot");
+        this.props.history.push("/HomePage/Bot")
         // this.setState({
         //     redirectToVsBot: true,
         // })
@@ -77,7 +76,7 @@ export default class HomePage extends Component {
 
     // ToVsBot = () => {
     //     if (this.state.redirectToVsBot)
-    //         return <Redirect to="/bot" />
+    //         return <Redirect to="/Home/bot" />
     // }
 
     vsMan = (isVsBot) => {
@@ -89,8 +88,6 @@ export default class HomePage extends Component {
         var friendData = friends;
         return (
             <div className="hp-container">
-                {/* <div className="hp-bg">
-                </div> */}
                 <div className="hp-bg-box">
                     <div className="hp-bg-img">
 
@@ -122,7 +119,7 @@ export default class HomePage extends Component {
                             </div>
                         </div>
                     </div>     
-                </div>   
+                </div>    
             </div>     
         )
     }

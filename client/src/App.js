@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom';
 import FrontPage from './components/pages/frontPage/FrontPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import axios from 'axios';
-import ChessPage from './components/pages/chessPage/ChessPage';
+import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot';
 
 export default class App extends Component {
   // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //        token:"",
-  //        isRedirect: false,
-  //        nextPage: "",
-  //        curPage: "/"
-  //   }
-    
+  //   super(props);
+  // }
   UNSAFE_componentWillUnmount(){
     this.setState({
       token:localStorage.getItem('token'),
@@ -58,20 +51,22 @@ export default class App extends Component {
 
   render() { 
     return (
+      <Router>
         <Switch>
-          <Route path="/" exact>
-            <FrontPage name="FrontPage"></FrontPage>
+          <Route 
+            path="/" exact
+            render={(props) => <FrontPage {...props} name="FrontPage" />}
+          >
           </Route>
-          <Route path={"/HomePage"} exact>
-            {localStorage.getItem("loginStatus") !== undefined?<HomePage/>:<Redirect to="/"/>}
-          </Route>
-          <Route path={"/HomePage/bot"} exact>
-            {localStorage.getItem("loginStatus") !== undefined?<ChessPage/>:<Redirect to="/" />}
-          </Route>
-          <Route path={"/HomePage/play"} exact>
-            {localStorage.getItem("loginStatus") !== undefined?<ChessPage/>:<Redirect to="/" />}
-          </Route>
+          <Route 
+            path={"/HomePage"} exact
+            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props}/>:<Redirect to="/"/>}
+          />
+          <Route path="/HomePage/Bot" component={ChessPageVsBot} />
+          <Route path="/HomePage/play" component={ChessPageVsBot} />
+          <Route path="/HomePage/stockfish.js" component={ChessPageVsBot} />
         </Switch>   
+     </Router>
    )
   }
 }

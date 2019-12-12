@@ -6,9 +6,32 @@ class MoveHistory extends React.Component {
         super(props)
 
         this.state = {
+        }
+        
+        this.element = null;
+    }
 
+    renderHistory = () => {
+        const {moveHistory} = this.props;
+
+        if (moveHistory.length !== 0) {
+            return moveHistory.map((obj, idx) => {
+                return <tr key={idx} ref={element => {this.element = element}}>
+                        <th>{idx + 1}</th>
+                        <th>{obj}</th>
+                    </tr>
+            
+              }
+            );
         }
     }
+
+    componentDidUpdate(){
+        if (this.element !== null) {   
+            this.element.scrollIntoView({behavior: 'smooth' });
+        }
+    }
+
     render() {
         return(
             <div className='moveHistory'>
@@ -22,61 +45,7 @@ class MoveHistory extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                            </tr>
-
-                            <tr>
-                                <th></th>
-                                <th></th>
-                            </tr>
-
-                            <tr>
-                                <th></th>
-                                <th></th>
-                              
-                            </tr>
-
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                
-                            </tr>
-
-                            <tr>
-                                <th></th>
-                                 <th></th>
-                             
-                            </tr>
-
-                            <tr>
-                              <th></th>
-                              <th></th>
-                               
-                            </tr>
-
-                            <tr>
-                                <th></th>
-                                <th></th>
-                           
-                            </tr>
-
-                            <tr>
-                             <th></th>
-                             <th></th>
-                             
-                            </tr>
-
-                            <tr>
-                                <th></th>
-                                <th></th>
-                            </tr>
-
-                            <tr>
-                                <th></th>
-                                <th></th>
-                            </tr>
+                            {this.renderHistory()}
                         </tbody>
                     </table>
                 </div>
