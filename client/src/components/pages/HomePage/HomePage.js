@@ -70,15 +70,15 @@ export default class HomePage extends Component {
 
     redirectToVsBot = () => {
         history.push("/HomePage/bot");
-        this.setState({
-            redirectToVsBot: true,
-        })
+        // this.setState({
+        //     redirectToVsBot: true,
+        // })
     }
 
-    ToVsBot = () => {
-        if (this.state.redirectToVsBot)
-            return <Redirect to="/bot" />
-    }
+    // ToVsBot = () => {
+    //     if (this.state.redirectToVsBot)
+    //         return <Redirect to="/bot" />
+    // }
 
     vsMan = (isVsBot) => {
         this.setState({isVsBot: isVsBot})

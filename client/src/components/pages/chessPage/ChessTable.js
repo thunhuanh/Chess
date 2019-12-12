@@ -5,7 +5,9 @@ import Stockfish from './game-board/vsBot'
 class ChessTable extends React.Component {
     render() {
         return(
-           <Stockfish className="cp-vsbot-table"/>
+           <div className="bkk">
+               <Stockfish/>
+           </div>
         );
     }
 }

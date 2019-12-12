@@ -16,7 +16,6 @@ export default class App extends Component {
   //        curPage: "/"
   //   }
     
-  // }
   UNSAFE_componentWillUnmount(){
     this.setState({
       token:localStorage.getItem('token'),
