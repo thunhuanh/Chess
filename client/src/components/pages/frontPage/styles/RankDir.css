@@ -85,10 +85,6 @@
     border-radius: 4px;
 }
 
-.fp-rd-user-btn:hover > .fp-rd-user-btn-bg{
-    /* opacity: 0.4; */
-}
-
 .fp-rd-user-btn-ctn{
     font-size: 1.6vw;
     color: white;
@@ -138,7 +134,7 @@
     position: absolute;
     color: white;
     font-family: 'Source Sans Pro', cursive;
-    /* list-style-type: decimal; */
+    list-style-type: none;
     /* list-style-position: initial; */
     margin: 0;
     font-size: 1.5vw;
@@ -148,6 +144,7 @@
 
 .fp-rd-ranking-container ul li{
     position: relative;
+    font-family: 'Source Sans Pro', cursive;
     margin: 0 auto;
     font-size: large;
 }
