@@ -19,7 +19,7 @@ export default class App extends Component {
   //        curPage: "/"
   //   }
     
-  }
+
   UNSAFE_componentWillUnmount(){
     this.setState({
       token:localStorage.getItem('token'),
@@ -60,31 +60,6 @@ export default class App extends Component {
         });
 }
 
-<<<<<<< HEAD
-  // render() { 
-  //   return (
-  //     <div>
-  //     <Router>
-  //     {/* {this.redirect()} */}
-  //     <Route path="/" exact>
-  //       <FrontPage name="FrontPage"></FrontPage>
-  //     </Route>
-  //     <Route path={"/ChessPage"}>
-  //       <ChessPage></ChessPage>
-  //     </Route>
-  //     <Route path={"/HomePage"}>
-  //       {localStorage.getItem("loginStatus") !== false?<HomePage></HomePage>:""}
-  //     </Route>
-  //     </Router>   
-  //     </div>
-  //  )
-  // }
-
-  render() {
-    return(
-      <ChessPage/>
-    )
-=======
   render() { 
     return (
       <div>
@@ -102,6 +77,5 @@ export default class App extends Component {
       </Router>   
       </div>
    )
->>>>>>> master
   }
 }
