@@ -28,7 +28,7 @@ func (fr *FriendRepository) GetAllFriendByUserId(userId int) ([]*model.User, err
 	var friends []*model.Friend
 	var users []*model.User
 
-	if err := db.Table("friends").Where("user_id = ?", userId).Scan(&friends).Error; err != nil{
+	if err := db.Debug().Table("friends").Find(&friends, "user_id = ?", userId).Error; err != nil{
 		return nil, err
 	}
 

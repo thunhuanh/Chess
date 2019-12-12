@@ -6,20 +6,20 @@ import ChessPage from './components/pages/chessPage/ChessPage'
 import HomePage from './components/pages/HomePage/HomePage'
 import axios from 'axios';
 
-
+import ChatBox from './components/pages/chessPage/ChatBox'
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
 
-    this.state = {
-         token:"",
-         isRedirect: false,
-         nextPage: "",
-         curPage: "/"
-    }
+  //   this.state = {
+  //        token:"",
+  //        isRedirect: false,
+  //        nextPage: "",
+  //        curPage: "/"
+  //   }
     
-  }
+
   UNSAFE_componentWillUnmount(){
     this.setState({
       token:localStorage.getItem('token'),

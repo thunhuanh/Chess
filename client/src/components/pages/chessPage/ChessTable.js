@@ -11,7 +11,7 @@ class ChessTable extends React.Component {
     }
     render() {
         return(
-            <p id='placeholderText'>Chess table here.</p>
+           <div className="bkk"></div>
         );
     }
 }

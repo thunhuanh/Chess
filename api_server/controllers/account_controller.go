@@ -88,7 +88,7 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 	if err != nil {
 		res = &Response{
 			Data:    nil,
-			Message: "create account failed." + err.Error(),
+			Message: "create account failed. " + err.Error(),
 			Success: false,
 		}
 	} else {
@@ -165,6 +165,8 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 			ID : 		index.ID,
 			Name : 		index.Name,
 			CreatedAt :	index.CreatedAt,
+			Rank :		index.Rank,
+			Point : 	index.Point,
 		})
 	}
 
@@ -183,7 +185,7 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 				Total:total,
 			},
 			Data:    listUserResponse,
-			Message: "Successful",
+			Message: "Successful.",
 			Success: true,
 		}
 	}
