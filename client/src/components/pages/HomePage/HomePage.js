@@ -6,6 +6,10 @@ import Profile from './Profile';
 import Friend from './Friend';
 import Room from './Room';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
+// import {Switch, Route} from 'react-router-dom';
+// import ChessPage from '../chessPage/ChessPage';
+import history from '../../../history'
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -15,6 +19,7 @@ export default class HomePage extends Component {
             isVsBot: true,
             userData: {},
             userId: 0,
+            redirectToVsBot: false,
             friends: []
         }
     }
@@ -63,9 +68,22 @@ export default class HomePage extends Component {
         return response.data.data;
     }
 
+    redirectToVsBot = () => {
+        history.push("/HomePage/bot");
+        this.setState({
+            redirectToVsBot: true,
+        })
+    }
+
+    ToVsBot = () => {
+        if (this.state.redirectToVsBot)
+            return <Redirect to="/bot" />
+    }
+
     vsMan = (isVsBot) => {
         this.setState({isVsBot: isVsBot})
     }
+
     render() {
         const {userData, friends} = this.state;
         var friendData = friends;
@@ -88,7 +106,7 @@ export default class HomePage extends Component {
                     <div className="hp-main-content">
                         <div className="hp-col-3 mr-15">
                             <div className="hp-row-1">
-                                <PlayModes vsMan={this.vsMan}></PlayModes>
+                                <PlayModes vsMan={this.vsMan} redirectToVsBot={this.redirectToVsBot}></PlayModes>
                             </div>
                             <div className="hp-row-2">
                                 <Room isVsBot={this.state.isVsBot}></Room>
@@ -104,7 +122,7 @@ export default class HomePage extends Component {
                             </div>
                         </div>
                     </div>     
-                </div>
+                </div>   
             </div>     
         )
     }

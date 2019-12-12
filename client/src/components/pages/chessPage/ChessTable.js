@@ -1,17 +1,11 @@
 import React from 'react'
 import './styles/ChessTable.css'
+import Stockfish from './game-board/vsBot'
 
 class ChessTable extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-
-        }
-    }
     render() {
         return(
-            <p id='placeholderText'>Chess table here.</p>
+           <Stockfish className="cp-vsbot-table"/>
         );
     }
 }

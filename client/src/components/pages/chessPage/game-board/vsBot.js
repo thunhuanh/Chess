@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Chess from "chess.js";
 import Chessboard from 'chessboardjsx';
-import { roughSquare } from "./roughStyle";
+import { roughSquare } from "./roughStyles";
 
 const STOCKFISH = window.STOCKFISH;
 const game = new Chess();
@@ -66,6 +66,7 @@ class Stockfish extends Component {
             ? STOCKFISH()
             : new Worker(options.stockfishjs || "stockfish.js");
         let engineStatus = {};
+        console.log(engine);
         let time = { wtime: 3000, btime: 3000, winc: 1500, binc: 1500 };
         let playerColor = "black";
         let clockTimeoutID = null;
@@ -267,7 +268,7 @@ class Stockfish extends Component {
         const { fen } = this.state;
         return (
             <Chessboard
-                width={560}
+                width={964}
                 position={fen}
                 orientation="black"
                 onDrop={this.onDrop}

@@ -5,7 +5,8 @@ import Intro from './Intro'
 import RankDir from './RankDir'
 import About from './About'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router-dom'    
+import history from '../../../history'
 
 export default class FrontPage extends Component {
     constructor(props){
@@ -27,8 +28,8 @@ export default class FrontPage extends Component {
             this.loginWithToken(token)
     }
 
-    componentDidMount() {
-        this.getTopPlayer()
+    async componentDidMount() {
+        await this.getTopPlayer()
     }
 
     loginOnClick = () => {
@@ -39,9 +40,11 @@ export default class FrontPage extends Component {
     }
     loginOnClick2 = () => {
         // this.props.getConfirm(this.state.loginStatus, "HomePage")
-        this.setState({
-            isRedirect: true
-        })
+        // this.setState({
+        //     isRedirect: true
+        // })
+        history.push("/HomePage")
+        // console.log(history.location)
     }
     mainOnClick = () => {
         if (this.state.isLoginForm === true){
@@ -125,9 +128,9 @@ export default class FrontPage extends Component {
             });
     }
     render() {
-        if (this.state.isRedirect === true){
-            return <Redirect to="/HomePage"></Redirect>
-        }
+        // if (this.state.isRedirect === true){
+        //     return <Redirect to="/HomePage"></Redirect>
+        // }
         return (
             <div className="fp-container" >
             <div className="spinner-border" role="status">

@@ -1,12 +1,9 @@
-import React, { Component } from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-
-import FrontPage from './components/pages/frontPage/FrontPage'
-import ChessPage from './components/pages/chessPage/ChessPage'
-import HomePage from './components/pages/HomePage/HomePage'
+import React, { Component } from 'react';
+import {Switch, Route, Redirect} from 'react-router-dom';
+import FrontPage from './components/pages/frontPage/FrontPage';
+import HomePage from './components/pages/HomePage/HomePage';
 import axios from 'axios';
-
-import ChatBox from './components/pages/chessPage/ChatBox'
+import ChessPage from './components/pages/chessPage/ChessPage';
 
 export default class App extends Component {
   // constructor(props) {
@@ -19,7 +16,7 @@ export default class App extends Component {
   //        curPage: "/"
   //   }
     
-  }
+  // }
   UNSAFE_componentWillUnmount(){
     this.setState({
       token:localStorage.getItem('token'),
@@ -60,48 +57,22 @@ export default class App extends Component {
         });
 }
 
-<<<<<<< HEAD
-  // render() { 
-  //   return (
-  //     <div>
-  //     <Router>
-  //     {/* {this.redirect()} */}
-  //     <Route path="/" exact>
-  //       <FrontPage name="FrontPage"></FrontPage>
-  //     </Route>
-  //     <Route path={"/ChessPage"}>
-  //       <ChessPage></ChessPage>
-  //     </Route>
-  //     <Route path={"/HomePage"}>
-  //       {localStorage.getItem("loginStatus") !== false?<HomePage></HomePage>:""}
-  //     </Route>
-  //     </Router>   
-  //     </div>
-  //  )
-  // }
-
-  render() {
-    return(
-      <ChessPage/>
-    )
-=======
   render() { 
     return (
-      <div>
-      <Router>
-      {/* {this.redirect()} */}
-      <Route path="/" exact>
-        <FrontPage name="FrontPage"></FrontPage>
-      </Route>
-      <Route path={"/ChessPage"}>
-        <ChessPage></ChessPage>
-      </Route>
-      <Route path={"/HomePage"}>
-        {localStorage.getItem("loginStatus") !== undefined?<HomePage></HomePage>:""}
-      </Route>
-      </Router>   
-      </div>
+        <Switch>
+          <Route path="/" exact>
+            <FrontPage name="FrontPage"></FrontPage>
+          </Route>
+          <Route path={"/HomePage"} exact>
+            {localStorage.getItem("loginStatus") !== undefined?<HomePage/>:<Redirect to="/"/>}
+          </Route>
+          <Route path={"/HomePage/bot"} exact>
+            {localStorage.getItem("loginStatus") !== undefined?<ChessPage/>:<Redirect to="/" />}
+          </Route>
+          <Route path={"/HomePage/play"} exact>
+            {localStorage.getItem("loginStatus") !== undefined?<ChessPage/>:<Redirect to="/" />}
+          </Route>
+        </Switch>   
    )
->>>>>>> master
   }
 }

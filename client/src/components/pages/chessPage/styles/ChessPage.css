@@ -62,7 +62,6 @@
     
     * {
         box-sizing: border-box;
-
     }
 }
 @media screen and (min-aspect-ratio: 4/3) and (min-width: 800px) {
@@ -185,6 +184,7 @@
 
 ::-webkit-scrollbar {
     width: 16px;
+    
   }
   
   /* Track */
@@ -197,6 +197,7 @@
   ::-webkit-scrollbar-thumb {
     background: #060c21; 
     border-radius: 10px;
+    
   }
   
   /* Handle on hover */
