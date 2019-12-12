@@ -77,7 +77,7 @@ export default class Chat extends Component {
             });
     }
 
-    onSubmit =(e)=> {
+    onSubmit = (e) => {
         // console.log(this.textInput.value);
         let {userName, userId} = this.state
         e.preventDefault();
@@ -92,6 +92,10 @@ export default class Chat extends Component {
         this.refs.message.value = "";
     }
 
+    report = (event) => {
+        this.props.report(event.target.id, event.target.getAttribute("data"))
+    }
+
     addFriendOnClick = (event) => {
         if (event.target.getAttribute("data") !== 0)
         this.props.addFriend(event.target.getAttribute("data"))
@@ -102,21 +106,23 @@ export default class Chat extends Component {
         return chat.map((obj, idx) => {
             if (idx !== 0) {
               return <li key={idx} ref={element => {this.element = element}}>
-                        <ContextMenuTrigger id="">
+                        <ContextMenuTrigger id="SIMPLE" holdToDisplay={1000}>
                             <strong>
                                 {obj.name}                                    
                             </strong>
                             <span>: {obj.message}</span>
                         </ContextMenuTrigger>
-                        <ContextMenu className="hp-mini-profile" id="">
-                            <MenuItem className="hp-menu-item">
-                                <button className="hp-menu-btn">Report</button>
+                        <ContextMenu className="hp-mini-profile" id="SIMPLE">
+                            <MenuItem className="hp-menu-item" >
+                                <button className="hp-menu-btn" onClick={this.report} id="Report_Cheating" data={obj.id}>Report Cheating</button>
+                            </MenuItem>
+                            <MenuItem className="hp-menu-item" >
+                                <button className="hp-menu-btn" onClick={this.report} id="Report_Griefing" data={obj.id}>Report Griefing</button>
                             </MenuItem>
                             <MenuItem className="hp-menu-item" >
                                 <button className="hp-menu-btn" onClick={this.addFriendOnClick} data={obj.id}>Add Friend</button>
                             </MenuItem>
-                        </ContextMenu>
-                        
+                        </ContextMenu>                     
                     </li>
             } else return ""
           }

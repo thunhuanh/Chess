@@ -9,10 +9,10 @@
     position: relative;
   }
 
-  * {
+  /* * {
     font-family: 'Lobster', cursive;
     box-sizing: border-box;
-  }
+  } */
 
 .chatDialog {
   text-align: left;

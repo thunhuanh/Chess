@@ -79,3 +79,30 @@
     width: 10%;
     background: white;
 }
+
+.hp-fr-mini-profile{
+    background: white;
+    width: 8%;
+    height: 4%;
+    color: black;
+    position: absolute;
+    font-size: 80%;
+    border-radius: 10px;
+    cursor: pointer;
+    display: grid;
+    font-size: 15px;
+}
+
+.hp-fr-menu-btn{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    position: relative;
+}
+
+.hp-fr-mini-profile .hp-fr-menu-item:hover{
+    background: cyan;
+    border-radius: 10px ;
+}

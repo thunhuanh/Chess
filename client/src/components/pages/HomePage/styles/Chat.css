@@ -26,7 +26,7 @@
 .hp-chat-box{
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 88%;
     /* border: 1px solid white; */
     overflow: auto;
 }
@@ -54,9 +54,10 @@
 }
 
 .hp-chat-chat{
-    position: relative;
+    position: absolute;
     display: flex;
-    margin-top: 2%;
+    bottom: 0;
+    margin-bottom: 0%;
     /* padding: 10%; */
     width: 100%;
     /* border: 1px solid white; */
@@ -97,17 +98,40 @@
 .hp-mini-profile{
     background: white;
     width: 8%;
-    height: 8%;
+    height: 14%;
     color: black;
     position: absolute;
     font-size: 80%;
     border-radius: 10px;
     cursor: pointer;
     display: grid;
+    font-size: 15px;
 }
+
+.hp-mini-profile .hp-menu-item{
+    text-align: center;
+    /* text-align: center;
+    align-items: center; */
+    padding-top: 5%;
+    outline: none;
+}
+
+/* .hp-mini-profile .hp-menu-item p{
+    background: none;
+    margin-top: 5%;
+    z-index: -10;
+} */
 
 .hp-mini-profile .hp-menu-item:first-child{
     border-bottom: .5px solid #333333;
+}
+
+.hp-mini-profile .hp-menu-item:nth-child(2){
+    border-bottom: .5px solid #333333;
+}
+
+.hp-mini-profile .hp-menu-item:nth-child(2):hover{
+    background: cyan;
 }
 
 .hp-mini-profile .hp-menu-item:first-child:hover{
@@ -115,7 +139,7 @@
     border-radius: 10px 10px 0px 0px;
 }
 
-.hp-mini-profile .hp-menu-item:nth-child(2):hover{
+.hp-mini-profile .hp-menu-item:nth-child(3):hover{
     background: cyan;
     border-radius:  0px 0px 10px 10px;
 }
@@ -127,4 +151,5 @@
     border: none;
     outline: none;
     background: transparent;
+    z-index: 11;
 }

@@ -76,9 +76,60 @@ export default class HomePage extends Component {
         let userID = this.state.userData.id
         let frId = Number(id)
         // console.log(typeof(userID), typeof(frId))
+        if (userID !== frId)
         this.addFriend(localStorage.getItem("token"), userID, frId)
         // this.addFriend(localStorage.getItem("token"), 37, 35)
     }
+
+    removeFriend = async (token, userId, frId) => {
+        var config = {
+            headers: {
+                'Authorization': token
+            }
+        }
+        var url = 'https://chess-apis.herokuapp.com/api/v1/be/friend/friends/' + String(userId) + "/"  +String(frId)
+
+        axios.delete(url, config).then((response) => {
+                console.log(response)
+                if (response.data.success){
+                }
+                
+                this.getFriends(token, userId)
+            }).catch((error) =>{
+                console.log(error)
+            })
+    }
+
+    removeFriendOnClick = (frId) => {
+        let userID = this.state.userData.id
+        let _frId = Number(frId)
+        this.removeFriend(localStorage.getItem("token"), userID, _frId)
+    }
+    report = (token ,message, reportedId, reporterID) => {
+        var config = {
+            headers: {
+                'Authorization': token
+            }
+        }
+        axios.post("https://chess-apis.herokuapp.com/api/v1/be/report/reports", {
+            message: message,
+            reportedAccountId: reportedId,
+            reporterId: reporterID
+        }, config).then((response) => {
+            if(response.data.success === true) {
+            }
+        })
+    }
+
+    reportOnClick = (message, reportedID) => {
+        let _repedID = Number(reportedID)
+        let msg = message
+        let repID = this.state.userData.id
+        
+        console.log(typeof(msg), typeof(repID), typeof(_repedID))
+        this.report(localStorage.getItem("token") ,msg , _repedID, repID)
+    }
+
     loginWithToken = async (token) => {
         // console.log(token)
         var config = {
@@ -123,7 +174,7 @@ export default class HomePage extends Component {
                             </div>
                             <div className="hp-row-2">
                                 <Room isVsBot={this.state.isVsBot}></Room>
-                                <Chat isVsBot={this.state.isVsBot} addFriend={this.addFriendOnClick} userID={this.state.userData}></Chat>
+                                <Chat isVsBot={this.state.isVsBot} addFriend={this.addFriendOnClick} userID={this.state.userData} report={this.reportOnClick}></Chat>
                             </div>                            
                         </div>
                         <div className="hp-col-1 sr">
@@ -131,7 +182,7 @@ export default class HomePage extends Component {
                                 <Profile name={userData.name} rank={userData.Rank} point={userData.Point}/>
                             </div>
                             <div className="hp-row-4">
-                                {<Friend friends={friendData}/>}
+                                {<Friend friends={friendData} remove={this.removeFriendOnClick}/>}
                             </div>
                         </div>
                     </div>     
