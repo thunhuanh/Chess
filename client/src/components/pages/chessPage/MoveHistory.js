@@ -23,24 +23,35 @@ class MoveHistory extends React.Component {
     }
 
 
-    renderHistory = () => {
-        const {moveHistory} = this.props;
-        const {data} = this.state;
-        moveHistory.map((data, idx) => {
+    renderHistory = (moveHistory) => {
+        
+        // moveHistory.map((obj, idx) => {
+        //     let tempObj = {
+        //         turn: idx + 1,
+        //         move: obj
+        //     }
+        //     data.push(tempObj)
+        // })
+
+        // this.setState({
+        //     data: data
+        // })
+    }
+
+    componentWillReceiveProps(newProps) {
+        let {data} = this.state;
+        newProps.moveHistory.map((obj, idx) => {
             let tempObj = {
                 turn: idx + 1,
-                move: data
+                move: obj
             }
+            console.log(tempObj)
             data.push(tempObj)
         })
 
         this.setState({
             data: data
         })
-    }
-
-    componentWillReceiveProps() {
-        this.renderHistory()
     }
 
     componentDidUpdate(){
@@ -50,12 +61,13 @@ class MoveHistory extends React.Component {
     }
     
     render() {
+        const {data} = this.state
         return(
             <div className='moveHistory'>
                 <p id='mhTitle'>Move history</p>
                 <div className='moveList'>
                 <ReactTable
-                  data={this.state.data}
+                  data={data}
                   columns={columns}
                   showPagination={false}
                 />
