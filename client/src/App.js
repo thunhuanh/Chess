@@ -47,7 +47,7 @@ export default class App extends Component {
         .catch((error) => {
             console.log(error);
         });
-}
+  }
 
   render() { 
     return (
@@ -64,7 +64,6 @@ export default class App extends Component {
           />
           <Route path="/HomePage/Bot" component={ChessPageVsBot} />
           <Route path="/HomePage/play" component={ChessPageVsBot} />
-          <Route path="/HomePage/stockfish.js" component={ChessPageVsBot} />
         </Switch>   
      </Router>
    )

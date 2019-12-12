@@ -1,29 +1,46 @@
 import React from 'react'
+import ReactTable from 'react-table-v6'
+import 'react-table-v6/react-table.css'
 import './styles/MoveHistory.css'
+
+const columns = [{
+  Header: 'Turn',
+  accessor: 'turn'
+}, {
+  Header: 'Move',
+  accessor: 'move',
+}
+]
 
 class MoveHistory extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
+           data:[]
         }
-        
         this.element = null;
     }
 
+
     renderHistory = () => {
         const {moveHistory} = this.props;
+        const {data} = this.state;
+        moveHistory.map((data, idx) => {
+            let tempObj = {
+                turn: idx + 1,
+                move: data
+            }
+            data.push(tempObj)
+        })
 
-        if (moveHistory.length !== 0) {
-            return moveHistory.map((obj, idx) => {
-                return <tr key={idx} ref={element => {this.element = element}}>
-                        <th>{idx + 1}</th>
-                        <th>{obj}</th>
-                    </tr>
-            
-              }
-            );
-        }
+        this.setState({
+            data: data
+        })
+    }
+
+    componentWillReceiveProps() {
+        this.renderHistory()
     }
 
     componentDidUpdate(){
@@ -31,23 +48,17 @@ class MoveHistory extends React.Component {
             this.element.scrollIntoView({behavior: 'smooth' });
         }
     }
-
+    
     render() {
         return(
             <div className='moveHistory'>
                 <p id='mhTitle'>Move history</p>
                 <div className='moveList'>
-                    <table id='moveTable'>
-                        <thead>
-                            <tr>
-                                <th >Turn</th>
-                                <th >Move</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.renderHistory()}
-                        </tbody>
-                    </table>
+                <ReactTable
+                  data={this.state.data}
+                  columns={columns}
+                  showPagination={false}
+                />
                 </div>
             </div>
         );
