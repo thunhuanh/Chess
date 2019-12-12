@@ -60,22 +60,30 @@ export default class App extends Component {
         });
 }
 
-  render() { 
-    return (
-      <div>
-      <Router>
-      {/* {this.redirect()} */}
-      <Route path="/" exact>
-        <FrontPage name="FrontPage"></FrontPage>
-      </Route>
-      <Route path={"/ChessPage"}>
-        <ChessPage></ChessPage>
-      </Route>
-      <Route path={"/HomePage"}>
-        {localStorage.getItem("loginStatus") !== undefined?<HomePage></HomePage>:""}
-      </Route>
-      </Router>   
-      </div>
-   )
-  }
+  // render() { 
+  //   return (
+  //     <div>
+  //     <Router>
+  //     {/* {this.redirect()} */}
+  //     <Route path="/" exact>
+  //       <FrontPage name="FrontPage"></FrontPage>
+  //     </Route>
+  //     <Route path={"/ChessPage"}>
+  //       <ChessPage></ChessPage>
+  //     </Route>
+  //     <Route path={"/HomePage"}>
+  //       {localStorage.getItem("loginStatus") !== undefined?<HomePage></HomePage>:""}
+  //     </Route>
+  //     </Router>   
+  //     </div>
+  //  )
+  // }
+
+  render() {
+    return(
+      <ChessPage></ChessPage>
+    )
+  } 
+    
+  
 }
