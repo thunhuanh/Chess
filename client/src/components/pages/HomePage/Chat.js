@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import './styles/Chat.css';
 import io from 'socket.io-client';
 import axios from 'axios';
+import {ContextMenu, MenuItem, ContextMenuTrigger} from 'react-contextmenu'
 
 export default class Chat extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            userId: 0,
             isVsBot: true,
             isLogout: false,
             userName: "",
             chat: [{
                 message: "Hello every one",
-                name: ""
+                name: "",
+                id: 0
             }]
         }
 
@@ -65,7 +68,8 @@ export default class Chat extends Component {
             .then((response) => {
                 let userName = response.data.data.name;
                 this.setState({
-                    userName: userName
+                    userName: userName,
+                    userId: response.data.data.id
                 })
             })
             .catch((error) => {
@@ -75,28 +79,44 @@ export default class Chat extends Component {
 
     onSubmit =(e)=> {
         // console.log(this.textInput.value);
-        let {userName} = this.state
+        let {userName, userId} = this.state
         e.preventDefault();
         var message = this.refs.message.value;        
         if (typeof message !== "undefined" && message.trim()) {
-          this.socket.emit('general chat send', {name: userName, message: message});
+          this.socket.emit('general chat send', {name: userName, message: message, id:userId});
           this.setState({
-            chat:[...this.state.chat, Object.assign({}, {message: message, name: userName})]
+            chat:[...this.state.chat, Object.assign({}, {message: message, name: userName, id:userId})]
           });
         }
         
         this.refs.message.value = "";
     }
 
-    
+    addFriendOnClick = (event) => {
+        if (event.target.getAttribute("data") !== 0)
+        this.props.addFriend(event.target.getAttribute("data"))
+    }
     renderMsg = () => {
         const {chat} = this.state;
         
         return chat.map((obj, idx) => {
             if (idx !== 0) {
               return <li key={idx} ref={element => {this.element = element}}>
-                        <strong>{obj.name}</strong>
-                        <span>: {obj.message}</span>
+                        <ContextMenuTrigger id="">
+                            <strong>
+                                {obj.name}                                    
+                            </strong>
+                            <span>: {obj.message}</span>
+                        </ContextMenuTrigger>
+                        <ContextMenu className="hp-mini-profile" id="">
+                            <MenuItem className="hp-menu-item">
+                                <button className="hp-menu-btn">Report</button>
+                            </MenuItem>
+                            <MenuItem className="hp-menu-item" >
+                                <button className="hp-menu-btn" onClick={this.addFriendOnClick} data={obj.id}>Add Friend</button>
+                            </MenuItem>
+                        </ContextMenu>
+                        
                     </li>
             } else return ""
           }

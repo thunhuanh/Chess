@@ -1,21 +1,24 @@
 .hp-room{
+    visibility: hidden;
     position: absolute;
     width: 100%;
+    /* 
+    
     height: 0%;
-    transition: all 0.5s;
-    visibility: hidden;
+    transition: all 0.5s;   */
 }
 
 .hp-room-after{
-    height: 20%;
+    height: 30%;
     visibility: visible;
+    transition: all 0.5s;
 }
 /*Height: 0*/
 
 .hp-room-container{
     position: relative;
     width: 96%;
-    height: 90%;
+    height: 94%;
     margin: auto;
     top: 14%;
 }
@@ -25,12 +28,21 @@
     width: 100%;
     height: 80%;
     border: 1px solid white;
-    overflow-y: hidden;
-    overflow-x: auto ;
 }
 
-.hp-room-content ul{
-    font-size: 1.5vw;
+.hp-room-ul{
+    position: absolute;
+    right: 0;
+    width: 80%;
+    overflow-y: hidden;
+    overflow-x: auto ;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.hp-room-ul ul{
+    font-size: 1.1vw;
     display: flex;
     position: relative;
     width:100%;
@@ -42,10 +54,52 @@
     display: grid;
     color: white;
     text-align: center;
-    margin: 0% 2% 0% 2%;
+    margin: 2% auto;
+    padding-left: 1%;
+    height: 80%;
 }
 
 .hp-room-content ul li:nth-child(1){
-    margin-left: -5%;
+    margin-left: 2%;
+}
+
+.hp-room-content ul li:active{
+    border: 1px solid white;
+}
+
+.hp-create-room{
+    display: grid;
+    height: 100%;
+    width: 20%;
+    position: absolute;
+    text-align: center;
+    border-right: 1px solid white;
+}
+
+.hp-create-room i{
+    position: relative;
+    color: white;
+    justify-self: center;
+    height: 100%;
+    top: 30%;
+}
+
+.hp-create-room input{
+    position: relative;
+    width: 90%;
+    outline: none;
+    border: none;
+    background: transparent;
+    height: 80%;
+    justify-self: center;
+    padding-left: 2%;
+    color: white;
+    max-height: fit-content;
+    border: .1px solid white;
+}
+
+.hp-create-room input::placeholder{
+    color: white;
+    text-align: center;
 }
 

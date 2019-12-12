@@ -75,7 +75,8 @@ io.on("connection", function (socket) {
     socket.on("general chat send", function (msg) {
       let tempObj = {
         name: msg.name,
-        message: msg.message
+        message: msg.message,
+        id: msg.id
       }
 
       generalHistoryMessages.push(tempObj);

@@ -7,7 +7,7 @@
 }
 
 .hp-chat-container-after{
-    height: 74%;
+    height: 64%;
 }
 
 /*
@@ -45,6 +45,11 @@
 }
 
 .hp-chat-box ul li {
+    margin-top: -1%;
+    max-width: fit-content;
+}
+
+.hp-chat-box ul li:first-child{
     margin-top: 2%;
 }
 
@@ -87,4 +92,39 @@
     padding: 1%;
     width: 10%;
     background: white;
+}
+
+.hp-mini-profile{
+    background: white;
+    width: 8%;
+    height: 8%;
+    color: black;
+    position: absolute;
+    font-size: 80%;
+    border-radius: 10px;
+    cursor: pointer;
+    display: grid;
+}
+
+.hp-mini-profile .hp-menu-item:first-child{
+    border-bottom: .5px solid #333333;
+}
+
+.hp-mini-profile .hp-menu-item:first-child:hover{
+    background: cyan;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.hp-mini-profile .hp-menu-item:nth-child(2):hover{
+    background: cyan;
+    border-radius:  0px 0px 10px 10px;
+}
+
+.hp-menu-btn{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    border: none;
+    outline: none;
+    background: transparent;
 }

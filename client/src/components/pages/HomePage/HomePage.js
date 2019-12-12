@@ -14,7 +14,6 @@ export default class HomePage extends Component {
         this.state = {
             isVsBot: true,
             userData: {},
-            userId: 0,
             friends: []
         }
     }
@@ -52,6 +51,34 @@ export default class HomePage extends Component {
         })
     }
 
+    addFriend = (token, userID, friendID) => {
+        var config = {
+            headers: {
+                'Authorization': token
+            }
+        }
+        axios.post('https://chess-apis.herokuapp.com/api/v1/be/friend/friends/new', {
+            friendId: friendID,
+            userId: userID
+            }, config).then((response) => {
+                console.log(response)
+                if (response.data.success){
+                    alert(123123)
+                }
+                
+                this.getFriends(token, userID)
+            }).catch((error) =>{
+                console.log(error)
+            })
+    }
+
+    addFriendOnClick = (id) => {
+        let userID = this.state.userData.id
+        let frId = Number(id)
+        // console.log(typeof(userID), typeof(frId))
+        this.addFriend(localStorage.getItem("token"), userID, frId)
+        // this.addFriend(localStorage.getItem("token"), 37, 35)
+    }
     loginWithToken = async (token) => {
         // console.log(token)
         var config = {
@@ -69,9 +96,6 @@ export default class HomePage extends Component {
     onMouseDown = (event) =>{
         event.preventDefault()
         console.log(event.target.style)
-        event.target.attribute. = {
-            background: "red",
-        }
     }
     render() {
         const {userData, friends} = this.state;
@@ -80,7 +104,6 @@ export default class HomePage extends Component {
             <div className="hp-container">
                 {/* <div className="hp-bg">
                 </div> */}
-                <button onMouseDown={this.onMouseDown} style={{}}>asdvasdfasd</button>
                 <div className="hp-bg-box">
                     <div className="hp-bg-img">
 
@@ -100,7 +123,7 @@ export default class HomePage extends Component {
                             </div>
                             <div className="hp-row-2">
                                 <Room isVsBot={this.state.isVsBot}></Room>
-                                <Chat isVsBot={this.state.isVsBot}></Chat>
+                                <Chat isVsBot={this.state.isVsBot} addFriend={this.addFriendOnClick} userID={this.state.userData}></Chat>
                             </div>                            
                         </div>
                         <div className="hp-col-1 sr">
