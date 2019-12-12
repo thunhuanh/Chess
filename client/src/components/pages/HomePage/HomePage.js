@@ -47,22 +47,6 @@ class HomePage extends React.Component{
                 </div>
                 <div className="homePageComponents">
 
-                    {/*<div className="homePageAuxComponentsSmall">*/}
-                        {/*<div className={ ["dropdown", menuVis].join(' ') }>
-                            <div className="dropdown-trigger">
-                                <button onClick={this.toggleMenu} id="homePageAuxComponentsSmallButton" className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                    <span>Dropdown button</span>
-                                </button>
-                            </div>
-                            <div className="dropdown-menu" >
-
-                                    <div className='friendListBorderBox dropdown-content'>
-                                        <FriendList/>
-                                        <OnlinePlayer/>
-                                    </div>
-
-
-                            </div>*/}
                             <div className="homePageSmallComponentsButtons">
                     <button onClick={this.toggleCommunity} id="homePageAuxComponentsSmallButton" className="button">
                         <span>Community</span>
@@ -75,7 +59,6 @@ class HomePage extends React.Component{
                             <div className="friendListBorderBox">
                                 <FriendList/>
                             </div>
-                            <OnlinePlayer/>
                         </div>
                     <div className={ ["userProfilePaneSmall", profilePaneStatus].join(' ') }>
                         <UserProfilePane/>
@@ -93,7 +76,6 @@ class HomePage extends React.Component{
                         <div className='friendListBorderBox'>
                             <FriendList/>
                         </div>
-                        <OnlinePlayer/>
                     </div>
 
                 </div>

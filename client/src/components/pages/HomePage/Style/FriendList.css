@@ -4,3 +4,105 @@
     border-color: green;
     background-color: green;
 }
+.hp-friend-content{
+    position: relative;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    top: 10%;
+}
+
+.hp-friend-box{
+    position: relative;
+    width: 100%;
+    height: 86%;
+    /* border: 1px solid white; */
+    overflow: auto;
+}
+
+.hp-friend-box::-webkit-scrollbar{
+    display: none;
+}
+
+.hp-friend-box ul {
+    font-size: 1.5vw;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: white;
+    list-style: none;
+}
+
+.hp-friend-box ul li {
+    margin-top: 2%;
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 1.5vw;
+}
+
+.hp-friend-search{
+    position: relative;
+    display: flex;
+    margin-top: 2%;
+    padding: 1%;
+    width: 100%;
+    /* border: 1px solid white; */
+}
+
+.hp-friend-search > i {
+    position: relative;
+    margin: .7%;
+    color: white;
+    height: 100%;
+}
+
+.hp-search-input{
+    margin-left: 2%;
+    width: 100%;
+    height: 100%;
+    margin-bottom: .5%;
+    margin-top: .5%;
+}
+
+.hp-search-input input{
+    outline: none;
+    border: none;
+    border-radius: 24px;
+    padding: 1%;
+    width: 100%;
+    padding-left: 2%;
+}
+.hp-friend-submit{
+    outline: none;
+    border: none;
+    border-radius: 0px 24px 24px 0px;
+    padding: 1%;
+    width: 10%;
+    background: white;
+}
+
+.hp-fr-mini-profile{
+    background: white;
+    width: 8%;
+    height: 4%;
+    color: black;
+    position: absolute;
+    font-size: 80%;
+    border-radius: 10px;
+    cursor: pointer;
+    display: grid;
+    font-size: 15px;
+}
+
+.hp-fr-menu-btn{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    position: relative;
+}
+
+.hp-fr-mini-profile .hp-fr-menu-item:hover{
+    background: cyan;
+    border-radius: 10px ;
+}

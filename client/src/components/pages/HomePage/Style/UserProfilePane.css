@@ -17,8 +17,91 @@
 @media screen and (min-aspect-ratio: 4/3) and (min-width: 800px) {
     .userProfilePane {
         width: 100%;
-        height: 33.33%;
+        height: 40%;
         border-color: orange;
         background-color: orange;
     }
+}
+
+.hp-profile-content{
+    position: relative;
+    width: 100%;
+    height: 80%;
+    margin-top: 10%;
+}
+
+.hp-profile-header{
+    position: relative;
+    color: white;
+    padding: 0;
+    font-family: 'Source Sans Pro', cursive;
+    font-size: 1.5vw;
+}
+
+.hp-profile-header p {
+    width: 40%;
+    margin: 0 auto;
+    border-bottom: 1px solid white;
+    text-align: center;
+    max-width: 30%;
+}
+
+/* .hp-profile-logout-btn{
+    position: absolute;
+    outline: none;
+    border: none;
+    margin: 10% 35% 0% 35%;
+    width: 80px;
+    height: 35px;
+} */
+
+.hp-profile-data{
+    position: relative;
+    width: 100%;
+}
+
+.hp-profile-data li {
+    margin-left: 10%;
+    margin-top: 4%;
+    color: white;
+    font-size: 1.3vw;
+    font-family: 'Source Sans Pro', cursive;
+}
+
+.hp-profile-logout-container{
+    position: relative;
+    padding: 0;
+    margin: 0 auto;
+    width: 40%;
+    height: 20%;
+}
+
+.hp-profile-logout-container button{
+    /* width: 30%;
+    height: 35px; */
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    position: absolute;
+    background: none;
+    color: white;
+    box-shadow: 4px 4px 0px rgb(22, 22, 22);
+}
+.hp-profile-logout-bg{
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.5;
+}
+
+.hp-profile-logout-container button p {
+    position: relative;
+    color: white;
+    z-index: 2;
+    font-size: 1.3vw;
+    font-family: 'Source Sans Pro', cursive;
 }
