@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Chess from "chess.js";
 import Chessboard from 'chessboardjsx';
-import { roughSquare } from "./roughStyle";
+import { roughSquare } from "../roughStyles";
 
 const STOCKFISH = window.STOCKFISH;
 const game = new Chess();
@@ -69,7 +69,7 @@ class Stockfish extends Component {
         let time = { wtime: 3000, btime: 3000, winc: 1500, binc: 1500 };
         let playerColor = "black";
         let clockTimeoutID = null;
-        // let isEngineRunning = false;
+        // let isEngineRunning = false
         let announced_game_over;
 
         setInterval(function() {
@@ -174,6 +174,10 @@ class Stockfish extends Component {
                 if (game.history().length >= 2 && !time.depth && !time.nodes) {
                     startClock();
                 }
+                
+                //move history
+                const {getMoveHistory} = this.props
+                getMoveHistory(game.history())
             }
         };
 
@@ -267,7 +271,7 @@ class Stockfish extends Component {
         const { fen } = this.state;
         return (
             <Chessboard
-                width={560}
+                width={600}
                 position={fen}
                 orientation="black"
                 onDrop={this.onDrop}

@@ -33,7 +33,7 @@ export default class PlayModes extends Component {
         event.preventDefault()
         this.props.vsMan(this.state.isVsBot)
         if (this.state.isVsBot === true) {
-
+            this.props.redirectToVsBot()
         }
         else if (this.state.isVsBot === false) {
             
@@ -62,7 +62,6 @@ export default class PlayModes extends Component {
                             Compete to get higher rank <br/>
                             Make outstanding moves
                         </div>
-                        
                     </div>
                 </div>
                 <button className="hp-play-modes-confirm-btn" onClick={this.playOnClick}>

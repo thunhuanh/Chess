@@ -1,5 +1,4 @@
 
-
   .chatBox {
     width: 100%;
     height: 85%;
@@ -7,6 +6,13 @@
     background-clip: content-box;
     text-align: center;
     position: relative;
+  }
+  .chatBox p{
+    padding: 0%;
+    margin: 0%;
+    word-wrap: break-word;
+    font-size: 1.5vmax;
+    color: white;
   }
 
   /* * {
