@@ -71,7 +71,7 @@ func (fc *friendController) DeleteFriendByFriendId(w http.ResponseWriter, r *htt
 	friendId,_ := strconv.Atoi(chi.URLParam(r, "friendId"))
 
 	err := fc.friendService.DeleteFriendByFriendId(userId, friendId)
-
+	err = fc.friendService.DeleteFriendByFriendId(friendId, userId)
 	var res *Response
 	if err != nil {
 		res = &Response{
@@ -110,7 +110,14 @@ func (fc *friendController) CreateNewFriend(w http.ResponseWriter, r *http.Reque
 		UserId:     data.UserId,
 		FriendId: data.FriendId,
 	}
-	newFriend, err := fc.friendService.CreateNewFriend(&friend)
+	_, err = fc.friendService.CreateNewFriend(&friend)
+
+	friend2 := model.Friend{
+		UserId: data.FriendId,
+		FriendId: data.UserId,
+	}
+
+	_, err = fc.friendService.CreateNewFriend(&friend2)
 	var res *Response
 	if err != nil {
 		res = &Response{
@@ -120,7 +127,7 @@ func (fc *friendController) CreateNewFriend(w http.ResponseWriter, r *http.Reque
 		}
 	} else {
 		res = &Response{
-			Data:    newFriend,
+			Data:    nil,
 			Message: "Create friend successful.",
 			Success: true,
 		}
