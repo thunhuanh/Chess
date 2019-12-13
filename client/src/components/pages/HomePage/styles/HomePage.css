@@ -13,9 +13,9 @@
     height: 100%;
     position: absolute;
     background: #FC466B; 
-    background: -webkit-linear-gradient(240deg, #3F5EFB, #FC466B);  
+    background: -webkit-linear-gradient(240deg, rgb(0, 0, 0), #FC466B);  
     background: linear-gradient(240deg, #3F5EFB, #FC466B); 
-    /* overflow: hidden; */
+    overflow: hidden;
     /* background-image: url(hthps://backgroundcheckall.com/wp-content/uploads/2017/12/powerpoint-background-abstract-8-300x200.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;

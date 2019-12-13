@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom';
-import FrontPage from './components/pages/frontPage/FrontPage';
+import FrontPage from './components/pages/FrontPage/FrontPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import axios from 'axios';
 import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot';
