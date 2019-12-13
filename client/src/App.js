@@ -6,8 +6,6 @@ import ChessPage from './components/pages/chessPage/ChessPage'
 import HomePage from './components/pages/HomePage/HomePage'
 import axios from 'axios';
 
-import ChatBox from './components/pages/chessPage/ChatBox'
-
 export default class App extends Component {
   // constructor(props) {
   //   super(props)
@@ -60,30 +58,30 @@ export default class App extends Component {
         });
 }
 
-  // render() { 
-  //   return (
-  //     <div>
-  //     <Router>
-  //     {/* {this.redirect()} */}
-  //     <Route path="/" exact>
-  //       <FrontPage name="FrontPage"></FrontPage>
-  //     </Route>
-  //     <Route path={"/ChessPage"}>
-  //       <ChessPage></ChessPage>
-  //     </Route>
-  //     <Route path={"/HomePage"}>
-  //       {localStorage.getItem("loginStatus") !== undefined?<HomePage></HomePage>:""}
-  //     </Route>
-  //     </Router>   
-  //     </div>
-  //  )
-  // }
+  render() { 
+    return (
+      <div>
+      <Router>
+      {/* {this.redirect()} */}
+      <Route path="/" exact>
+        <FrontPage name="FrontPage"></FrontPage>
+      </Route>
+      <Route path={"/ChessPage"}>
+        <ChessPage></ChessPage>
+      </Route>
+      <Route path={"/HomePage"}>
+        {localStorage.getItem("loginStatus") !== undefined?<HomePage></HomePage>:""}
+      </Route>
+      </Router>   
+      </div>
+   )
+  }
 
-  render() {
-    return(
-      <ChessPage></ChessPage>
-    )
-  } 
+  // render() {
+  //   return(
+  //     <ChessPage></ChessPage>
+  //   )
+  // } 
     
   
 }

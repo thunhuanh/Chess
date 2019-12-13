@@ -126,7 +126,7 @@ export default class HomePage extends Component {
         let msg = message
         let repID = this.state.userData.id
         
-        console.log(typeof(msg), typeof(repID), typeof(_repedID))
+        console.log(msg, repID, _repedID)
         this.report(localStorage.getItem("token") ,msg , _repedID, repID)
     }
 

@@ -9,6 +9,7 @@
     "axios": "^0.19.0",
     "pretty-ms": "^5.1.0",
     "react": "^16.10.2",
+    "react-contextmenu": "^2.13.0",
     "react-dom": "^16.10.2",
     "react-fontawesome": "^1.7.1",
     "react-router-dom": "^5.1.2",
