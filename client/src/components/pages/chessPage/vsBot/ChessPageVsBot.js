@@ -6,14 +6,43 @@ import '../styles/ChatBox.css'
 import { faFlag } from "@fortawesome/free-solid-svg-icons"
 import { faChessQueen } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios'
 
 class ChessPageVsBot extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            moveHistory: []
+            moveHistory: [],
+            userData: {}
         }
+    }
+
+    async componentWillMount() {
+        let token = localStorage.getItem("token");
+        if (token !== null){
+            try {
+                const response = await this.loginWithToken(token);
+
+                this.setState({ 
+                    userData: response,
+                 });
+    
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
+    loginWithToken = async (token) => {
+        // console.log(token)
+        var config = {
+            headers: {
+                'Authorization': token,
+            }
+        }
+        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
+        return response.data.data;
     }
 
     getMoveHistory = (history) => {
@@ -28,46 +57,47 @@ class ChessPageVsBot extends React.Component {
         // console.log(moveHistory)
         return(
             <div className='chessPage'>
-                <div className='chessPageLeft'>
-                    <PlayZoneVsBot getMoveHistory={this.getMoveHistory}/>
-                </div>
-                <div className='chessPageRight'>
-                    
-                    <div className='chessPageRightComponents-top'>
-                       <div className="shadow-bg"></div>
-                       <MoveHistory moveHistory={moveHistory}/>
+                <div className='chessContent'>
+                    <div className='chessPageLeft'>
+                        <PlayZoneVsBot getMoveHistory={this.getMoveHistory} userData={this.state.userData}/>
                     </div>
-                    
-                    <div className='chessPageRightComponents-mid'>
+                    <div className='chessPageRight'>
+                        
+                        <div className='chessPageRightComponents-top'>
                         <div className="shadow-bg"></div>
-                            <div className="middle">
-                                <div className='missingChess'>  
-                                    <FontAwesomeIcon icon={faChessQueen} style={{marginTop:"5px"}}/>
-                                    <p className="glow">ChessOnline</p>
-                                </div> 
+                        <MoveHistory moveHistory={moveHistory}/>
+                        </div>
+                        
+                        <div className='chessPageRightComponents-mid'>
+                            <div className="shadow-bg"></div>
+                                <div className="middle">
+                                    <div className='missingChess'>  
+                                        <FontAwesomeIcon icon={faChessQueen} style={{marginTop:"5px"}}/>
+                                        <p className="glow">ChessOnline</p>
+                                    </div> 
 
-                                <button type='button' id='surrenderButton' className='sur-btn'>
-                                    <FontAwesomeIcon icon={faFlag}/>
-                                    <p>Surrender!</p>
-                                </button>
+                                    <button type='button' id='surrenderButton' className='sur-btn'>
+                                        <FontAwesomeIcon icon={faFlag}/>
+                                        <p className="cp-sur-text">Surrender!</p>
+                                    </button>
+                            </div>
+                        </div>
+
+                        <div className='chessPageRightComponents-dn'>
+                            <div className="shadow-bg"></div>
+                            <div className='cp-chatBox'>
+                                <p>Stockfish is a free</p>
+                                <p>and open-source UCI chess engine</p>
+                                <p>available for various desktop </p>
+                                <p>and mobile platforms.</p>
+                                <p>It is developed by Marco Costalba, </p>
+                                <p>Joona Kiiski, Gary Linscott, Stéphane Nicolet,</p>
+                                <p>and Tord Romstad, with many </p>
+                                <p>contributions from a community of</p>
+                                <p>open-source developers</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div className='chessPageRightComponents-dn'>
-                        <div className="shadow-bg"></div>
-                        <div className='chatBox'>
-                            <p>Stockfish is a free</p>
-                            <p>and open-source UCI chess engine</p>
-                            <p>available for various desktop </p>
-                            <p>and mobile platforms.</p>
-                            <p>It is developed by Marco Costalba, </p>
-                            <p>Joona Kiiski, Gary Linscott, Stéphane Nicolet,</p>
-                            <p>and Tord Romstad, with many </p>
-                            <p>contributions from a community of</p>
-                            <p>open-source developers</p>
-                        </div>
-                    </div>
-                   
                 </div>
             </div>
         );

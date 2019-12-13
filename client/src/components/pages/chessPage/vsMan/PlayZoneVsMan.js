@@ -1,8 +1,8 @@
 import React from 'react'
 import '../styles/PlayZone.css'
-import ChessTableVsBot from './ChessTableVsBot'
+import ChessTableVsMan from './ChessTableVsMan'
 
-class PlayZoneVsBot extends React.Component {
+class PlayZoneVsMan extends React.Component {
     constructor(props) {
         super(props)
 
@@ -15,19 +15,24 @@ class PlayZoneVsBot extends React.Component {
         return(
             <div className='playZone'>
                 <div className='opponent'>
-                    <p id='opponentName'>Stockfish Bot</p>
+                    <p id='opponentName'>opponent</p>
                 
                 </div>
                 <div className='chessTable'>
-                    <ChessTableVsBot getMoveHistory={this.props.getMoveHistory}/>
+                    <ChessTableVsMan 
+                        getMoveHistory={this.props.getMoveHistory} 
+                        userData={this.props.userData} 
+                        roomId={this.props.roomId}
+                        history={this.props.history}
+                    />
                 </div>
                 <div className='player'>
                     <div className='playerSubDiv'>
-                        <p id='playerName'>{this.props.userData.name}</p>
+                        <p id='playerName'>{this.props.userName}</p>
                     </div>
                 </div>
             </div>
         );
     }
 }
-export default PlayZoneVsBot;
+export default PlayZoneVsMan;

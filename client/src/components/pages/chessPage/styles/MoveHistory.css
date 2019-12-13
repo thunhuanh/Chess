@@ -7,18 +7,15 @@
         background-clip: content-box;
         text-align: center;
         position: relative;
+        overflow: hidden;
     }
 
-    /* * {
-        box-sizing: border-box;
-    } */
-
-
 .moveList{
+    position: relative;
     margin-left: 5px;
     text-align: center;
     width: 98%;
-    height: 86%;
+    height: 80%;
     min-height: 87px;
     overflow: auto;
     border-radius:10px;

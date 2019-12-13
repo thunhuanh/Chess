@@ -39,6 +39,7 @@ export default class Chat extends Component {
 
         this.socket.on('general chat send', data => {
             this.newIncomingMessage(data)
+            console.log(data)
         });
     }
 
@@ -97,8 +98,10 @@ export default class Chat extends Component {
     }
 
     addFriendOnClick = (event) => {
-        if (event.target.getAttribute("data") !== 0)
-        this.props.addFriend(event.target.getAttribute("data"))
+        console.log(event.target.getAttribute("data"))
+        if (event.target.getAttribute("data") !== 0){
+            this.props.addFriend(event.target.getAttribute("data"))
+        }      
     }
     renderMsg = () => {
         const {chat} = this.state;
@@ -108,19 +111,19 @@ export default class Chat extends Component {
               return <li key={idx} ref={element => {this.element = element}}>
                         <ContextMenuTrigger id="SIMPLE" holdToDisplay={1000}>
                             <strong>
-                                {obj.name}                                    
+                                {obj.name}                                 
                             </strong>
                             <span>: {obj.message}</span>
                         </ContextMenuTrigger>
                         <ContextMenu className="hp-mini-profile" id="SIMPLE">
                             <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onClick={this.report} id="Report_Cheating" data={obj.id}>Report Cheating</button>
+                                <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Cheating" data={obj.id}>Report Cheating</button>
                             </MenuItem>
                             <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onClick={this.report} id="Report_Griefing" data={obj.id}>Report Griefing</button>
+                                <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Griefing" data={obj.id}>Report Griefing</button>
                             </MenuItem>
                             <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onClick={this.addFriendOnClick} data={obj.id}>Add Friend</button>
+                                <button className="hp-menu-btn" onMouseDown={this.addFriendOnClick} data={obj.id}>Add Friend</button>
                             </MenuItem>
                         </ContextMenu>                     
                     </li>

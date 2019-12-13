@@ -1,19 +1,48 @@
 import React from 'react'
-import './styles/ChessPage.css'
-import PlayZoneVsBot from '../vsBot/PlayZoneVsBot'
+import '../styles/ChessPage.css'
+import PlayZoneVsMan from '../vsMan/PlayZoneVsMan'
 import MoveHistory from '../MoveHistory'
 import ChatBox from './ChatBox'
 import { faFlag } from "@fortawesome/free-solid-svg-icons"
 import { faChessQueen } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios';
 
-class ChessPageVsBot extends React.Component {
+class ChessPageVsMan extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            moveHistory: []
+            moveHistory: [],
+            userData: {}
         }
+    }
+
+    async componentWillMount() {
+        let token = localStorage.getItem("token");
+        if (token !== null){
+            try {
+                const response = await this.loginWithToken(token);
+
+                this.setState({ 
+                    userData: response,
+                 });
+    
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
+    loginWithToken = async (token) => {
+        // console.log(token)
+        var config = {
+            headers: {
+                'Authorization': token,
+            }
+        }
+        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
+        return response.data.data;
     }
 
     getMoveHistory = (history) => {
@@ -25,17 +54,23 @@ class ChessPageVsBot extends React.Component {
 
     render() {
         const {moveHistory} = this.state
-        // console.log(moveHistory)
+        console.log(this.props.roomId)
         return(
             <div className='chessPage'>
                 <div className='chessPageLeft'>
-                    <PlayZoneVsBot getMoveHistory={this.getMoveHistory}/>
+                    <PlayZoneVsMan 
+                        history={this.props.history} 
+                        getMoveHistory={this.getMoveHistory} 
+                        userData={this.state.userData} 
+                        roomId={this.props.roomId} 
+                        userName={this.state.userData.name}
+                    />
                 </div>
                 <div className='chessPageRight'>
                     
                     <div className='chessPageRightComponents-top'>
-                       <div className="shadow-bg"></div>
-                       <MoveHistory moveHistory={moveHistory}/>
+                    <div className="shadow-bg"></div>
+                    <MoveHistory moveHistory={moveHistory}/>
                     </div>
                     
                     <div className='chessPageRightComponents-mid'>
@@ -55,12 +90,17 @@ class ChessPageVsBot extends React.Component {
 
                     <div className='chessPageRightComponents-dn'>
                         <div className="shadow-bg"></div>
-                        <ChatBox/>
+                        <ChatBox 
+                            history={this.props.history} 
+                            name={this.state.userData.name} 
+                            roomId={this.props.roomId}
+
+                        />
                     </div>
-                   
+                
                 </div>
             </div>
         );
     }
 }
-export default ChessPageVsBot;
+export default ChessPageVsMan;

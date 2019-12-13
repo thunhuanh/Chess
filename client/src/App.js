@@ -3,12 +3,18 @@ import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom
 import FrontPage from './components/pages/frontPage/FrontPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import axios from 'axios';
-import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot';
+import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot'
+import ChessPageVsMan from './components/pages/chessPage/vsMan/ChessPageVsMan'
+import adminPage from './components/pages/adminPage/AdminPage'
+import AdminPage from './components/pages/adminPage/AdminPage';
 
 export default class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      roomId: 0,
+    }
+  }
   UNSAFE_componentWillUnmount(){
     this.setState({
       token:localStorage.getItem('token'),
@@ -49,6 +55,12 @@ export default class App extends Component {
         });
   }
 
+  passRoomIdToVsMan = (id) => {
+    this.setState({
+      roomId: id
+    })
+  }
+
   render() { 
     return (
       <Router>
@@ -60,12 +72,22 @@ export default class App extends Component {
           </Route>
           <Route 
             path={"/HomePage"} exact
-            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props}/>:<Redirect to="/"/>}
+            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props} passRoomIdToVsMan={this.passRoomIdToVsMan}/>:<Redirect to="/"/>}
           />
-          <Route path="/HomePage/Bot" component={ChessPageVsBot} />
-          <Route path="/HomePage/play" component={ChessPageVsBot} />
+          <Route exact path="/HomePage/Bot" component={ChessPageVsBot} />
+          <Route 
+            path="/HomePage/play" 
+            render={(props) => <ChessPageVsMan {...props} roomId={this.state.roomId}/>}
+          />
         </Switch>   
-     </Router>
+      </Router>
    )
   }
+
+  // render(){
+  //   return(
+  //     <AdminPage></AdminPage>
+  //   )
+  
+  // }
 }

@@ -71,6 +71,12 @@ io.on("connection", function (socket) {
       socket.broadcast.emit("board-position", msg);
     })
 
+    //handle friend add
+    socket.on("friend add", function (msg) {
+      console.log(msg)
+      socket.broadcast.emit("friend add", msg)
+    })
+
     //handle message
     socket.on("general chat send", function (msg) {
       let tempObj = {

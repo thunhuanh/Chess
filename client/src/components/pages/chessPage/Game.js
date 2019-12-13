@@ -3,6 +3,7 @@ import Chess from 'chess.js';
 import Chessboard from 'chessboardjsx';
 import io from 'socket.io-client';
 import {roughSquare} from "./roughStyles";
+import axios from 'axios';
 
 export default class GameLogic extends Component {
   constructor(props){
@@ -29,6 +30,23 @@ export default class GameLogic extends Component {
   componentDidMount(){
     this.init();
   };
+
+  updateScore = async (score, rank) => {
+    var config = {
+      headers: {
+          'Authorization': localStorage.getItem("token")
+      }
+    }
+
+    let url = `https://chess-apis.herokuapp.com/api/v1/be/account/${this.props.userData.id}`
+    await axios.put(url,{
+      avatar: "string",
+      nickName: "string",
+      point: score,
+      rank: rank,
+      status: "string"
+    }, config)
+  }
 
   init = () => {
     this.setState({
@@ -70,12 +88,47 @@ export default class GameLogic extends Component {
 
   checkForWinner = (prevTurn) => {
     if (this.game.game_over() === true){
+      var {userData} = this.props;
+      var point = userData.Point;
+      var rank = userData.Rank;
       // console.log(this.state.color, prevTurn)
       // if (this.game.in_checkmate()){
         if (this.state.color !== prevTurn){
+          point -= 25;
+          if (point > 4000) {
+            rank = "Diamond";
+          } else if (point > 3000){
+            rank = "plantium";
+          } else if (point > 2000){
+            rank = "Gold";
+          } else if (point > 1000){
+            rank = "Silver";
+          } else {
+            rank = "Bronze";
+          }
+
+          if (point < 0) point = 0;
+
+          this.updateScore(point, rank);
           alert("you lost");
+          this.props.history.goBack()
         } else if (this.state.color === prevTurn){
+
+          point += 25;
+          if (point > 4000) {
+            rank = "Diamond";
+          } else if (point > 3000){
+            rank = "plantium";
+          } else if (point > 2000){
+            rank = "Gold";
+          } else if (point > 1000){
+            rank = "Silver";
+          } else {
+            rank = "Bronze";
+          }
+          this.updateScore(point, rank);
           alert("you win");
+          this.props.history.goBack();
         }
       // }
     }
@@ -91,6 +144,8 @@ export default class GameLogic extends Component {
       fen: this.game.fen(),
       history: this.game.history()
     });
+    const {getMoveHistory} = this.props
+    getMoveHistory(this.game.history())
   }
 
   //allow to drag 
@@ -231,7 +286,7 @@ export default class GameLogic extends Component {
     const {fen, color} = this.state;
     return (
         <Chessboard
-          width={560}
+          width={600}
           orientation={color}
           position={fen}
           onDrop={this.onDrop}

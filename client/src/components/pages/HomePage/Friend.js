@@ -47,12 +47,6 @@ export default class Friend extends Component {
                             {this.renderFriend()}
                         </ul>
                     </div>
-                    <form action="" className="hp-friend-search">
-                        {/* <i className="fas fa-user-circle fa-2x"></i> */}
-                        <div className="hp-search-input">
-                            <input type="text" placeholder="Search here" />
-                        </div>
-                    </form>
                 </div>
             </div>
         )

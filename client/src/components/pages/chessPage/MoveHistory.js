@@ -35,8 +35,6 @@ class MoveHistory extends React.Component {
 
         if (move[0] !== undefined){
             const newData = update(data, {$push: [{turn: counter, move: move[0]}]})
-
-            console.log(newData)
             this.setState({
                 data: newData, 
                 counter: counter + 1

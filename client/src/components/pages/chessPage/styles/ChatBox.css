@@ -1,31 +1,31 @@
 
-  .chatBox {
-    width: 100%;
-    height: 85%;
-    background: transparent;
-    background-clip: content-box;
-    text-align: center;
-    position: relative;
-  }
-  .chatBox p{
-    padding: 0%;
-    margin: 0%;
-    word-wrap: break-word;
-    font-size: 1.5vmax;
-    color: white;
-  }
+.cp-chatBox {
+  width: 100%;
+  height: 85%;
+  background: transparent;
+  background-clip: content-box;
+  text-align: center;
+  position: absolute;
+}
+.cp-chatBox p{
+  padding: 0%;
+  margin: 0%;
+  word-wrap: break-word;
+  font-size: 1.5vmax;
+  color: white;
+}
 
-  /* * {
-    font-family: 'Lobster', cursive;
-    box-sizing: border-box;
-  } */
+/* * {
+  font-family: 'Lobster', cursive;
+  box-sizing: border-box;
+} */
 
-.chatDialog {
+.cp-chatBox .cp-chatDialog {
+  position: relative;
   text-align: left;
   min-width: 100%;
   height: 100%;
   min-height: 100px;
-  word-break: break-all;
   padding-top:1%;
   background:transparent;
   overflow: auto;
@@ -34,7 +34,7 @@
 }
 
 
-.editChat {
+.cp-editChat {
   text-align: left;
   display: flex;
   flex-direction: row;
@@ -44,7 +44,7 @@
   width: 100%;
 }
 
-#inputChat {
+.cp-inputChat  {
   height: 100%;
   width: 96%;
   min-height: 20px;
@@ -59,11 +59,69 @@
 }
 
 
-.sending-btn{
-   position: absolute;
-   right: 24px;
-    border: none;
-    background-color: whitesmoke;
-    outline: none;
+.cp-sending-btn{
+  position: absolute;
+  right: 10px;
+  padding-top: 10px;
+  border: none;
+  background-color: whitesmoke;
+  outline: none;
 }
 
+/*css for chat message*/
+
+.other-user-msg {
+  width: 100%;
+  margin-top: 2px;
+  margin-left: 3px;
+  float: left;
+  position: relative;
+}
+
+.other-user-msg .msg-holder {
+  border-radius: 20px;
+  padding-right: 120px;
+}
+
+
+.other-user-msg .msg-block {
+  padding-top: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  color: black;
+  align-content: center;
+  margin-bottom: 5px;
+  background-color: rgba(235, 225, 225, 0.589);
+  border-radius: 15px;
+  float: left;
+  word-break: break-word;
+}
+
+.user-msg .msg-holder {
+  border-radius: 20px;
+  padding-left: 120px;
+}
+
+.user-msg .msg-block {
+  padding-top: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  color: white;
+  align-content: center;
+  /* justify-content: center; */
+  margin-bottom: 5px;
+  background-color: #0099FF;
+  border-radius: 15px;
+  float: right;
+  word-break: break-word;
+}
+
+.user-msg {
+  width: 100%;
+  margin-top: 6px;
+  margin-right: 6px;
+  float: right;
+  /* position: relative; */
+}

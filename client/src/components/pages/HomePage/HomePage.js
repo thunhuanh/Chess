@@ -4,7 +4,7 @@ import PlayModes from './PlayModes';
 import Chat from './Chat';
 import Profile from './Profile';
 import Friend from './Friend';
-import Room from './Room';
+import RoomComponent from './RoomComponent';
 import axios from 'axios';
 // import {Switch, Route} from 'react-router-dom';
 // import ChessPage from '../chessPage/ChessPage';
@@ -17,16 +17,18 @@ export default class HomePage extends Component {
         this.state = {
             isVsBot: true,
             userData: {},
-            friends: []
+            friends: [],
+            redirectToVsBot: false,
         }
     }
+
 
     async componentWillMount() {
         let token = localStorage.getItem("token");
         if (token !== null){
             try {
                 const response = await this.loginWithToken(token);
-                await this.getFriends(token, response.id)
+                this.getFriends(token, response.id)
 
                 this.setState({ 
                     userData: response,
@@ -38,7 +40,7 @@ export default class HomePage extends Component {
         }
     }
 
-    getFriends = async (token, userId) => {
+    getFriends = (token, userId) => {
         var config = {
             headers: {
                 'Authorization': token
@@ -48,13 +50,13 @@ export default class HomePage extends Component {
         axios.get(url, config).then((response) => {
             if (response.data.success === true){
                 this.setState({
-                    friends: response.data.data
+                    friends: response.data.data 
                 })
             }
         })
     }
 
-    addFriend = (token, userID, friendID) => {
+    addFriend = async (token, userID, friendID) => {
         var config = {
             headers: {
                 'Authorization': token
@@ -64,24 +66,24 @@ export default class HomePage extends Component {
             friendId: friendID,
             userId: userID
             }, config).then((response) => {
-                console.log(response)
                 if (response.data.success){
-                    alert(123123)
+                    // alert("12331");
+                    this.getFriends(token, userID)
                 }
-                
-                this.getFriends(token, userID)
             }).catch((error) =>{
                 console.log(error)
             })
+            
     }
 
-    addFriendOnClick = (id) => {
+    addFriendOnClick =  (id) => {
         let userID = this.state.userData.id
         let frId = Number(id)
         // console.log(typeof(userID), typeof(frId))
-        if (userID !== frId)
-        this.addFriend(localStorage.getItem("token"), userID, frId)
-        // this.addFriend(localStorage.getItem("token"), 37, 35)
+        if (userID !== frId){
+            this.addFriend(localStorage.getItem("token"), userID, frId)
+        }
+        
     }
 
     removeFriend = async (token, userId, frId) => {
@@ -92,21 +94,29 @@ export default class HomePage extends Component {
         }
         var url = 'https://chess-apis.herokuapp.com/api/v1/be/friend/friends/' + String(userId) + "/"  +String(frId)
 
-        axios.delete(url, config).then((response) => {
-                console.log(response)
-                if (response.data.success){
-                }
-                
-                this.getFriends(token, userId)
-            }).catch((error) =>{
-                console.log(error)
-            })
+        const response = await axios.delete(url, config)
+        if (response.data.success === true){
+            var newurl = 'https://chess-apis.herokuapp.com/api/v1/be/friend/friends/all/' + String(userId)
+            const response = await axios.get(newurl, config)
+            if (response.data.success === false) {
+                this.setState({
+                    friends: []
+                })
+            } else {
+                this.setState({
+                    friends: response.data.data
+                })
+            }
+            // this.getFriends(token, userId)
+        }
+        
     }
 
     removeFriendOnClick = (frId) => {
         let userID = this.state.userData.id
         let _frId = Number(frId)
         this.removeFriend(localStorage.getItem("token"), userID, _frId)
+        // this.getFriends(localStorage.getItem("token"), this.state.userData.id)
     }
     report = (token ,message, reportedId, reporterID) => {
         var config = {
@@ -146,15 +156,8 @@ export default class HomePage extends Component {
 
     redirectToVsBot = () => {
         this.props.history.push("/HomePage/Bot")
-        // this.setState({
-        //     redirectToVsBot: true,
-        // })
+    
     }
-
-    // ToVsBot = () => {
-    //     if (this.state.redirectToVsBot)
-    //         return <Redirect to="/Home/bot" />
-    // }
 
     vsMan = (isVsBot) => {
         this.setState({isVsBot: isVsBot})
@@ -186,7 +189,7 @@ export default class HomePage extends Component {
                                 <PlayModes vsMan={this.vsMan} redirectToVsBot={this.redirectToVsBot}></PlayModes>
                             </div>
                             <div className="hp-row-2">
-                                <Room isVsBot={this.state.isVsBot}></Room>
+                                <RoomComponent isVsBot={this.state.isVsBot} history={this.props.history} passRoomIdToVsMan={this.props.passRoomIdToVsMan}></RoomComponent>
                                 <Chat isVsBot={this.state.isVsBot} addFriend={this.addFriendOnClick} userID={this.state.userData} report={this.reportOnClick}></Chat>
                             </div>                            
                         </div>

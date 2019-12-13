@@ -1,54 +1,30 @@
-    .playZone {
-        position: relative;
-        background: #060c21;
-        background-clip: content-box;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        border-radius: 6px;
-    }
+.playZone {
+    position: relative;
+    background: #060c21;
+    background-clip: content-box;
+    width: 70vw;
+    height: 96.8vh;
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+}
 
-    #opponentName {
-        position: absolute;
-        left: 0;
-        padding-left: 2.5%;
-        color: #bbbbbb;
-    }
+#opponentName {
+    position: absolute;
+    left: 0;
+    padding-left: 2.5%;
+    color: #bbbbbb;
+}
 
-    #opponentTimer {
-        position: absolute;
-        right: 0;
-        padding-right: 1.25%;
-        padding-top: 0.25%;
-        border: 2px solid black;
-        background: #bbbbbb;
-        background-clip: border-box;
-    }
+#playerName {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-left: 2.5%;
+    color: #bbbbbb;
+}
 
-    #playerName {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        padding-left: 2.5%;
-        color: #bbbbbb;
-    }
 
-    #playerTimer {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        padding-right: 1.25%;
-        padding-bottom: 0.25%;
-        border: 2px solid black;
-        background: #bbbbbb;
-        background-clip: border-box;
-    }
-
-    .chessTable {
-        margin: auto auto;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
+.chessTable {
+    margin: auto auto;
+}

@@ -5,7 +5,7 @@ import Intro from './Intro'
 import RankDir from './RankDir'
 import About from './About'
 import axios from 'axios'
-// import {Redirect} from 'react-router-dom'    
+import {Redirect} from 'react-router-dom'
 // import history from '../../../history'
 
 export default class FrontPage extends Component {
@@ -28,8 +28,8 @@ export default class FrontPage extends Component {
             this.loginWithToken(token)
     }
 
-    async componentDidMount() {
-        await this.getTopPlayer()
+    componentDidMount() {
+        this.getTopPlayer()
     }
 
     loginOnClick = () => {
@@ -44,7 +44,6 @@ export default class FrontPage extends Component {
         //     isRedirect: true
         // })
         this.props.history.push("/HomePage")
-        // console.log(history.location)
     }
     mainOnClick = () => {
         if (this.state.isLoginForm === true){
@@ -115,24 +114,29 @@ export default class FrontPage extends Component {
             password: password
         })
             .then((response) => {
-                this.setState({
-                    loginStatus: response.data.success,
-                })
                 if (response.data.success === true) {
+                    this.setState({           
+                        isLoginForm: false,
+                        token: response.data.token,
+                        loginStatus: response.data.success,  
+                    })
+                    localStorage.setItem("token", response.data.token)
+                    localStorage.setItem("loginStatus", response.data.success)
                     this.login(userName, password)
                 }
-                localStorage.setItem("token", response.data.token)
-                localStorage.setItem("loginStatus", response.data.success)
             })
             .catch((error) => {
             });
     }
     render() {
-        // if (this.state.isRedirect === true){
-        //     return <Redirect to="/HomePage"></Redirect>
-        // }
+        if (this.state.isRedirect === true){
+            return <Redirect to="/HomePage"></Redirect>
+        }
         return (
             <div className="fp-container" >
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
                 <div className="fp-bg">
 
                 </div>
