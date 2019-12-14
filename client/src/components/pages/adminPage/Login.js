@@ -58,7 +58,7 @@ class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if(values.username != "admin"){
+      if(values.username !== "admin"){
         message.error('You Are Not Allow!')
         return ""
       }

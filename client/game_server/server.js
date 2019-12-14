@@ -77,7 +77,7 @@ io.on("connection", function (socket) {
       socket.broadcast.emit("friend add", msg)
     })
 
-    //handle message
+    //handle general chat message
     socket.on("general chat send", function (msg) {
       let tempObj = {
         name: msg.name,
@@ -88,6 +88,11 @@ io.on("connection", function (socket) {
       generalHistoryMessages.push(tempObj);
 
       socket.broadcast.emit("general chat send", tempObj);
+    });
+
+    //handle private chat message
+    socket.on("send", function (msg) {
+      socket.broadcast.emit("receive", msg);
     });
 
     socket.on("disconnect", function() {

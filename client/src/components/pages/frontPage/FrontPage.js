@@ -88,6 +88,8 @@ export default class FrontPage extends Component {
             })
             .catch((error) => {
             });
+
+        this.props.passDataToHP(userName, password)
     }
 
     loginWithToken = (token) => {

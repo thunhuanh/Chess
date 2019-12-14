@@ -22,18 +22,24 @@ export default class HomePage extends Component {
         }
     }
 
+    componentDidMount(){
+        let loginStatus = localStorage.getItem("loginStatus")
+        if (loginStatus === undefined){
+            this.props.history.push("/")
+        }
+    }
+
 
     async componentWillMount() {
         let token = localStorage.getItem("token");
         if (token !== null){
             try {
-                const response = await this.loginWithToken(token);
-                this.getFriends(token, response.id)
-
+                const response = await this.login(this.props.userName, this.props.userPass);
+                // console.log(response)
+                this.getFriends(token, response.user.id)
                 this.setState({ 
-                    userData: response,
+                    userData: response.user,
                  });
-    
             } catch (error) {
                 console.log(error);
             }
@@ -143,15 +149,13 @@ export default class HomePage extends Component {
         this.report(localStorage.getItem("token") ,msg , _repedID, repID)
     }
 
-    loginWithToken = async (token) => {
-        // console.log(token)
-        var config = {
-            headers: {
-                'Authorization': token,
-            }
-        }
-        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
-        return response.data.data;
+    login = async (userName, password) => {
+        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
+            name: userName, // Dữ liệu được gửi lên endpoint '/user'
+            password: password
+        })
+        // console.log(response)
+        return response.data.data
     }
 
     redirectToVsBot = () => {

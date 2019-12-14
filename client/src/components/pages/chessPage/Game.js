@@ -21,7 +21,7 @@ export default class GameLogic extends Component {
       color: "black",
       // allowDrag: true,
       roomId: 0,
-      // winner: null,
+      winner: false,
       players: 1
     };
     this.socket = io("http://localhost:4000");
@@ -56,7 +56,10 @@ export default class GameLogic extends Component {
     //handle room exit
     this.socket.on("room exit", (msg) => {
       if (msg.roomId === this.state.roomId){
-        alert("opponent has leave the room you win");
+        if (this.state.winner !== false){
+          alert("opponent has leave the room you win");
+          this.props.history.goBack();
+        }
       }
     })
 
@@ -111,6 +114,9 @@ export default class GameLogic extends Component {
 
           this.updateScore(point, rank);
           alert("you lost");
+          this.setState({
+            winner: false,
+          })
           this.props.history.goBack()
         } else if (this.state.color === prevTurn){
 
@@ -128,6 +134,9 @@ export default class GameLogic extends Component {
           }
           this.updateScore(point, rank);
           alert("you win");
+          this.setState({
+            winner: true,
+          })
           this.props.history.goBack();
         }
       // }

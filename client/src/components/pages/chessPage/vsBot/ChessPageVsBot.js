@@ -18,6 +18,13 @@ class ChessPageVsBot extends React.Component {
         }
     }
 
+    componentDidMount(){
+        let loginStatus = localStorage.getItem("loginStatus")
+        if (loginStatus === undefined){
+            this.props.history.push("/")
+        }
+    }
+
     async componentWillMount() {
         let token = localStorage.getItem("token");
         if (token !== null){

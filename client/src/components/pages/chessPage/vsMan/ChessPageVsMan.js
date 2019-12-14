@@ -18,6 +18,13 @@ class ChessPageVsMan extends React.Component {
         }
     }
 
+    componentDidMount(){
+        let loginStatus = localStorage.getItem("loginStatus")
+        if (loginStatus === undefined){
+            this.props.history.push("/")
+        }
+    }
+
     async componentWillMount() {
         let token = localStorage.getItem("token");
         if (token !== null){
@@ -54,7 +61,7 @@ class ChessPageVsMan extends React.Component {
 
     render() {
         const {moveHistory} = this.state
-        console.log(this.props.roomId)
+        // console.log(this.props.roomId)
         return(
             <div className='chessPage'>
                 <div className='chessPageLeft'>

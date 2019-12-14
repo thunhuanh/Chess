@@ -75,6 +75,7 @@
   margin-top: 2px;
   margin-left: 3px;
   float: left;
+  margin-right: 50px;
   position: relative;
 }
 
@@ -123,5 +124,6 @@
   margin-top: 6px;
   margin-right: 6px;
   float: right;
+  margin-left: 50px;
   /* position: relative; */
 }

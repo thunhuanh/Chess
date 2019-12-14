@@ -88,6 +88,8 @@ export default class RoomComponent extends Component {
                 return <li onClick={() => {
                     this.joinRoom(room)
                 }}><span><i className="fas fa-home"></i></span>{room.name}</li>
+            } else {
+                return ""
             }
         })
 
@@ -103,7 +105,7 @@ export default class RoomComponent extends Component {
     }
 
     render() {
-        if (localStorage.getItem("loginStatus") === undefined || localStorage.getItem("loginStatus") === nul){
+        if (localStorage.getItem("loginStatus") === undefined || localStorage.getItem("loginStatus") === null){
             this.props.history.goBack()
         }
 
