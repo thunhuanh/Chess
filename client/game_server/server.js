@@ -77,6 +77,11 @@ io.on("connection", function (socket) {
       socket.broadcast.emit("friend add", msg)
     })
 
+    //handle surrender
+    socket.on("surrender", function(msg) {
+      socket.broadcast.emit("surrender", msg)
+    })
+
     //handle general chat message
     socket.on("general chat send", function (msg) {
       let tempObj = {

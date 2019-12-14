@@ -53,11 +53,56 @@ export default class GameLogic extends Component {
       roomId: this.props.roomId
     })
 
+    //handler surrender
+    this.socket.on("surrender", (msg) => {
+      if (msg.roomId === this.state.roomId){
+        alert("opponent has surrender you win!");
+
+        let {userData} = this.props;
+        let point = userData.Point;
+        let rank = userData.Rank;
+        point += 25;
+
+        if (point > 4000) {
+          rank = "Diamond";
+        } else if (point > 3000){
+          rank = "plantium";
+        } else if (point > 2000){
+          rank = "Gold";
+        } else if (point > 1000){
+          rank = "Silver";
+        } else {
+          rank = "Bronze";
+        }
+
+        this.updateScore(point, rank);
+        this.props.history.goBack();
+      }
+    })
+
     //handle room exit
     this.socket.on("room exit", (msg) => {
       if (msg.roomId === this.state.roomId){
         if (this.state.winner !== false){
-          alert("opponent has leave the room you win");
+          alert("opponent has leave the room you win!");
+          let {userData} = this.props;
+          let point = userData.Point;
+          let rank = userData.Rank;
+          point += 25;
+
+          if (point > 4000) {
+            rank = "Diamond";
+          } else if (point > 3000){
+            rank = "plantium";
+          } else if (point > 2000){
+            rank = "Gold";
+          } else if (point > 1000){
+            rank = "Silver";
+          } else {
+            rank = "Bronze";
+          }
+
+          this.updateScore(point, rank);
           this.props.history.goBack();
         }
       }

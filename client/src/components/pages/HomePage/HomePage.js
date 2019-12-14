@@ -24,7 +24,8 @@ export default class HomePage extends Component {
 
     componentDidMount(){
         let loginStatus = localStorage.getItem("loginStatus")
-        if (loginStatus === undefined){
+        // console.log(loginStatus)
+        if ((loginStatus === true && this.props.userName === "") || (loginStatus === undefined)){
             this.props.history.push("/")
         }
     }
@@ -34,16 +35,35 @@ export default class HomePage extends Component {
         let token = localStorage.getItem("token");
         if (token !== null){
             try {
-                const response = await this.login(this.props.userName, this.props.userPass);
-                // console.log(response)
-                this.getFriends(token, response.user.id)
-                this.setState({ 
-                    userData: response.user,
-                 });
+                let response = {}
+                // console.log(this.props.userName);
+                if (this.props.userName === ""){
+                    response = await this.loginWithToken(token);
+                    this.getFriends(token, response.id)
+                    this.setState({ 
+                        userData: response,
+                     });
+                } else {
+                    response = await this.login(this.props.userName, this.props.userPass);
+                    this.getFriends(token, response.user.id)
+                    this.setState({ 
+                        userData: response.user,
+                     });
+                }
             } catch (error) {
                 console.log(error);
             }
         }
+    }
+
+    loginWithToken = async (token) => {
+        var config = {
+            headers: {
+                "Authorization": token
+            }
+        }
+        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token', {}, config)
+        return response.data.data
     }
 
     getFriends = (token, userId) => {
@@ -140,12 +160,12 @@ export default class HomePage extends Component {
         })
     }
 
-    reportOnClick = (message, reportedID) => {
-        let _repedID = Number(reportedID)
-        let msg = message
+    reportOnClick = (message, reportid, reportMsg) => {
+        console.log(reportid, reportMsg)
+        let _repedID = Number(reportid)
+        let msg = message + ", user_message : " + reportMsg
         let repID = this.state.userData.id
         
-        console.log(typeof(msg), typeof(repID), typeof(_repedID))
         this.report(localStorage.getItem("token") ,msg , _repedID, repID)
     }
 

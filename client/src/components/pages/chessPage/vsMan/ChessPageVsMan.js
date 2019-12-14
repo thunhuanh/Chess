@@ -7,6 +7,9 @@ import { faFlag } from "@fortawesome/free-solid-svg-icons"
 import { faChessQueen } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios';
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:4000');
 
 class ChessPageVsMan extends React.Component {
     constructor(props) {
@@ -52,6 +55,47 @@ class ChessPageVsMan extends React.Component {
         return response.data.data;
     }
 
+    surOnClick = () => {
+        let point = this.state.userData.Point
+        let rank = this.state.userData.Rank
+
+        point -= 25;
+        if (point > 4000) {
+        rank = "Diamond";
+        } else if (point > 3000){
+        rank = "plantium";
+        } else if (point > 2000){
+        rank = "Gold";
+        } else if (point > 1000){
+        rank = "Silver";
+        } else {
+        rank = "Bronze";
+        }
+
+        if (point < 0) point = 0;
+        this.updateScore(point, rank);
+        socket.emit("surrender", {roomId: this.props.roomId})
+
+        this.props.history.goBack();
+    }
+
+    updateScore = async (score, rank) => {
+        var config = {
+          headers: {
+              'Authorization': localStorage.getItem("token")
+          }
+        }
+    
+        let url = `https://chess-apis.herokuapp.com/api/v1/be/account/${this.props.userData.id}`
+        await axios.put(url,{
+          avatar: "string",
+          nickName: "string",
+          point: score,
+          rank: rank,
+          status: "string"
+        }, config)
+      }
+
     getMoveHistory = (history) => {
         // console.log(history)
         this.setState({
@@ -88,7 +132,7 @@ class ChessPageVsMan extends React.Component {
                                     <p className="glow">ChessOnline</p>
                                 </div> 
 
-                                <button type='button' id='surrenderButton' className='sur-btn'>
+                                <button type='button' id='surrenderButton' className='sur-btn' onClick={this.surOnClick}>
                                     <FontAwesomeIcon icon={faFlag}/>
                                     <p>Surrender!</p>
                                 </button>

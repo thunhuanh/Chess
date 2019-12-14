@@ -33,17 +33,20 @@ export default class FrontPage extends Component {
     }
 
     loginOnClick = () => {
-        if (this.state.isLoginForm === false)
-        this.setState({
-            isLoginForm: !this.state.isLoginForm
-        })
+        if (this.state.isLoginForm === false){
+            this.setState({
+                isLoginForm: !this.state.isLoginForm
+            })
+        }
     }
     loginOnClick2 = () => {
         // this.props.getConfirm(this.state.loginStatus, "HomePage")
         // this.setState({
         //     isRedirect: true
         // })
-        this.props.history.push("/HomePage")
+        if (this.state.loginStatus !== undefined || this.state.loginStatus !== null){
+            this.props.history.push("/HomePage")
+        }
     }
     mainOnClick = () => {
         if (this.state.isLoginForm === true){

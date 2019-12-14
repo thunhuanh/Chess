@@ -94,7 +94,10 @@ export default class Chat extends Component {
     }
 
     report = (event) => {
-        this.props.report(event.target.id, event.target.getAttribute("data"))
+        let reportid = event.target.getAttribute("reportid")
+        let message = event.target.getAttribute("msg")
+        // console.log(event.target.getAttribute("id"))
+        this.props.report(event.target.id, reportid, message)
     }
 
     addFriendOnClick = (event) => {
@@ -117,10 +120,10 @@ export default class Chat extends Component {
                         </ContextMenuTrigger>
                         <ContextMenu className="hp-mini-profile" id="SIMPLE">
                             <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Cheating" data={obj.id}>Report Cheating</button>
+                                <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Cheating" reportid={obj.id} msg={obj.message}>Report Cheating</button>
                             </MenuItem>
                             <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Griefing" data={obj.id}>Report Griefing</button>
+                                <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Griefing" reportid={obj.id} msg={obj.message}>Report Griefing</button>
                             </MenuItem>
                             <MenuItem className="hp-menu-item" >
                                 <button className="hp-menu-btn" onMouseDown={this.addFriendOnClick} data={obj.id}>Add Friend</button>

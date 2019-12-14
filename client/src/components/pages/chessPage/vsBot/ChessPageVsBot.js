@@ -52,6 +52,10 @@ class ChessPageVsBot extends React.Component {
         return response.data.data;
     }
 
+    surOnClick = () => {
+        this.props.history.goBack();
+    }
+
     getMoveHistory = (history) => {
         // console.log(history)
         this.setState({
@@ -83,7 +87,7 @@ class ChessPageVsBot extends React.Component {
                                         <p className="glow">ChessOnline</p>
                                     </div> 
 
-                                    <button type='button' id='surrenderButton' className='sur-btn'>
+                                    <button type='button' id='surrenderButton' className='sur-btn' onClick={this.surOnClick}>
                                         <FontAwesomeIcon icon={faFlag}/>
                                         <p className="cp-sur-text">Surrender!</p>
                                     </button>
