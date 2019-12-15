@@ -243,18 +243,10 @@ paths:
         in: query
         name: rank
         type: string
-      - description: nickname ò user
+      - description: nickname of user
         in: query
         name: nickname
         type: string
-      - description: page number for user
-        in: query
-        name: page
-        type: integer
-      - description: page size each page
-        in: query
-        name: pageSize
-        type: integer
       produces:
       - application/json
       responses:

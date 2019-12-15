@@ -53,7 +53,7 @@ func (ur *UserRepository) CreateUser(user *model.User) (*model.User, error) {
 }
 
 // GetListUser blah blah
-func (ur *UserRepository) GetFilterListUser(name, rank, nickname *string, page int, pageSize int) (users []model.User, total int, err error) {
+func (ur *UserRepository) GetFilterListUser(name, rank, nickname *string) (users []model.User, total int, err error) {
 	db := infrastructure.GetDB()
 
 	db.Exec("CREATE EXTENSION IF NOT EXISTS unaccent")
@@ -86,8 +86,7 @@ func (ur *UserRepository) GetFilterListUser(name, rank, nickname *string, page i
 		return nil, 0, err
 	}
 
-	err = db.Limit(pageSize).
-		Offset((page - 1) * pageSize).
+	err = db.
 		Table("users").
 		Select("*").
 		Where(whereQuery).

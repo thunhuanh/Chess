@@ -112,30 +112,14 @@ func (ac *accountController) CreateNewUser(w http.ResponseWriter, r *http.Reques
 // @Security ApiKeyAuth
 // @Param name query string false "username for user"
 // @Param rank query string false "rank of user"
-// @Param nickname query string false "nickname ò user"
-// @Param page query integer false "page number for user"
-// @Param pageSize query integer false "page size each page"
+// @Param nickname query string false "nickname of user"
 // @Success 200 {object} model.MetaDataResponse
 // @Router /account/accounts [get]
 func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request) {
 	queryValues := r.URL.Query()
-
-	var page int
-	var pageSize int
 	var name *string
 	var rank *string
 	var nickname *string
-	if queryValues.Get("page") == "" {
-		page = 1
-	} else {
-		page, _ = strconv.Atoi(queryValues.Get("page"))
-	}
-
-	if queryValues.Get("pageSize") == "" {
-		pageSize = 10
-	} else {
-		pageSize, _ = strconv.Atoi(queryValues.Get("pageSize"))
-	}
 
 	nameStr := queryValues.Get("name")
 	rankStr := queryValues.Get("rank")
@@ -158,7 +142,7 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 		nickname = &nicknameStr
 	}
 
-	listUser, total, err := ac.accountService.GetFilterListUser(name, rank, nickname, page, pageSize)
+	listUser, total, err := ac.accountService.GetFilterListUser(name, rank, nickname)
 	var listUserResponse []model.User
 	for _, index := range listUser{
 		listUserResponse = append(listUserResponse, model.User{
@@ -180,8 +164,8 @@ func (ac *accountController) FilterPaging(w http.ResponseWriter, r *http.Request
 	} else {
 		res = &model.MetaDataResponse{
 			MetaData: model.MetaData{
-				Page:page,
-				PageSize:pageSize,
+				Page:0,
+				PageSize:0,
 				Total:total,
 			},
 			Data:    listUserResponse,

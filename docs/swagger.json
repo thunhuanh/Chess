@@ -108,20 +108,8 @@
                     },
                     {
                         "type": "string",
-                        "description": "nickname ò user",
+                        "description": "nickname of user",
                         "name": "nickname",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "page number for user",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "page size each page",
-                        "name": "pageSize",
                         "in": "query"
                     }
                 ],
