@@ -55,11 +55,12 @@ class ChessPageVsMan extends React.Component {
         return response.data.data;
     }
 
-    surOnClick = () => {
+    surOnClick = async () => {
         let point = this.state.userData.Point
         let rank = this.state.userData.Rank
 
         point -= 25;
+
         if (point > 4000) {
         rank = "Diamond";
         } else if (point > 3000){
@@ -73,8 +74,8 @@ class ChessPageVsMan extends React.Component {
         }
 
         if (point < 0) point = 0;
-        this.updateScore(point, rank);
-        socket.emit("surrender", {roomId: this.props.roomId})
+        await this.updateScore(point, rank);
+        socket.emit("surrender", {roomId: this.props.roomId, loser: this.state.userData.name})
 
         this.props.history.goBack();
     }
@@ -86,7 +87,7 @@ class ChessPageVsMan extends React.Component {
           }
         }
     
-        let url = `https://chess-apis.herokuapp.com/api/v1/be/account/${this.props.userData.id}`
+        let url = `https://chess-apis.herokuapp.com/api/v1/be/account/${this.state.userData.id}`
         await axios.put(url,{
           avatar: "string",
           nickName: "string",

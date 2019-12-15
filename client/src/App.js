@@ -12,17 +12,17 @@ export default class App extends Component {
     super(props);
     this.state = {
       roomId: 0,
-      userName:"",
-      userPass:""
+      // userName:"",
+      // userPass:""
     }
   }
 
-  passDataToHP = (name, pass) => {
-    this.setState({
-      userName: name,
-      userPass: pass
-    })
-  }
+  // passDataToHP = (name, pass) => {
+  //   this.setState({
+  //     userName: name,
+  //     userPass: pass
+  //   })
+  // }
 
   passRoomIdToVsMan = (id) => {
     this.setState({

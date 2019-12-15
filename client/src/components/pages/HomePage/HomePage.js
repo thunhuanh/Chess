@@ -6,6 +6,7 @@ import Profile from './Profile';
 import Friend from './Friend';
 import RoomComponent from './RoomComponent';
 import axios from 'axios';
+import CryptoJS from "crypto-js"
 // import {Switch, Route} from 'react-router-dom';
 // import ChessPage from '../chessPage/ChessPage';
 
@@ -20,6 +21,9 @@ export default class HomePage extends Component {
             friends: [],
             redirectToVsBot: false,
         }
+
+        this.userName = this.props.userName
+        this.pass = this.props.userPass
     }
 
     componentDidMount(){
@@ -36,20 +40,15 @@ export default class HomePage extends Component {
         if (token !== null){
             try {
                 let response = {}
-                // console.log(this.props.userName);
-                if (this.props.userName === ""){
-                    response = await this.loginWithToken(token);
-                    this.getFriends(token, response.id)
-                    this.setState({ 
-                        userData: response,
-                     });
-                } else {
-                    response = await this.login(this.props.userName, this.props.userPass);
-                    this.getFriends(token, response.user.id)
-                    this.setState({ 
-                        userData: response.user,
-                     });
-                }
+                let userNameDeCrypt = CryptoJS.AES.decrypt(localStorage.getItem("userName"), "secret")
+                let userPassDeCrypt = CryptoJS.AES.decrypt(localStorage.getItem("userPass"), "secret")
+                let name = userNameDeCrypt.toString(CryptoJS.enc.Utf8)
+                let pass = userPassDeCrypt.toString(CryptoJS.enc.Utf8)
+                response = await this.login(name, pass);
+                this.getFriends(token, response.user.id)
+                this.setState({ 
+                    userData: response.user,
+                });
             } catch (error) {
                 console.log(error);
             }

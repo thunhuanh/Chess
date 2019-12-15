@@ -6,6 +6,7 @@ import RankDir from './RankDir'
 import About from './About'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
+import CryptoJS from "crypto-js"
 // import history from '../../../history'
 
 export default class FrontPage extends Component {
@@ -84,6 +85,10 @@ export default class FrontPage extends Component {
                         token: response.data.token,
                         loginStatus: response.data.success,  
                     })
+                    let encryptName = CryptoJS.AES.encrypt(userName, "secret")
+                    let encryptPass = CryptoJS.AES.encrypt(password, "secret")
+                    localStorage.setItem("userName", encryptName)
+                    localStorage.setItem("userPass", encryptPass)
                     localStorage.setItem("token", response.data.token)
                     localStorage.setItem("loginStatus", response.data.success)
                 }
@@ -92,7 +97,7 @@ export default class FrontPage extends Component {
             .catch((error) => {
             });
 
-        this.props.passDataToHP(userName, password)
+        // this.props.passDataToHP(userName, password)
     }
 
     loginWithToken = (token) => {

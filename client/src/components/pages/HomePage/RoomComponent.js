@@ -83,9 +83,9 @@ export default class RoomComponent extends Component {
 
     renderRoom = () => {
         let {rooms} = this.state;
-        return rooms.map(room => {
+        return rooms.map((room, idx) => {
             if (room.available){
-                return <li onClick={() => {
+                return <li key={idx} onClick={() => {
                     this.joinRoom(room)
                 }}><span><i className="fas fa-home"></i></span>{room.name}</li>
             } else {
