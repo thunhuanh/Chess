@@ -29,8 +29,10 @@
   padding-top:1%;
   background:transparent;
   overflow: auto;
-  padding-left: 10px;
+  padding-left: 1%;
   color: aliceblue;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 
@@ -126,4 +128,14 @@
   float: right;
   margin-left: 50px;
   /* position: relative; */
+}
+
+.cp-inputChatTextField {
+  height: 95%;
+  width: 70%;
+  min-height: 20px;
+  background-color: whitesmoke;
+  border:none;
+  position: relative;
+  outline: none;
 }

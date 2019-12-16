@@ -49,7 +49,7 @@ export default class PlayModes extends Component {
                 <div className="hp-play-modes">
                     <div className={this.state.isVsBot ? "hp-play-modes-picker hp-play-modes-picker-selected" : "hp-play-modes-picker"} id="vsbot" onClick={this.modeOnClick}>
                         <div className="hp-bg" id="vsbot"></div>
-                        <h3 id="vsbot">VS Ai</h3>
+                        <h3 id="vsbot">VS AI</h3>
                         <div className="hp-play-modes-picker-description" id="vsbot">
                             Training for newbies    <br/>
                             Practice for more experience

@@ -109,48 +109,50 @@ class ChessPageVsMan extends React.Component {
         // console.log(this.props.roomId)
         return(
             <div className='chessPage'>
-                <div className='chessPageLeft'>
-                    <PlayZoneVsMan 
-                        history={this.props.history} 
-                        getMoveHistory={this.getMoveHistory} 
-                        userData={this.state.userData} 
-                        roomId={this.props.roomId} 
-                        userName={this.state.userData.name}
-                    />
-                </div>
-                <div className='chessPageRight'>
-                    
-                    <div className='chessPageRightComponents-top'>
-                    <div className="shadow-bg"></div>
-                    <MoveHistory moveHistory={moveHistory}/>
-                    </div>
-                    
-                    <div className='chessPageRightComponents-mid'>
-                        <div className="shadow-bg"></div>
-                            <div className="middle">
-                                <div className='missingChess'>  
-                                    <FontAwesomeIcon icon={faChessQueen} style={{marginTop:"5px"}}/>
-                                    <p className="glow">ChessOnline</p>
-                                </div> 
-
-                                <button type='button' id='surrenderButton' className='sur-btn' onClick={this.surOnClick}>
-                                    <FontAwesomeIcon icon={faFlag}/>
-                                    <p>Surrender!</p>
-                                </button>
-                        </div>
-                    </div>
-
-                    <div className='chessPageRightComponents-dn'>
-                        <div className="shadow-bg"></div>
-                        <ChatBox 
-                            history={this.props.history} 
-                            name={this.state.userData.name} 
+                <div className='chessContentVsMan'>
+                    <div className='chessPageLeft'>
+                        <PlayZoneVsMan
+                            history={this.props.history}
+                            getMoveHistory={this.getMoveHistory}
+                            userData={this.state.userData}
                             roomId={this.props.roomId}
-
+                            userName={this.state.userData.name}
                         />
                     </div>
-                
-                </div>
+                    <div className='chessPageRight'>
+
+                        <div className='chessPageRightComponents-top'>
+                        <div className="shadow-bg"></div>
+                        <MoveHistory moveHistory={moveHistory}/>
+                        </div>
+
+                        <div className='chessPageRightComponents-mid'>
+                            <div className="shadow-bg"></div>
+                                <div className="middle">
+                                    <div className='missingChess'>
+                                        <FontAwesomeIcon icon={faChessQueen} style={{marginTop:"5px"}}/>
+                                        <p className="glow">ChessOnline</p>
+                                    </div>
+
+                                    <button type='button' id='surrenderButton' className='sur-btn' onClick={this.surOnClick}>
+                                        <FontAwesomeIcon icon={faFlag}/>
+                                        <p className="cp-sur-text">Surrender!</p>
+                                    </button>
+                            </div>
+                        </div>
+
+                        <div className='chessPageRightComponents-dn'>
+                            <div className="shadow-bg"></div>
+                            <ChatBox
+                                history={this.props.history}
+                                name={this.state.userData.name}
+                                roomId={this.props.roomId}
+
+                            />
+                        </div>
+
+                    </div>
+                            </div>
             </div>
         );
     }

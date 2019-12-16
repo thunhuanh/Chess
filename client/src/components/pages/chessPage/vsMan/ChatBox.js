@@ -83,7 +83,7 @@ class ChatBox extends React.Component {
                 </div>
                 <div className='cp-editChat'>
                     <form className='cp-inputChat' onSubmit={this.onSubmit}>
-                        <input className='cp-inputChat' ref="message"/>
+                        <input className='cp-inputChatTextField' ref="message"/>
                         <button type="submit" id='cp-sendBtn' className='cp-sending-btn' >
                             <FontAwesomeIcon icon={faPaperPlane} />
                         </button>

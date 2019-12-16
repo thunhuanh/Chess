@@ -68,7 +68,7 @@ class ChessPageVsBot extends React.Component {
         // console.log(moveHistory)
         return(
             <div className='chessPage'>
-                <div className='chessContent'>
+                <div className='chessContentVsBot'>
                     <div className='chessPageLeft'>
                         <PlayZoneVsBot getMoveHistory={this.getMoveHistory} userData={this.state.userData}/>
                     </div>
