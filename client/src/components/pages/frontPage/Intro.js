@@ -28,8 +28,7 @@ export default class Intro extends Component {
                             <div className="fp-intro-tut-element-desc">
                                 <h3>Online Chess</h3>
                                 <p>Made with full power, this game will make your skill grow fast like never before.
-                                    With two playing modes: against the computer with a chess engine or against another player online.
-                                    Will you be able to get on top of the leaderboard?</p>
+                                   Can you get on top of the leaderboard?</p>
                             </div>
                         </div>
                     </div>
@@ -43,10 +42,9 @@ export default class Intro extends Component {
                             </div>
                             <div className="fp-intro-tut-element-desc">
                                 <h3>Don't know where to start?</h3>
-                                <p>If not knowing to play chess, look online, there are tutorials for beginners.
-                                    Don't know where to start from here, look right, click "Play now",
-                                    register/login with you account. Still don't know what to do afterward?
-                                    Follow the 2 steps bellow.</p>
+                                <p>Just look right, click "Play now",
+                                    register/login with an account.
+                                    Then follow the 2 steps bellow.</p>
                             </div>
                         </div>
                     </div>
@@ -60,10 +58,10 @@ export default class Intro extends Component {
                             </div>
                             <div className="fp-intro-tut-element-desc">
                                 <h3>Step 1: The main screen.</h3>
-                                <p>You choose the play mode, if "ranking" is chosen,
-                                    you must pick or create a room.
-                                    Then click "Play" to start the match. There is also a chat box to text others publicly bellow the mode selection
-                                    and a friend list next to that box.</p>
+                                <p>If "ranking" is chosen,
+                                    you pick or create a room.
+                                    Then click "Play" to start the match. There is a public chat box to text others bellow the mode selection
+                                    and a friend list on the side.</p>
                             </div>
                         </div>
                     </div>
@@ -77,8 +75,7 @@ export default class Intro extends Component {
                             </div>
                             <div className="fp-intro-tut-element-desc">
                                 <h3>Step 2: Play!</h3>
-                                <p>Congratulations, you made it to the chess table.
-                                    Now all you have to do is beat your opponent.
+                                <p>Congratulations, you're at the chess table.
                                     There is a move history to watch on the top right corner
                                     and a private in-session chat box on the bottom right.</p>
                             </div>
