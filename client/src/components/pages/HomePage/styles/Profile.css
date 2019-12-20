@@ -49,17 +49,22 @@
 }
 
 .hp-profile-logout-container{
-    position: relative;
+    position: absolute;
     padding: 0;
+    width: 100%;
+    height: 30%;
+    align-items: center;
+    bottom: 0;
 }
 
 .hp-profile-logout-container button{
-    margin: 5% 35%;
     width: 30%;
     height: 35px;
     border: none;
     outline: none;
     position: relative;
+    margin: auto;
+    display: flex;
     background: none;
     color: white;
     box-shadow: 4px 4px 0px rgb(22, 22, 22);
@@ -81,4 +86,10 @@
     margin: auto;
     font-size: 1.3vw;
     font-family: 'Source Sans Pro', cursive;
+}
+
+.hp-profile{
+    position: absolute;
+    width: 100%;
+    height: 70%;
 }

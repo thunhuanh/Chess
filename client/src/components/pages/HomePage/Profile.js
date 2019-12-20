@@ -35,17 +35,20 @@ export default class Profile extends Component {
                     <p style={{fontSize: '1.5vw'}}>Profile</p>
                 </div>
                 <div className="hp-profile-content">
-                    <div className="hp-profile-header">
-                        <p>{name}</p>
+                    <div className="hp-profile">
+
+                        <div className="hp-profile-header">
+                            <p>{name}</p>
+                        </div>
+                        <ul className="hp-profile-data">
+                            <li>
+                                rank : {rank}
+                                    </li>
+                            <li>
+                                point : {point}
+                                    </li>
+                        </ul>
                     </div>
-                    <ul className="hp-profile-data">
-                        <li>
-                            rank : {rank}
-                                </li>
-                        <li>
-                            point : {point}
-                                </li>
-                    </ul>
                     <div className="hp-profile-logout-container">
                         <button className="hp-profile-logout-btn" onClick={this.logoutOnClick}>
                             <div className="hp-profile-logout-bg">

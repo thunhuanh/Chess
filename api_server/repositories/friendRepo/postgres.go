@@ -34,16 +34,17 @@ func (fr *FriendRepository) GetAllFriendByUserId(userId int) ([]*model.User, err
 
 	for _, item := range friends{
 		user, err := fr.userRepo.FindById(item.FriendId)
+
 		if err != nil{
-			return nil, err
+			infrastructure.ErrLog.Println(err)
+		} else {
+			users = append(users, user)
 		}
-		users = append(users, user)
 	}
 
 	if len(users) == 0{
 		return nil, gorm.ErrRecordNotFound
 	}
-
 	return users, nil
 }
 

@@ -17,22 +17,23 @@
 }
 
 .tp-about-container{
-    width: 100%;
+    width: 90%;
     height: 100%;
-    position: absolute;
+    position: relative;
     display: flex;
+    margin: auto;
 }
 
 .tp-about-content{
     width: 25%;
     height: 65%;
-    top: 15%;
+    top: 10%;
     margin: 0 auto;
     position: relative;
 }
 
 .tp-about-content h3{
-    font-size: 1.7vmax;
+    font-size: 3vh;
     /* text-align: center; */
     justify-content: center;
     color: white;
@@ -41,7 +42,7 @@
 
 .tp-about-content ul li{
     color: gray;
-    font-size: 1.2vmax;
+    font-size: 2vh;
     margin-top: 5%;
     font-family: 'Source Sans Pro', cursive;
 }
@@ -51,9 +52,8 @@
     height: 20%;
     position: absolute;
     text-align: center;
-    font-size: xx-large;
     color: white;
-    font-size: 2.3vw;
+    font-size: 5vh;
 }
 
 #tp-about-after{

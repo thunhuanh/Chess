@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom';
-import FrontPage from './components/pages/frontPage/FrontPage';
+import FrontPage from './components/pages/FrontPage/FrontPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot'
 import ChessPageVsMan from './components/pages/chessPage/vsMan/ChessPageVsMan'
@@ -48,6 +48,11 @@ export default class App extends Component {
             path="/HomePage/play" 
             render={(props) => <ChessPageVsMan {...props} roomId={this.state.roomId}/>}
           />
+          {/* <Route
+            exact
+            path="/Admin"
+            render={(props) => <AdminPage {...props}/>}
+          /> */}
         </Switch>   
       </Router>
    )
@@ -55,7 +60,7 @@ export default class App extends Component {
 
   // render(){
   //   return(
-  //     <AdminPage></AdminPage>
+  //     <MyApp/>
   //   )
   
   // }

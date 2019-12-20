@@ -57,11 +57,11 @@ export default class Intro extends Component {
 
                             </div>
                             <div className="fp-intro-tut-element-desc">
-                                <h3>Step 1: The main screen.</h3>
-                                <p>If "ranking" is chosen,
-                                    you pick or create a room.
-                                    Then click "Play" to start the match. There is a public chat box to text others bellow the mode selection
-                                    and a friend list on the side.</p>
+                                <h3>The main screen.</h3>
+                                <p>Want to compete? Try ranking mode.
+                                </p>
+                                <p>No? Try bot mode for chilling
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -74,10 +74,8 @@ export default class Intro extends Component {
 
                             </div>
                             <div className="fp-intro-tut-element-desc">
-                                <h3>Step 2: Play!</h3>
-                                <p>Congratulations, you're at the chess table.
-                                    There is a move history to watch on the top right corner
-                                    and a private in-session chat box on the bottom right.</p>
+                                <h3>Play!</h3>
+                                <p>Congratulations, you're ready to play now!</p>
                             </div>
                         </div>
                     </div>
