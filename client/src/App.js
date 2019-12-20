@@ -48,11 +48,6 @@ export default class App extends Component {
             path="/HomePage/play" 
             render={(props) => <ChessPageVsMan {...props} roomId={this.state.roomId}/>}
           />
-<<<<<<< HEAD
-          <Route path="/Bot" component={ChessPageVsBot} />
-          <Route path="/play" component={ChessPageVsBot} />
-=======
->>>>>>> master
         </Switch>   
       </Router>
    )

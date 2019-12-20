@@ -17,7 +17,7 @@ export default class About extends Component {
                 <div className="tp-about-container">
                     <div className="tp-about-about">
                         About us
-                        </div>
+                    </div>
                     <div className="tp-about-content" id="tp-company">
                         <h3>Company</h3>
                         <ul>

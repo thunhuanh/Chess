@@ -77,10 +77,12 @@
 }
 
 .fp-intro-tut-element-desc p{
-    font-size: large;
-    font-size: 0.8vw;
+    font-size: 1em;
     color: white;
     font-family: 'Source Sans Pro', cursive;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 .fp-intro-tut-element-desc h3{
@@ -88,6 +90,7 @@
     text-decoration: underline;
     color: white;
     margin-top: 2%;
+    margin-bottom: 0;
 }
  
 #tut1{
