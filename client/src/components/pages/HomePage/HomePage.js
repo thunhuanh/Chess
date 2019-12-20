@@ -55,16 +55,6 @@ export default class HomePage extends Component {
         }
     }
 
-    // loginWithToken = async (token) => {
-    //     var config = {
-    //         headers: {
-    //             "Authorization": token
-    //         }
-    //     }
-    //     const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token', {}, config)
-    //     return response.data.data
-    // }
-
     getFriends = (token, userId) => {
         var config = {
             headers: {
@@ -178,7 +168,7 @@ export default class HomePage extends Component {
     }
 
     redirectToVsBot = () => {
-        this.props.history.push("/HomePage/Bot")
+        this.props.history.push("/Home/Bot")
     
     }
 

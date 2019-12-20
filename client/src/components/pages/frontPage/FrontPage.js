@@ -46,7 +46,7 @@ export default class FrontPage extends Component {
         //     isRedirect: true
         // })
         if (this.state.loginStatus !== undefined || this.state.loginStatus !== null){
-            this.props.history.push("/HomePage")
+            this.props.history.push("/Home")
         }
     }
     mainOnClick = () => {
@@ -140,7 +140,7 @@ export default class FrontPage extends Component {
     }
     render() {
         if (this.state.isRedirect === true){
-            return <Redirect to="/HomePage"></Redirect>
+            return <Redirect to="/Home"></Redirect>
         }
         return (
             <div className="fp-container" >
