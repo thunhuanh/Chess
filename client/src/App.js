@@ -62,8 +62,8 @@ export default class App extends Component {
             path={"/HomePage"} exact
             render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props}/>:<Redirect to="/"/>}
           />
-          <Route path="/HomePage/Bot" component={ChessPageVsBot} />
-          <Route path="/HomePage/play" component={ChessPageVsBot} />
+          <Route path="/Bot" component={ChessPageVsBot} />
+          <Route path="/play" component={ChessPageVsBot} />
         </Switch>   
      </Router>
    )
