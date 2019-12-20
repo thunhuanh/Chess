@@ -40,12 +40,12 @@ export default class App extends Component {
           >
           </Route>
           <Route 
-            path={"/HomePage"} exact
+            path={"/Home"} exact
             render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props} passRoomIdToVsMan={this.passRoomIdToVsMan} userName={this.state.userName} userPass={this.state.userPass}/>:<Redirect to="/"/>}
           />
-          <Route exact path="/HomePage/Bot" component={ChessPageVsBot} />
+          <Route exact path="/Home/Bot" component={ChessPageVsBot} />
           <Route 
-            path="/HomePage/play" 
+            path="/Home/play" 
             render={(props) => <ChessPageVsMan {...props} roomId={this.state.roomId}/>}
           />
           {/* <Route
@@ -57,11 +57,4 @@ export default class App extends Component {
       </Router>
    )
   }
-
-  // render(){
-  //   return(
-  //     <MyApp/>
-  //   )
-  
-  // }
 }

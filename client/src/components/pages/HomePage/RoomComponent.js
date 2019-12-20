@@ -64,7 +64,7 @@ export default class RoomComponent extends Component {
         this.socket.emit("room add", msg);
         this.socket.emit("joined", {roomId : msg.id})
         this.props.passRoomIdToVsMan(this.roomId);
-        this.props.history.push("/HomePage/play")
+        this.props.history.push("/Home/play")
     }
 
     joinRoom = (room) => {
@@ -77,7 +77,7 @@ export default class RoomComponent extends Component {
         this.roomId = room.id;
         this.socket.emit("joined", {roomId : room.id})
         this.props.passRoomIdToVsMan(this.roomId);
-        this.props.history.push("/HomePage/play")
+        this.props.history.push("/Home/play")
         // console.log(room)
     }
 
