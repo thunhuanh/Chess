@@ -7,9 +7,10 @@ import { faFlag } from "@fortawesome/free-solid-svg-icons"
 import { faChessQueen } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios';
-import io from 'socket.io-client'
+import io from 'socket.io-client';
+import CryptoJS from "crypto-js";
 
-const socket = io('http://localhost:4000');
+const socket = io('http://192.168.50.113:4000');
 
 class ChessPageVsMan extends React.Component {
     constructor(props) {
@@ -32,27 +33,28 @@ class ChessPageVsMan extends React.Component {
         let token = localStorage.getItem("token");
         if (token !== null){
             try {
-                const response = await this.loginWithToken(token);
-
+                let response = {}
+                let userNameDeCrypt = CryptoJS.AES.decrypt(localStorage.getItem("userName"), "secret")
+                let userPassDeCrypt = CryptoJS.AES.decrypt(localStorage.getItem("userPass"), "secret")
+                let name = userNameDeCrypt.toString(CryptoJS.enc.Utf8)
+                let pass = userPassDeCrypt.toString(CryptoJS.enc.Utf8)
+                response = await this.login(name, pass);
                 this.setState({ 
-                    userData: response,
-                 });
-    
+                    userData: response.user,
+                });
             } catch (error) {
                 console.log(error);
             }
         }
     }
 
-    loginWithToken = async (token) => {
-        // console.log(token)
-        var config = {
-            headers: {
-                'Authorization': token,
-            }
-        }
-        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
-        return response.data.data;
+    login = async (userName, password) => {
+        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
+            name: userName, // Dữ liệu được gửi lên endpoint '/user'
+            password: password
+        })
+        // console.log(response)
+        return response.data.data
     }
 
     surOnClick = async () => {

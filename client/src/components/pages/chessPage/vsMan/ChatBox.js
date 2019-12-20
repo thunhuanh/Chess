@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../styles/ChatBox.css'
 import io from 'socket.io-client'
 
-const socket = io('http://localhost:4000');
+const socket = io('http://192.168.50.113:4000');
 
 class ChatBox extends React.Component {
     constructor(props) {

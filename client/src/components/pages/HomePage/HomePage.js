@@ -55,15 +55,15 @@ export default class HomePage extends Component {
         }
     }
 
-    loginWithToken = async (token) => {
-        var config = {
-            headers: {
-                "Authorization": token
-            }
-        }
-        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token', {}, config)
-        return response.data.data
-    }
+    // loginWithToken = async (token) => {
+    //     var config = {
+    //         headers: {
+    //             "Authorization": token
+    //         }
+    //     }
+    //     const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token', {}, config)
+    //     return response.data.data
+    // }
 
     getFriends = (token, userId) => {
         var config = {
@@ -160,7 +160,7 @@ export default class HomePage extends Component {
     }
 
     reportOnClick = (message, reportid, reportMsg) => {
-        console.log(reportid, reportMsg)
+        // console.log(reportid, reportMsg)
         let _repedID = Number(reportid)
         let msg = message + ", user_message : " + reportMsg
         let repID = this.state.userData.id
@@ -185,10 +185,7 @@ export default class HomePage extends Component {
     vsMan = (isVsBot) => {
         this.setState({isVsBot: isVsBot})
     }
-    onMouseDown = (event) =>{
-        event.preventDefault()
-        console.log(event.target.style)
-    }
+
     render() {
         const {userData, friends} = this.state;
         var friendData = friends;
