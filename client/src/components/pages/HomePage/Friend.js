@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './styles/Friend.css';
+import { Menu, Item, MenuProvider, theme, IconFont } from 'react-contexify';
+import 'react-contexify/dist/ReactContexify.min.css';
 // import axios from 'axios';
-import {ContextMenu, MenuItem, ContextMenuTrigger} from 'react-contextmenu'
+
 
 export default class Friend extends Component {
     constructor(props) {
@@ -12,25 +14,27 @@ export default class Friend extends Component {
 
     componentDidMount() {
     }
-    removeOnClick = (event) => {
-        this.props.remove(event.target.getAttribute("data"))
+    removeOnClick = ({event, props}) => {
+        this.props.remove(props.friendId)
     }
+
+    // onClick={this.removeOnClick} data={{friendId : player.id}}
 
     renderFriend = () => {
         const {friends} = this.props
         return friends.map((player, index) => {
             return <li key={index}>
-                <ContextMenuTrigger id="">
-                    <strong>
-                        {player.name}
-                    </strong>
-                </ContextMenuTrigger>
-                <ContextMenu className="hp-fr-mini-profile" id="">
-                    <MenuItem className="hp-fr-menu-item">
-                        <button className="hp-fr-menu-btn"  onMouseDown={this.removeOnClick} data={player.id}>Remove Friend</button>
-                    </MenuItem>
-                </ContextMenu>   
-            </li>
+                        <MenuProvider id={player.id}>           
+                            <strong>
+                                {player.name}
+                            </strong>
+                        </MenuProvider>
+                        <Menu id={player.id} theme={theme.dark}>
+                            <Item onClick={this.removeOnClick} data={{friendId: player.id}}>
+                                <IconFont className="fas fa-trash" style={{paddingRight: "15px"}}/> Delete
+                            </Item>
+                        </Menu>
+                    </li>
         })
     }
 

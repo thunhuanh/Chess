@@ -13,7 +13,7 @@ export default class RoomComponent extends Component {
             rooms : []
         }
 
-        this.socket = io('http://localhost:4000');
+        this.socket = io('http://192.168.50.113:4000');
         this.roomId = 0;
         this.socketId = "";
     }

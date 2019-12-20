@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './styles/Chat.css';
 import io from 'socket.io-client';
 import axios from 'axios';
-import {ContextMenu, MenuItem, ContextMenuTrigger} from 'react-contextmenu'
+import { Menu, Item, Separator, Submenu, MenuProvider, theme, IconFont } from 'react-contexify';
+import 'react-contexify/dist/ReactContexify.min.css';
 
 export default class Chat extends Component {
     constructor(props) {
@@ -10,14 +11,12 @@ export default class Chat extends Component {
 
         this.state = {
             userId: 0,
-            isVsBot: true,
-            isLogout: false,
             userName: "",
             chat: []
         }
 
         this.element = null;
-        this.socket = io('http://localhost:4000');
+        this.socket = io('http://192.168.50.113:4000');
     }
 
     componentWillMount() {
@@ -81,6 +80,7 @@ export default class Chat extends Component {
         var message = this.refs.message.value;        
         if (typeof message !== "undefined" && message.trim()) {
           this.socket.emit('general chat send', {name: userName, message: message, id:userId});
+          console.log(userId)
           this.setState({
             chat:[...this.state.chat, Object.assign({}, {message: message, name: userName, id:userId})]
           });
@@ -89,42 +89,40 @@ export default class Chat extends Component {
         this.refs.message.value = "";
     }
 
-    report = (event) => {
-        let reportid = event.target.getAttribute("reportid")
-        let message = event.target.getAttribute("msg")
-        // console.log(event.target.getAttribute("id"))
-        this.props.report(event.target.id, reportid, message)
+    report = ({ event, props }) => {
+        // let reportedid = target[0].getAttribute("reportid")
+        // let message = target[0].getAttribute("msg")
+        // console.log(props.id, props.reportid, props.msg)
+        this.props.report(props.id, props.reportid, props.msg)
     }
 
-    addFriendOnClick = (event) => {
-        if (event.target.getAttribute("data") !== 0){
-            this.props.addFriend(event.target.getAttribute("data"))
-        }      
+    addFriendOnClick = ({ event, props }) => {
+        this.props.addFriend(props.friendId)
+        // console.log(props.friendId)    
     }
+
     renderMsg = () => {
         const {chat} = this.state;
         
         return chat.map((obj, idx) => {
-            
             return <li key={idx} ref={element => {this.element = element}}>
-                    <ContextMenuTrigger id="SIMPLE" holdToDisplay={1000}>
-                        <strong>
-                            {obj.name}                                 
-                        </strong>
-                        <span>: {obj.message}</span>
-                    </ContextMenuTrigger>
-                    <ContextMenu className="hp-mini-profile" id="SIMPLE">
-                        <MenuItem className="hp-menu-item" >
-                            <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Cheating" reportid={obj.id} msg={obj.message}>Report Cheating</button>
-                        </MenuItem>
-                        <MenuItem className="hp-menu-item" >
-                            <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Griefing" reportid={obj.id} msg={obj.message}>Report Griefing</button>
-                        </MenuItem>
-                        <MenuItem className="hp-menu-item" >
-                            <button className="hp-menu-btn" onMouseDown={this.addFriendOnClick} data={obj.id}>Add Friend</button>
-                        </MenuItem>
-                    </ContextMenu>                     
-                </li>
+                        <MenuProvider id={idx}>           
+                                <strong>
+                                    {obj.name}                                 
+                                </strong>
+                                <span>: {obj.message}</span>
+                        </MenuProvider>
+                        <Menu id={idx} theme={theme.dark}>
+                            <Item onClick={this.addFriendOnClick} data={{friendId : obj.id}}>
+                                <IconFont className="fas fa-user-plus" style={{paddingRight: "15px"}}/> AddFriend
+                            </Item>
+                        <Separator />
+                        <Submenu label={<div><IconFont className="fas fa-poo" style={{paddingRight: "12px"}}></IconFont> <span>Report</span></div>} style={{width:"60%"}}>
+                            <Item onClick={this.report} data={{id: "cheating", reportid: obj.id, msg: obj.message}}>Report Cheating</Item>
+                            <Item onClick={this.report} data={{id: "griefing", reportid: obj.id, msg: obj.message}}>Report Griefing</Item>
+                        </Submenu>
+                        </Menu>
+                    </li>
             }
         );
     }
@@ -139,7 +137,7 @@ export default class Chat extends Component {
                 <div className="hp-chat-content">
                     <div className="hp-chat-box">
                         <ul>
-                            {this.renderMsg()}
+                            {this.renderMsg()} 
                         </ul>
                     </div>
                     <form action="" onSubmit={this.onSubmit} className="hp-chat-chat">
