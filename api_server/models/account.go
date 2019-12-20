@@ -26,7 +26,7 @@ type User struct {
 
 type UserRepository interface {
 	CreateUser(user *User) (*User, error)
-	GetFilterListUser(name, rank, nickname *string, page int, pageSize int) ([]User, int, error)
+	GetFilterListUser(name, rank, nickname *string) ([]User, int, error)
 	FindById(id int) (*User, error)
 	UpdateUser(accountID int, updatedUser *User) error
 	UpdatePassword(id int, oldPass string, newPass string) error

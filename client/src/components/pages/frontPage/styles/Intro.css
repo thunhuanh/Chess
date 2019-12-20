@@ -60,15 +60,15 @@
 }
 
 #tut2 .fp-intro-tut-element-img{
-    background-image: url(https://images.chesscomfiles.com/uploads/v1/article/24876.b9db3b03.1200x674o.78f9ae1d0f18.jpeg);
+    background-image: url(https://www.chess-sets.info/images/ChessPsy4.jpg);
 }
 
 #tut3 .fp-intro-tut-element-img{
-    background-image: url(https://chess.cool/i/landing/landing-img.jpg);
+    background-image: url(https://i.imgur.com/uXRf6bz.png?1);
 }
 
 #tut4 .fp-intro-tut-element-img{
-    background-image: url(https://chess.cool/i/landing/landing-img.jpg);
+    background-image: url(https://i.imgur.com/abvHzKL.png);
 }
 
 .fp-intro-tut-element-desc{
@@ -78,13 +78,13 @@
 
 .fp-intro-tut-element-desc p{
     font-size: large;
-    font-size: 1.3vw;
+    font-size: 0.8vw;
     color: white;
     font-family: 'Source Sans Pro', cursive;
 }
 
 .fp-intro-tut-element-desc h3{
-    font-size: 1.6vw;  
+    font-size: 1.2vw;
     text-decoration: underline;
     color: white;
     margin-top: 2%;

@@ -1,6 +1,6 @@
 /* about */
 .tp-about{
-    top: -30%;
+    top: -35%;
     width: 60%;
     margin: auto;
     height: 28%;
@@ -40,12 +40,9 @@
 }
 
 .tp-about-content ul li{
-    text-align: left;
     color: gray;
     font-size: 1.2vmax;
-    list-style-type: none;
     margin-top: 5%;
-    left: 0;
     font-family: 'Source Sans Pro', cursive;
 }
 

@@ -71,7 +71,18 @@ io.on("connection", function (socket) {
       socket.broadcast.emit("board-position", msg);
     })
 
-    //handle message
+    //handle friend add
+    socket.on("friend add", function (msg) {
+      console.log(msg)
+      socket.broadcast.emit("friend add", msg)
+    })
+
+    //handle surrender
+    socket.on("surrender", function(msg) {
+      socket.broadcast.emit("surrender", msg)
+    })
+
+    //handle general chat message
     socket.on("general chat send", function (msg) {
       let tempObj = {
         name: msg.name,
@@ -82,6 +93,11 @@ io.on("connection", function (socket) {
       generalHistoryMessages.push(tempObj);
 
       socket.broadcast.emit("general chat send", tempObj);
+    });
+
+    //handle private chat message
+    socket.on("send", function (msg) {
+      socket.broadcast.emit("receive", msg);
     });
 
     socket.on("disconnect", function() {

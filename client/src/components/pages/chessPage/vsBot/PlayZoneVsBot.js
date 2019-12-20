@@ -23,7 +23,7 @@ class PlayZoneVsBot extends React.Component {
                 </div>
                 <div className='player'>
                     <div className='playerSubDiv'>
-                        <p id='playerName'>Player A</p>
+                        <p id='playerName'>{this.props.userData.name}</p>
                     </div>
                 </div>
             </div>

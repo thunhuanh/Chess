@@ -2,51 +2,32 @@ import React, { Component } from 'react';
 import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom';
 import FrontPage from './components/pages/FrontPage/FrontPage';
 import HomePage from './components/pages/HomePage/HomePage';
-import axios from 'axios';
-import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot';
+import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot'
+import ChessPageVsMan from './components/pages/chessPage/vsMan/ChessPageVsMan'
+// import adminPage from './components/pages/adminPage/AdminPage'
+// import AdminPage from './components/pages/adminPage/AdminPage';
 
 export default class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-  UNSAFE_componentWillUnmount(){
-    this.setState({
-      token:localStorage.getItem('token'),
-      isRedirect: false
-    })
-  }
-
-  componentWillMount() {
-    let token = localStorage.getItem("token");
-    if (token !== null)
-        this.loginWithToken(token);
-}
-
-  getToken = (token) => {
-    this.setState({
-      token: token,
-    })
-  }
-
-  loginWithToken = (token) => {
-    // console.log(token)
-    var config = {
-        headers: {
-            'Authorization': token
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      roomId: 0,
+      // userName:"",
+      // userPass:""
     }
-    axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config
-    )
-        .then((response) => {
-            var userData = response.data.data;
-            this.setState({
-                userData: userData,
-                userId: userData.id
-            })
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+  }
+
+  // passDataToHP = (name, pass) => {
+  //   this.setState({
+  //     userName: name,
+  //     userPass: pass
+  //   })
+  // }
+
+  passRoomIdToVsMan = (id) => {
+    this.setState({
+      roomId: id
+    })
   }
 
   render() { 
@@ -55,17 +36,32 @@ export default class App extends Component {
         <Switch>
           <Route 
             path="/" exact
-            render={(props) => <FrontPage {...props} name="FrontPage" />}
+            render={(props) => <FrontPage passDataToHP={this.passDataToHP} {...props} name="FrontPage" />}
           >
           </Route>
           <Route 
             path={"/HomePage"} exact
-            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props}/>:<Redirect to="/"/>}
+            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props} passRoomIdToVsMan={this.passRoomIdToVsMan} userName={this.state.userName} userPass={this.state.userPass}/>:<Redirect to="/"/>}
           />
+          <Route exact path="/HomePage/Bot" component={ChessPageVsBot} />
+          <Route 
+            path="/HomePage/play" 
+            render={(props) => <ChessPageVsMan {...props} roomId={this.state.roomId}/>}
+          />
+<<<<<<< HEAD
           <Route path="/Bot" component={ChessPageVsBot} />
           <Route path="/play" component={ChessPageVsBot} />
+=======
+>>>>>>> master
         </Switch>   
-     </Router>
+      </Router>
    )
   }
+
+  // render(){
+  //   return(
+  //     <AdminPage></AdminPage>
+  //   )
+  
+  // }
 }

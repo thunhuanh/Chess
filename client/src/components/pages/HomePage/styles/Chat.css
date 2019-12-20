@@ -50,7 +50,7 @@
 }
 
 .hp-chat-box ul li:first-child{
-    margin-top: 2%;
+    margin-top: -2%;
 }
 
 .hp-chat-chat{
@@ -65,7 +65,7 @@
 
 .hp-chat-chat > i {
     position: relative;
-    margin: .7%;
+    /* margin: .7%; */
     color: white;
     height: 100%;
 }
@@ -83,7 +83,7 @@
     border: none;
     border-radius: 24px 0px 0px 24px;
     padding: 1%;
-    width: 90%;
+    width: 87%;
     padding-left: 2%;
 }
 .hp-chat-submit{

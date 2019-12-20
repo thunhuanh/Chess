@@ -13,11 +13,7 @@ export default class Chat extends Component {
             isVsBot: true,
             isLogout: false,
             userName: "",
-            chat: [{
-                message: "Hello every one",
-                name: "",
-                id: 0
-            }]
+            chat: []
         }
 
         this.element = null;
@@ -39,6 +35,7 @@ export default class Chat extends Component {
 
         this.socket.on('general chat send', data => {
             this.newIncomingMessage(data)
+            console.log(data)
         });
     }
 
@@ -93,39 +90,42 @@ export default class Chat extends Component {
     }
 
     report = (event) => {
-        this.props.report(event.target.id, event.target.getAttribute("data"))
+        let reportid = event.target.getAttribute("reportid")
+        let message = event.target.getAttribute("msg")
+        // console.log(event.target.getAttribute("id"))
+        this.props.report(event.target.id, reportid, message)
     }
 
     addFriendOnClick = (event) => {
-        if (event.target.getAttribute("data") !== 0)
-        this.props.addFriend(event.target.getAttribute("data"))
+        if (event.target.getAttribute("data") !== 0){
+            this.props.addFriend(event.target.getAttribute("data"))
+        }      
     }
     renderMsg = () => {
         const {chat} = this.state;
         
         return chat.map((obj, idx) => {
-            if (idx !== 0) {
-              return <li key={idx} ref={element => {this.element = element}}>
-                        <ContextMenuTrigger id="SIMPLE" holdToDisplay={1000}>
-                            <strong>
-                                {obj.name}                                    
-                            </strong>
-                            <span>: {obj.message}</span>
-                        </ContextMenuTrigger>
-                        <ContextMenu className="hp-mini-profile" id="SIMPLE">
-                            <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onClick={this.report} id="Report_Cheating" data={obj.id}>Report Cheating</button>
-                            </MenuItem>
-                            <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onClick={this.report} id="Report_Griefing" data={obj.id}>Report Griefing</button>
-                            </MenuItem>
-                            <MenuItem className="hp-menu-item" >
-                                <button className="hp-menu-btn" onClick={this.addFriendOnClick} data={obj.id}>Add Friend</button>
-                            </MenuItem>
-                        </ContextMenu>                     
-                    </li>
-            } else return ""
-          }
+            
+            return <li key={idx} ref={element => {this.element = element}}>
+                    <ContextMenuTrigger id="SIMPLE" holdToDisplay={1000}>
+                        <strong>
+                            {obj.name}                                 
+                        </strong>
+                        <span>: {obj.message}</span>
+                    </ContextMenuTrigger>
+                    <ContextMenu className="hp-mini-profile" id="SIMPLE">
+                        <MenuItem className="hp-menu-item" >
+                            <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Cheating" reportid={obj.id} msg={obj.message}>Report Cheating</button>
+                        </MenuItem>
+                        <MenuItem className="hp-menu-item" >
+                            <button className="hp-menu-btn" onMouseDown={this.report} id="Report_Griefing" reportid={obj.id} msg={obj.message}>Report Griefing</button>
+                        </MenuItem>
+                        <MenuItem className="hp-menu-item" >
+                            <button className="hp-menu-btn" onMouseDown={this.addFriendOnClick} data={obj.id}>Add Friend</button>
+                        </MenuItem>
+                    </ContextMenu>                     
+                </li>
+            }
         );
     }
 

@@ -5,7 +5,8 @@ import Intro from './Intro'
 import RankDir from './RankDir'
 import About from './About'
 import axios from 'axios'
-// import {Redirect} from 'react-router-dom'    
+import {Redirect} from 'react-router-dom'
+import CryptoJS from "crypto-js"
 // import history from '../../../history'
 
 export default class FrontPage extends Component {
@@ -28,23 +29,25 @@ export default class FrontPage extends Component {
             this.loginWithToken(token)
     }
 
-    async componentDidMount() {
-        await this.getTopPlayer()
+    componentDidMount() {
+        this.getTopPlayer()
     }
 
     loginOnClick = () => {
-        if (this.state.isLoginForm === false)
-        this.setState({
-            isLoginForm: !this.state.isLoginForm
-        })
+        if (this.state.isLoginForm === false){
+            this.setState({
+                isLoginForm: !this.state.isLoginForm
+            })
+        }
     }
     loginOnClick2 = () => {
         // this.props.getConfirm(this.state.loginStatus, "HomePage")
         // this.setState({
         //     isRedirect: true
         // })
-        this.props.history.push("/HomePage")
-        // console.log(history.location)
+        if (this.state.loginStatus !== undefined || this.state.loginStatus !== null){
+            this.props.history.push("/HomePage")
+        }
     }
     mainOnClick = () => {
         if (this.state.isLoginForm === true){
@@ -82,6 +85,10 @@ export default class FrontPage extends Component {
                         token: response.data.token,
                         loginStatus: response.data.success,  
                     })
+                    let encryptName = CryptoJS.AES.encrypt(userName, "secret")
+                    let encryptPass = CryptoJS.AES.encrypt(password, "secret")
+                    localStorage.setItem("userName", encryptName)
+                    localStorage.setItem("userPass", encryptPass)
                     localStorage.setItem("token", response.data.token)
                     localStorage.setItem("loginStatus", response.data.success)
                 }
@@ -89,6 +96,8 @@ export default class FrontPage extends Component {
             })
             .catch((error) => {
             });
+
+        // this.props.passDataToHP(userName, password)
     }
 
     loginWithToken = (token) => {
@@ -115,24 +124,29 @@ export default class FrontPage extends Component {
             password: password
         })
             .then((response) => {
-                this.setState({
-                    loginStatus: response.data.success,
-                })
                 if (response.data.success === true) {
+                    this.setState({           
+                        isLoginForm: false,
+                        token: response.data.token,
+                        loginStatus: response.data.success,  
+                    })
+                    localStorage.setItem("token", response.data.token)
+                    localStorage.setItem("loginStatus", response.data.success)
                     this.login(userName, password)
                 }
-                localStorage.setItem("token", response.data.token)
-                localStorage.setItem("loginStatus", response.data.success)
             })
             .catch((error) => {
             });
     }
     render() {
-        // if (this.state.isRedirect === true){
-        //     return <Redirect to="/HomePage"></Redirect>
-        // }
+        if (this.state.isRedirect === true){
+            return <Redirect to="/HomePage"></Redirect>
+        }
         return (
             <div className="fp-container" >
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
                 <div className="fp-bg">
 
                 </div>
