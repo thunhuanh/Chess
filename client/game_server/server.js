@@ -103,12 +103,16 @@ io.on("connection", function (socket) {
     socket.on("disconnect", function() {
       console.log(playerId + " disconnected");
       socket.broadcast.emit("room exit", {roomId: socket.roomId})
-      // for( var i = 0; i < room.length; i++){ 
-      //   if ( room[i] === playerId) {
-      //     room.splice(i, 1); 
-      //   }
-      //  }
-      //  console.log(room)
+      if(socket.roomId !== undefined || socket.roomId !== null){
+        for( var i = 0; i < room.length; i++){ 
+          if(rooms[i].id === socket.roomId){
+            if ( rooms[i].players === 0) {
+              console.log(room)
+              room.splice(i, 1); 
+            }
+          }
+         }
+      }
     });
   });
 
