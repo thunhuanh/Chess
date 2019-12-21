@@ -6,6 +6,7 @@ import numeral from 'numeral';
 import moment from 'moment';
 import Slider from './Slider.js';
 import axios from 'axios';
+import config from '../../../config';
 
 
 const { Header, Content, Sider } = Layout;
@@ -30,14 +31,14 @@ export default class Dashboard extends Component {
   }
  
   fetchData = (token) => {
-    var config = {
+    var headerconfig = {
       headers:{
         "Content-Type": "application/json",
         "Authorization": token
       }
     }
-
-    axios.get('https://chess-apis.herokuapp.com/api/v1/be/account/accounts',config)
+    let url = config.API_URL + '/api/v1/be/account/accounts';
+    axios.get(url,headerconfig)
     .then((response) => {
       this.setState({
         totalplayer : response.data.data.length,

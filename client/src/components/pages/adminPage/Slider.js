@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import { Menu, Icon } from 'antd';
-import { faChessQueen } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChessQueen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Slider extends Component {   
   onClick() {

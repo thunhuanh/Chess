@@ -1,12 +1,13 @@
-import React from 'react'
-import '../styles/ChessPage.css'
-import PlayZoneVsBot from './PlayZoneVsBot'
-import MoveHistory from '../MoveHistory'
-import '../styles/ChatBox.css'
-import { faFlag } from "@fortawesome/free-solid-svg-icons"
-import { faChessQueen } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import axios from 'axios'
+import React from 'react';
+import '../styles/ChessPage.css';
+import PlayZoneVsBot from './PlayZoneVsBot';
+import MoveHistory from '../MoveHistory';
+import '../styles/ChatBox.css';
+import { faFlag } from "@fortawesome/free-solid-svg-icons";
+import { faChessQueen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import config from '../../../../config'
 
 class ChessPageVsBot extends React.Component {
     constructor(props) {
@@ -43,12 +44,13 @@ class ChessPageVsBot extends React.Component {
 
     loginWithToken = async (token) => {
         // console.log(token)
-        var config = {
+        var headerconfig = {
             headers: {
                 'Authorization': token,
             }
         }
-        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
+        let url = config.API_URL + '/api/v1/be/access/login/token';
+        const response = await axios.post(url,{}, headerconfig)
         return response.data.data;
     }
 

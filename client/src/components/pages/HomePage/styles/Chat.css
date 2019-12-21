@@ -46,12 +46,8 @@
 
 .hp-chat-box ul li {
     cursor: default;
-    margin-top: -1%;
+    /* margin-top: -1%; */
     max-width: fit-content;
-}
-
-.hp-chat-box ul li:first-child{
-    margin-top: -2%;
 }
 
 .hp-chat-chat{

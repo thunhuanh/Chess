@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb,Input } from 'antd';
-import Slider from'./Slider.js'
-import List from './List.js'
-import Profile from './Profile'
+import { Layout, Breadcrumb } from 'antd';
+import Slider from './Slider.js';
+import List from './List.js';
+import Profile from './Profile';
+
 const { Header, Content, Sider } = Layout;
 
 export default class User extends Component {
@@ -17,7 +18,7 @@ export default class User extends Component {
   }
   
   onCollapse = collapsed => {
-    console.log(collapsed);
+    // console.log(collapsed);
     this.setState({ collapsed });
   };
 
@@ -27,8 +28,8 @@ export default class User extends Component {
       id:id,
       arrpoint:arrpoint,
     })
-    console.log(this.state.id)
-    console.log(this.state.arrpoint)
+    // console.log(this.state.id)
+    // console.log(this.state.arrpoint)
   }
 
   liOffClick = () => {

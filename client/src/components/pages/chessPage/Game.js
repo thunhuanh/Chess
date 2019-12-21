@@ -4,6 +4,7 @@ import Chessboard from 'chessboardjsx';
 import io from 'socket.io-client';
 import {roughSquare} from "./roughStyles";
 import axios from 'axios';
+import config from '../../../config';
 
 export default class GameLogic extends Component {
   constructor(props){
@@ -24,7 +25,7 @@ export default class GameLogic extends Component {
       winner: false,
       players: 1
     };
-    this.socket = io('http://192.168.50.113:4000');
+    this.socket = io(config.SOCKETIO_URL);
     this.game = new Chess();
   }
   componentDidMount(){
@@ -32,20 +33,20 @@ export default class GameLogic extends Component {
   };
 
   updateScore = async (score, rank) => {
-    var config = {
+    var headerconfig = {
       headers: {
           'Authorization': localStorage.getItem("token")
       }
     }
 
-    let url = `https://chess-apis.herokuapp.com/api/v1/be/account/${this.props.userData.id}`
+    let url = config.API_URL + `/api/v1/be/account/${this.props.userData.id}`;
     await axios.put(url,{
       avatar: "string",
       nickName: "string",
       point: score,
       rank: rank,
       status: "string"
-    }, config)
+    }, headerconfig)
   }
 
   init = () => {

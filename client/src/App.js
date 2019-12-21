@@ -5,7 +5,8 @@ import HomePage from './components/pages/HomePage/HomePage';
 import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot'
 import ChessPageVsMan from './components/pages/chessPage/vsMan/ChessPageVsMan'
 // import adminPage from './components/pages/adminPage/AdminPage'
-// import AdminPage from './components/pages/adminPage/AdminPage';
+import AdminPage from './components/pages/adminPage/AdminPage';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -48,11 +49,11 @@ export default class App extends Component {
             path="/Home/play" 
             render={(props) => <ChessPageVsMan {...props} roomId={this.state.roomId}/>}
           />
-          {/* <Route
+          <Route
             exact
             path="/Admin"
             render={(props) => <AdminPage {...props}/>}
-          /> */}
+          />
         </Switch>   
       </Router>
    )

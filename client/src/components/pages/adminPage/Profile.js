@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Avatar,Descriptions, Button, Icon, message, Popconfirm} from 'antd';
 import axios from 'axios';
+import config from '../../../config';
 
 export default class Profile extends Component{
     constructor(props){
@@ -17,19 +18,20 @@ export default class Profile extends Component{
       }
 
     showPlayer = (token,id,arrpoint) => {
-        var config = {
+        var headerconfig = {
             headers:{
               "Content-Type": "application/json",
               "Authorization": token
             }
           }
-          axios.get('https://chess-apis.herokuapp.com/api/v1/be/account/' + id, config)
+          let url = config.API_URL + '/api/v1/be/account/' + id;
+          axios.get(url, headerconfig)
           .then((response) =>{
-            console.log('thanh cong ' + response.data.success)
+            // console.log('Success ' + response.data.success)
             let arr = arrpoint.reverse()
             let n
             for(let i = 0 ; i < arr.length; i++){
-              if(response.data.data.Point == arr[i]){
+              if(response.data.data.Point === arr[i]){
                 n = i
               }
             }
@@ -60,15 +62,15 @@ export default class Profile extends Component{
     }
 
     banAcc = (token, id) => {
-      console.log(id)
-      var config = {
+      // console.log(id)
+      var headerconfig = {
         headers:{
           "Content-Type": "application/json",
           "Authorization": token
         }
       }
-  
-      axios.delete('https://chess-apis.herokuapp.com/api/v1/be/account/' + id, config)
+      let url = config.API_URL + '/api/v1/be/account/' + id;
+      axios.delete(url, headerconfig)
       .then((response) =>{
           message.success('Process Is Complete');     
       })

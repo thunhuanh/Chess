@@ -2,7 +2,8 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from "axios";
 import { Form, Icon, Input, message} from 'antd';
-import './styles/login.css'
+import './styles/login.css';
+import config from '../../../config';
 
 
 class NormalLoginForm extends React.Component {
@@ -21,22 +22,24 @@ class NormalLoginForm extends React.Component {
   }
   
   loginWithToken = (token) =>{
-    var config = {
+    var headerconfig = {
       headers:{
         "Content-Type": "application/json",
         "Authorization": token
       }
     }
-      axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config)
-    .then((response) =>{
-      localStorage.setItem('admin_loginStatus',response.data.success)
-    })
+    let url = config.API_URL + '/api/v1/be/access/login/token';
+    axios.post(url,{}, headerconfig)
+      .then((response) =>{
+        localStorage.setItem('admin_loginStatus',response.data.success)
+      })
     .catch(function (error) {
     });
   }
  
   login = (userName, password) =>{
-    axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
+    let url = config.API_URL + '/api/v1/be/access/login';
+    axios.post(url, {
     name: userName, // Dữ liệu được gửi lên endpoint '/user'
     password: password
     })

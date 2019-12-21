@@ -6,7 +6,8 @@ import Profile from './Profile';
 import Friend from './Friend';
 import RoomComponent from './RoomComponent';
 import axios from 'axios';
-import CryptoJS from "crypto-js"
+import CryptoJS from 'crypto-js';
+import config from '../../../config'
 // import {Switch, Route} from 'react-router-dom';
 // import ChessPage from '../chessPage/ChessPage';
 
@@ -56,13 +57,13 @@ export default class HomePage extends Component {
     }
 
     getFriends = (token, userId) => {
-        var config = {
+        var headerconfig = {
             headers: {
                 'Authorization': token
             }
         }
-        var url = 'https://chess-apis.herokuapp.com/api/v1/be/friend/friends/all/' + String(userId)
-        axios.get(url, config).then((response) => {
+        var url = config.API_URL + '/api/v1/be/friend/friends/all/' + String(userId);
+        axios.get(url, headerconfig).then((response) => {
             if (response.data.success === true){
                 this.setState({
                     friends: response.data.data 
@@ -72,15 +73,17 @@ export default class HomePage extends Component {
     }
 
     addFriend = async (token, userID, friendID) => {
-        var config = {
+        var headerconfig = {
             headers: {
                 'Authorization': token
             }
         }
-        axios.post('https://chess-apis.herokuapp.com/api/v1/be/friend/friends/new', {
+        let url = config.API_URL + "/api/v1/be/friend/friends/new" ;
+
+        axios.post(url, {
             friendId: friendID,
             userId: userID
-            }, config).then((response) => {
+            }, headerconfig).then((response) => {
                 if (response.data.success){
                     // alert("12331");
                     this.getFriends(token, userID)
@@ -102,17 +105,17 @@ export default class HomePage extends Component {
     }
 
     removeFriend = async (token, userId, frId) => {
-        var config = {
+        var headerconfig = {
             headers: {
                 'Authorization': token
             }
         }
-        var url = 'https://chess-apis.herokuapp.com/api/v1/be/friend/friends/' + String(userId) + "/"  +String(frId)
+        var url = config.API_URL +  '/api/v1/be/friend/friends/' + String(userId) + "/"  +String(frId)
 
-        const response = await axios.delete(url, config)
+        const response = await axios.delete(url, headerconfig)
         if (response.data.success === true){
-            var newurl = 'https://chess-apis.herokuapp.com/api/v1/be/friend/friends/all/' + String(userId)
-            const response = await axios.get(newurl, config)
+            var newurl = config.API_URL +  '/api/v1/be/friend/friends/all/' + String(userId)
+            const response = await axios.get(newurl, headerconfig)
             if (response.data.success === false) {
                 this.setState({
                     friends: []
@@ -134,16 +137,17 @@ export default class HomePage extends Component {
         // this.getFriends(localStorage.getItem("token"), this.state.userData.id)
     }
     report = (token ,message, reportedId, reporterID) => {
-        var config = {
+        var headerconfig = {
             headers: {
                 'Authorization': token
             }
         }
-        axios.post("https://chess-apis.herokuapp.com/api/v1/be/report/reports", {
+        let url = config.API_URL + "/api/v1/be/report/reports"
+        axios.post(url, {
             message: message,
             reportedAccountId: reportedId,
             reporterId: reporterID
-        }, config).then((response) => {
+        }, headerconfig).then((response) => {
             if(response.data.success === true) {
             }
         })
@@ -159,7 +163,8 @@ export default class HomePage extends Component {
     }
 
     login = async (userName, password) => {
-        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
+        let url = config.API_URL + "/api/v1/be/access/login"
+        const response = await axios.post(url, {
             name: userName, // Dữ liệu được gửi lên endpoint '/user'
             password: password
         })

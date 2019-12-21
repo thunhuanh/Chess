@@ -1,10 +1,11 @@
-import React from 'react'
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import '../styles/ChatBox.css'
-import io from 'socket.io-client'
+import React from 'react';
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../styles/ChatBox.css';
+import io from 'socket.io-client';
+import config from '../../../../config';
 
-const socket = io('http://192.168.50.113:4000');
+const socket = io(config.SOCKETIO_URL);
 
 class ChatBox extends React.Component {
     constructor(props) {

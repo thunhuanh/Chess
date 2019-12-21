@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import './styles/Room.css'
-import io from 'socket.io-client'
+import React, { Component } from 'react';
+import './styles/Room.css';
+import io from 'socket.io-client';
+import config from '../../../config'
 // import ChessPageVsMan from '../chessPage/vsMan/ChessPageVsMan'
 // import {Switch, Route} from 'react-router-dom';
 
@@ -13,7 +14,7 @@ export default class RoomComponent extends Component {
             rooms : []
         }
 
-        this.socket = io('http://192.168.50.113:4000');
+        this.socket = io(config.SOCKETIO_URL);
         this.roomId = 0;
         this.socketId = "";
     }

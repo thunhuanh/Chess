@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import { Menu, Item, Separator, Submenu, MenuProvider, theme, IconFont } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
+import config from '../../../config';
 
 export default class Chat extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export default class Chat extends Component {
         }
 
         this.element = null;
-        this.socket = io('http://192.168.50.113:4000');
+        this.socket = io(config.SOCKETIO_URL);
     }
 
     componentWillMount() {
@@ -54,12 +55,13 @@ export default class Chat extends Component {
 
     loginWithToken = (token) => {
         // console.log(token)
-        var config = {
+        var headerconfig = {
             headers: {
                 'Authorization': token
             }
         }
-        axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',{}, config
+        let url = config.API_URL + "/api/v1/be/access/login/token";
+        axios.post(url,{}, headerconfig
         )
             .then((response) => {
                 let userName = response.data.data.name;

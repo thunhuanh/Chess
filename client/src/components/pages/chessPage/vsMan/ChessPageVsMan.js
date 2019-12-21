@@ -9,8 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios';
 import io from 'socket.io-client';
 import CryptoJS from "crypto-js";
+import config from '../../../../config'
 
-const socket = io('http://192.168.50.113:4000');
+const socket = io(config.SOCKETIO_URL);
 
 class ChessPageVsMan extends React.Component {
     constructor(props) {
@@ -49,7 +50,8 @@ class ChessPageVsMan extends React.Component {
     }
 
     login = async (userName, password) => {
-        const response = await axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
+        let url = config.API_URL + '/api/v1/be/access/login';
+        const response = await axios.post(url, {
             name: userName, // Dữ liệu được gửi lên endpoint '/user'
             password: password
         })
@@ -83,20 +85,20 @@ class ChessPageVsMan extends React.Component {
     }
 
     updateScore = async (score, rank) => {
-        var config = {
+        var headerconfig = {
           headers: {
               'Authorization': localStorage.getItem("token")
           }
         }
     
-        let url = `https://chess-apis.herokuapp.com/api/v1/be/account/${this.state.userData.id}`
+        let url = config.API_URL + `/api/v1/be/account/${this.state.userData.id}`
         await axios.put(url,{
           avatar: "string",
           nickName: "string",
           point: score,
           rank: rank,
           status: "string"
-        }, config)
+        }, headerconfig)
       }
 
     getMoveHistory = (history) => {

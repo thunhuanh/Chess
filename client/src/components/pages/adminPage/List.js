@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Button,Input, Icon } from 'antd';
 import axios from 'axios';
 import Highlighter from 'react-highlight-words';
+import config from '../../../config'
 
 export default class List extends React.Component {
   constructor(){
@@ -25,14 +26,14 @@ export default class List extends React.Component {
   }
 
   fetchData = (token) => {
-    var config = {
+    var headerconfig = {
       headers:{
         "Content-Type": "application/json",
         "Authorization": token
       }
     }
-
-    axios.get('https://chess-apis.herokuapp.com/api/v1/be/account/accounts',config)
+    let url = config.API_URL + '/api/v1/be/account/accounts';
+    axios.get(url,headerconfig)
     .then((response) => {
       let data = [];
       for (let i = 0; i < response.data.data.length; i++){

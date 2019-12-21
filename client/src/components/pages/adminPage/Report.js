@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Divider, Layout, Breadcrumb, Button, message, Popconfirm } from 'antd';
 import axios from "axios";
 import Slider from './Slider.js';
+import config from '../../../config';
 
 const { Column } = Table;
 const { Header, Content, Sider } = Layout;
@@ -22,15 +23,15 @@ export default class Dashboard extends Component {
   };
 
   banAcc = (token, data) => {
-    console.log(data.IdReported)
-    var config = {
+    // console.log(data.IdReported)
+    var headerconfig = {
       headers:{
         "Content-Type": "application/json",
         "Authorization": token
       }
     }
-
-    axios.delete('https://chess-apis.herokuapp.com/api/v1/be/account/' + data.IdReported, config)
+    let url = config.API_URL + '/api/v1/be/account/' + data.IdReported;
+    axios.delete(url, headerconfig)
     .then((response) =>{
         message.success('Process Is Complete');     
     })
@@ -41,14 +42,14 @@ export default class Dashboard extends Component {
   }
 
   deleteReport = (token, data) => {
-    var config = {
+    var headerconfig = {
       headers:{
         "Content-Type": "application/json",
         "Authorization": token
       }
     }
-
-    axios.delete('https://chess-apis.herokuapp.com/api/v1/be/report/reports/' + data.Key, config)
+    let url = config.API_URL + '/api/v1/be/report/reports/' + data.Key;
+    axios.delete(url, headerconfig)
     .then((response) =>{
         message.success('Process Is Complete');  
         this.fetchWithToken(this.token);  
@@ -61,14 +62,14 @@ export default class Dashboard extends Component {
   }
 
   fetchWithToken = (token) =>{
-    var config = {
+    var headerconfig = {
       headers:{
         "Content-Type": "application/json",
         "Authorization": token
       }
     }
-    
-      axios.get('https://chess-apis.herokuapp.com/api/v1/be/report/reports/all', config)
+    let url = config.API_URL + '/api/v1/be/report/reports/all';
+    axios.get(url, headerconfig)
     .then((response) => {
         let data = [];
         console.log(response.data.data)

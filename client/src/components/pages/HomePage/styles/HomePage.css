@@ -38,8 +38,8 @@
 /*bg and logo*/
 .hp-bg-box{
     width: 100%;
-    height: 75px;
-    position: relative;
+    height: 11%;
+    position: absolute;
 }
 .hp-bg-img{
     width: 100%;
@@ -57,10 +57,12 @@
 }
 
 .hp-logo > p{
-    padding: 2%;
+    display: inline-block;
+    padding-top: 1.2%;
+    padding-left: 2%;
     margin: auto;
     font-family: 'Lobster', cursive;
-    font-size: 50px;
+    font-size: 3em;
     color: white;
 }
 
@@ -73,7 +75,7 @@
     position: absolute;
     width: 100%;
     height: 85%;
-    padding-top: 3% ;
+    padding-top: 7% ;
 }
 
 .hp-main-content{

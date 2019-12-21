@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
-import './styles/FrontPage.css'
-import UserForm from './UserForm'
-import Intro from './Intro'
-import RankDir from './RankDir'
-import About from './About'
-import axios from 'axios'
-import {Redirect} from 'react-router-dom'
-import CryptoJS from "crypto-js"
+import React, { Component } from 'react';
+import './styles/FrontPage.css';
+import UserForm from './UserForm';
+import Intro from './Intro';
+import RankDir from './RankDir';
+import About from './About';
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
+import CryptoJS from "crypto-js";
+import config from '../../../config';
 // import history from '../../../history'
 
 export default class FrontPage extends Component {
@@ -58,7 +59,8 @@ export default class FrontPage extends Component {
     }
 
     getTopPlayer = () => {
-        axios.get('https://chess-apis.herokuapp.com/api/v1/be/account/accounts/top10')
+        let url = config.API_URL + "/api/v1/be/account/accounts/top10";
+        axios.get(url)
             .then((response) => {
                 if (response.data.success === true)
                     this.setState({
@@ -70,7 +72,8 @@ export default class FrontPage extends Component {
     }
 
     login = (userName, password) => {
-        axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login', {
+        let url = config.API_URL + "/api/v1/be/access/login";
+        axios.post(url, {
             name: userName, // Dữ liệu được gửi lên endpoint '/user'
             password: password
         })
@@ -101,13 +104,14 @@ export default class FrontPage extends Component {
     }
 
     loginWithToken = (token) => {
-        var config = {
+        var headerconfig = {
             header: {
                 "Authorization": token
             }
         }
-        axios.post('https://chess-apis.herokuapp.com/api/v1/be/access/login/token',
-            {}, config
+        let url = config.API_URL + "/api/v1/be/access/login/token";
+        axios.post(url,
+            {}, headerconfig
         )
             .then((response) => {
                 if (response.data.success === true)
@@ -119,7 +123,8 @@ export default class FrontPage extends Component {
 
 
     register = (userName, password) => {
-        axios.post('https://chess-apis.herokuapp.com/api/v1/be/account/create', {
+        let url = config.API_URL + "/api/v1/be/account/create";
+        axios.post(url, {
             name: userName, // Dữ liệu được gửi lên endpoint '/user'
             password: password
         })

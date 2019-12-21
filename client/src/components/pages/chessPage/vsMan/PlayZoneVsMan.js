@@ -15,7 +15,7 @@ class PlayZoneVsMan extends React.Component {
         return(
             <div className='playZone'>
                 <div className='opponent'>
-                    <p id='opponentName'>opponent</p>
+                    <p id='opponentName'>Opponent</p>
                 
                 </div>
                 <div className='chessTable'>
