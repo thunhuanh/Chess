@@ -21,7 +21,7 @@ class ChessPageVsBot extends React.Component {
 
     componentDidMount(){
         let loginStatus = localStorage.getItem("loginStatus")
-        if (loginStatus === undefined){
+        if (loginStatus === null){
             this.props.history.push("/")
         }
     }

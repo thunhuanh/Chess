@@ -46,6 +46,8 @@ class ChessPageVsMan extends React.Component {
             } catch (error) {
                 console.log(error);
             }
+        } else {
+            this.props.history.replace("/");
         }
     }
 

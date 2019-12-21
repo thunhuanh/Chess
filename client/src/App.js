@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom';
+import {Switch, Route, BrowserRouter as Router} from 'react-router-dom';
 import FrontPage from './components/pages/FrontPage/FrontPage';
 import HomePage from './components/pages/HomePage/HomePage';
 import ChessPageVsBot from './components/pages/chessPage/vsBot/ChessPageVsBot'
@@ -42,7 +42,7 @@ export default class App extends Component {
           </Route>
           <Route 
             path={"/Home"} exact
-            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props} passRoomIdToVsMan={this.passRoomIdToVsMan} userName={this.state.userName} userPass={this.state.userPass}/>:<Redirect to="/"/>}
+            render={(props) => localStorage.getItem("loginStatus") !== undefined?<HomePage {...props} passRoomIdToVsMan={this.passRoomIdToVsMan} userName={this.state.userName} userPass={this.state.userPass}/>:this.props.history.replace("/")}
           />
           <Route exact path="/Home/Bot" component={ChessPageVsBot} />
           <Route 
