@@ -67,7 +67,7 @@ class MoveHistory extends React.Component {
                 <ReactTable
                   data={this.state.data}
                   columns={columns}
-                  showPagination={false}
+                  showPagination={true}
                 />
                 </div>
             </div>
