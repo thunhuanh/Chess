@@ -6,12 +6,12 @@
 - Mọi thông tin chi tiết khác về dự án, vui lòng xem báo cáo đầy đủ trong mục "/documents/FINAL_REPORT".
 
 2. Thành viên nhóm:
-- NHỮ ANH THƯ     (MSSV: 17021342)
-- NGUYỄN SĨ TÙNG     (MSSV: 17021354)
-- NGUYỄN VƯƠNG TIẾN     (MSSV: 17021343)
-- LÊ ĐÌNH HOÀNG     (MSSV: 17021254)
-- LÊ QUANG PHƯỚC     (MSSV: 17021319)
-- PHẠM TUẤN LINH     (MSSV: 17021286)
+- Nhữ Anh Thư     (MSSV: 17021342)
+- Nguyễn Sĩ Tùng     (MSSV: 17021354)
+- Nguyễn Vương Ttiến     (MSSV: 17021343)
+- Lê Đình Hoàng     (MSSV: 17021254)
+- Lê Quang Phước     (MSSV: 17021319)
+- Phạm Tuấn Linh     (MSSV: 17021286)
 
 3. Yêu cầu cần có để chạy mã nguồn:
 - NodeJS.
