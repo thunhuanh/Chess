@@ -2,7 +2,7 @@ var express = require('express');
 var http = require('http');
 var socket = require('socket.io');
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 var app = express();
 
