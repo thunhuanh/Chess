@@ -2,29 +2,30 @@ package infrastructure
 
 import (
 	model "Chess/api_server/models"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"log"
 	"os"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 const (
-	HOST             = "DB_HOST"
-	PORT             = "DB_PORT"
-	USER             = "DB_USER"
-	DBNAME           = "DB_DBNAME"
-	PASSWORD         = "DB_PASSWORD"
-	HTTPSWAGGER      = "HTTP_SWAGGER"
+	HOST        = "DB_HOST"
+	PORT        = "DB_PORT"
+	USER        = "DB_USER"
+	DBNAME      = "DB_DBNAME"
+	PASSWORD    = "DB_PASSWORD"
+	HTTPSWAGGER = "HTTP_SWAGGER"
 )
 
 var (
-	Host             string
-	Port             string
-	User             string
-	DbName           string
-	Password         string
-	HttpSwagger      string
-	InfoLog,ErrLog  *log.Logger
+	Host            string
+	Port            string
+	User            string
+	DbName          string
+	Password        string
+	HttpSwagger     string
+	InfoLog, ErrLog *log.Logger
 
 	db *gorm.DB
 )
@@ -37,12 +38,12 @@ func getStringEnvParameter(envParam string, defaultValue string) string {
 }
 
 func loadEnvParameters() {
-	Host = getStringEnvParameter(HOST, "ec2-23-21-87-183.compute-1.amazonaws.com") // host database
-	Port = getStringEnvParameter(PORT, "5432") // post databse
-	User = getStringEnvParameter(USER, "vywmqsxbsdejqf")
-	DbName = getStringEnvParameter(DBNAME, "ddvk6a4d4i1iip")
-	Password = getStringEnvParameter(PASSWORD, "63caf6761cd96f92f55248c5ebe9e80372510ec02f5939d2f2245182db9b323a")
-	HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "https://chess-apis.herokuapp.com/api/v1/be/swagger/doc.json")
+	// Host = getStringEnvParameter(HOST, "ec2-23-21-87-183.compute-1.amazonaws.com") // host database
+	// Port = getStringEnvParameter(PORT, "5432")                                     // post databse
+	// User = getStringEnvParameter(USER, "vywmqsxbsdejqf")
+	// DbName = getStringEnvParameter(DBNAME, "ddvk6a4d4i1iip")
+	// Password = getStringEnvParameter(PASSWORD, "63caf6761cd96f92f55248c5ebe9e80372510ec02f5939d2f2245182db9b323a")
+	// HttpSwagger = getStringEnvParameter(HTTPSWAGGER, "https://chess-apis.herokuapp.com/api/v1/be/swagger/doc.json")
 }
 
 //https://chess-apis.herokuapp.com/api/v1/be/swagger/doc.json
@@ -61,7 +62,8 @@ func init() {
 
 // OpenConnection open one session
 func OpenConnection() (*gorm.DB, error) {
-	connectSQL := "host=" + Host + " port= " + Port + " user=" + User + " dbname= " + DbName + " password = " + Password + " sslmode=require"
+	// connectSQL := "host=" + Host + " port= " + Port + " user=" + User + " dbname= " + DbName + " password = " + Password + " sslmode=require"
+	connectSQL := os.Getenv("DATABASE_URL")
 	db, err := gorm.Open("postgres", connectSQL)
 
 	if err != nil {
@@ -75,7 +77,6 @@ func OpenConnection() (*gorm.DB, error) {
 func GetDB() *gorm.DB {
 	return db
 }
-
 
 // CloseConnection Close one session
 func CloseConnection(db *gorm.DB) {
@@ -95,7 +96,7 @@ func InitDatabase() error {
 		&model.Friend{},
 		&model.Room{},
 		&model.Report{},
-		)
+	)
 
 	CloseConnection(db)
 	return nil

@@ -23,7 +23,7 @@ import (
 // @name Authorization
 func main() {
 	port := os.Getenv("PORT")
-	if port == ""{
+	if port == "" {
 		port = "4000"
 	}
 	fmt.Println("server :", port)
@@ -44,6 +44,5 @@ func main() {
 	db := infrastructure.GetDB()
 
 	defer infrastructure.CloseConnection(db)
-
-	log.Fatal(http.ListenAndServe(":" + port, router.Router()))
+	log.Fatal(http.ListenAndServe(":"+port, router.Router()))
 }
