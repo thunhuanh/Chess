@@ -20,7 +20,7 @@
     "react-dom": "^16.10.2",
     "react-highlight-words": "^0.16.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.2.0",
+    "react-scripts": "^5.0.1",
     "react-table": "^7.0.0-rc.9",
     "react-table-v6": "^6.8.6",
     "roughjs": "^3.1.0",
