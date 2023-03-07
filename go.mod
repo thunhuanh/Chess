@@ -11,9 +11,7 @@ require (
 	github.com/go-chi/render v1.0.1
 	github.com/harlow/authtoken v0.0.0-20151218063325-ef4b3666db99
 	github.com/jinzhu/gorm v1.9.10
-	github.com/kr/pretty v0.3.0 // indirect
-	github.com/swaggo/files v0.0.0-20190704085106-630677cd5c14 // indirect
-	github.com/swaggo/http-swagger v0.0.0-20190614090009-c2865af9083e
-	github.com/swaggo/swag v1.6.2
-	golang.org/x/crypto v0.0.0-20190923035154-9ee001bba392
+	github.com/swaggo/http-swagger v1.2.6
+	github.com/swaggo/swag v1.7.9
+	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550
 )
